@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raccoon Labs — Design Selector</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0a0a0a;
+    color: #e0e0e0;
+    min-height: 100vh;
+    padding: 2rem;
+  }
+  h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #ff6b35, #f7c948);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle {
+    text-align: center;
+    color: #888;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
+  .section-label {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 2rem 0 1rem;
+    padding-left: 0.5rem;
+    border-left: 4px solid #ff6b35;
+    color: #f7c948;
+  }
+  .section-sub {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    padding-left: 1.2rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .card {
+    background: #151515;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .card:hover {
+    border-color: #ff6b35;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(255, 107, 53, 0.15);
+  }
+  .card-preview {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Preview backgrounds for each design */
+  .preview-cyberpunk { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); }
+  .preview-editorial { background: linear-gradient(135deg, #faf3e0, #f5e6ca); color: #333; }
+  .preview-retro { background: linear-gradient(135deg, #2c1810, #4a2c2a, #3d1c11); }
+  .preview-brutalist { background: #fff; color: #000; font-family: monospace; font-weight: 900; }
+  .preview-warm-indie { background: linear-gradient(135deg, #1a1410, #2a1f15); }
+  .preview-minimal { background: linear-gradient(135deg, #f8f8f8, #e8e8e8); color: #333; }
+  .preview-neon { background: linear-gradient(135deg, #1a0a2e, #16213e, #0f3460); }
+  .preview-warm-edge { background: linear-gradient(135deg, #1c1410, #2d1f18, #1a1410); }
+  .preview-clean { background: linear-gradient(135deg, #fafafa, #f0f0f0); color: #333; }
+  .preview-playful { background: linear-gradient(135deg, #0d1117, #161b22); }
+  .preview-neon-warmth { background: linear-gradient(135deg, #1a0a0a, #2d1a0a, #0a1a2d); }
+  .preview-editorial-journal { background: linear-gradient(135deg, #fdf8f0, #f5ede0); color: #2a2a2a; }
+  .preview-terminal { background: #0a0a0a; color: #00ff41; font-family: 'Courier New', monospace; font-size: 1rem; }
+  
+  .card-body {
+    padding: 1.2rem;
+  }
+  .card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+  .card-author {
+    font-size: 0.8rem;
+    color: #ff6b35;
+    margin-bottom: 0.5rem;
+  }
+  .card-desc {
+    font-size: 0.85rem;
+    color: #888;
+    line-height: 1.4;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-right: 4px;
+  }
+  .badge-winner { background: #ff6b35; color: #fff; }
+  .badge-new { background: #1db954; color: #fff; }
+  .badge-tie { background: #f7c948; color: #000; }
+  
+  .preview-text {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    text-align: center;
+    padding: 1rem;
+  }
+  .terminal-lines {
+    text-align: left;
+    padding: 1rem 1.5rem;
+    font-size: 0.75rem;
+    line-height: 1.6;
+  }
+  .terminal-lines .prompt { color: #00ff41; }
+  .terminal-lines .output { color: #888; }
+  
+  .vote-section {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: #151515;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    text-align: center;
+  }
+  .vote-section h2 { color: #f7c948; margin-bottom: 1rem; }
+  .vote-section p { color: #888; }
+  
+  @media (max-width: 768px) {
+    body { padding: 1rem; }
+    h1 { font-size: 1.6rem; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<h1>🦝 Raccoon Labs — Design Selector</h1>
+<p class="subtitle">Click any design to view it full-screen. Pick your favorite!</p>
+
+<!-- Original Designs -->
+<div style="max-width: 1200px; margin: 0 auto;">
+  <div class="section-label">Round 1 — Original Designs</div>
+  <p class="section-sub">The first 7 variants. #1 Cyberpunk and #7 Warm Indie tied 3-3 in the family vote.</p>
+</div>
+
+<div class="grid">
+  <a class="card" href="https://kennyklee.github.io/raccoonlabs-site/v1-cyberpunk.html" target="_blank">
+    <div class="card-preview preview-cyberpunk">
+      <div class="preview-text">⚡ Neon circuits &amp; dark vibes</div>
+    </div>
+    <div class="card-body">
+      <div><span class="badge badge-tie">TIE</span></div>
+      <div class="card-title">#1 — Cyberpunk</div>
+      <div class="card-author">by Vic</div>
+      <div class="card-desc">Neon-lit, dark, techy. Eye-catching but polarizing. Voted by Mac, Vic, Macy.</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://kennyklee.github.io/raccoonlabs-site/v2-editorial.html" target="_blank">
+    <div class="card-preview preview-editorial">
+      <div class="preview-text">📰 Clean editorial layout</div>
+    </div>
+    <div class="card-body">
+      <div class="card-title">#2 — Editorial</div>
+      <div class="card-author">by Vic</div>
+      <div class="card-desc">Magazine-style, content-focused, sophisticated.</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://kennyklee.github.io/raccoonlabs-site/v3-retro.html" target="_blank">
+    <div class="card-preview preview-retro">
+      <div class="preview-text">🎞️ Vintage warmth</div>
+    </div>
+    <div class="card-body">
+      <div class="card-title">#3 — Retro</div>
+      <div class="card-author">by Vic</div>
+      <div class="card-desc">Warm vintage aesthetic, nostalgic feel.</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://kennyklee.github.io/raccoonlabs-site/v4-brutalist.html" target="_blank">
+    <div class="card-preview preview-brutalist">
+      <div class="preview-text" style="font-family: monospace; font-weight: 900;">RAW. BOLD.</div>
+    </div>
+    <div class="card-body">
+      <div class="card-title">#4 — Brutalist</div>
+      <div class="card-author">by Vic</div>
+      <div class="card-desc">Raw, unpolished, bold. Anti-design as a statement.</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://kennyklee.github.io/raccoonlabs-site/v5-warm-indie.html" target="_blank">
+    <div class="card-preview preview-warm-indie">
+      <div class="preview-text">☕ Cozy indie workshop</div>
+    </div>
+    <div class="card-body">
+      <div class="card-title">#5 — Warm Indie</div>
+      <div class="card-author">by Vic</div>
+      <div class="card-desc">Approachable, cozy, human. Craft workshop vibes.</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://kennyklee.github.io/raccoonlabs-site/v6-minimal.html" target="_blank">
+    <div class="card-preview preview-minimal">
+      <div class="preview-text">✨ Less is more</div>
+    </div>
+    <div class="card-body">
+      <div class="card-title">#6 — Minimal</div>
+      <div class="card-author">by Vic</div>
+      <div class="card-desc">Clean, spacious, professional. No distractions.</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://kennyklee.github.io/raccoonlabs-site/index.html" target="_blank">
+    <div class="card-preview preview-warm-indie">
+      <div class="preview-text">🦝 The people's choice</div>
+    </div>
+    <div class="card-body">
+      <div><span class="badge badge-tie">TIE</span> <span class="badge badge-winner">CURRENT DEFAULT</span></div>
+      <div class="card-title">#7 — Warm Indie (v2)</div>
+      <div class="card-author">by Vic</div>
+      <div class="card-desc">Warm Indie refined. Voted by Macy, Koen, Kenny. Currently deployed as homepage.</div>
+    </div>
+  </a>
+</div>
+
+<!-- Round 2: Vic's Designs -->
+<div style="max-width: 1200px; margin: 0 auto;">
+  <div class="section-label">Round 2 — Vic's Designs</div>
+  <p class="section-sub">3 new variants exploring different directions.</p>
+</div>
+
+<div class="grid">
+  <a class="card" href="https://kennyklee.github.io/raccoonlabs-site/v8-warm-edge.html" target="_blank">
+    <div class="card-preview preview-warm-edge">
+      <div class="preview-text">🔥 Warm + bold</div>
+    </div>
+    <div class="card-body">
+      <div><span class="badge badge-new">NEW</span></div>
+      <div class="card-title">#8 — Warm Edge</div>
+      <div class="card-author">by Vic</div>
+      <div class="card-desc">Warm Indie warmth with stronger typography and accent colors. Approachable with edge.</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://kennyklee.github.io/raccoonlabs-site/v9-clean-startup.html" target="_blank">
+    <div class="card-preview preview-clean">
+      <div class="preview-text">💼 Serious business</div>
+    </div>
+    <div class="card-body">
+      <div><span class="badge badge-new">NEW</span></div>
+      <div class="card-title">#9 — Clean Startup</div>
+      <div class="card-author">by Vic</div>
+      <div class="card-desc">Minimal, professional, "serious business" vibe. Good if we pivot to B2B.</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://kennyklee.github.io/raccoonlabs-site/v10-playful-experiment.html" target="_blank">
+    <div class="card-preview preview-playful">
+      <div class="preview-text">🔴 LIVE EXPERIMENT</div>
+    </div>
+    <div class="card-body">
+      <div><span class="badge badge-new">NEW</span></div>
+      <div class="card-title">#10 — Playful Experiment</div>
+      <div class="card-author">by Vic</div>
+      <div class="card-desc">Leans into the reality-show angle. Dynamic, fun, "follow along" energy.</div>
+    </div>
+  </a>
+</div>
+
+<!-- Round 2: Mac's Designs -->
+<div style="max-width: 1200px; margin: 0 auto;">
+  <div class="section-label">Round 2 — Mac's Designs</div>
+  <p class="section-sub">3 new variants exploring different visual languages.</p>
+</div>
+
+<div class="grid">
+  <a class="card" href="https://kennyklee.github.io/raccoonlabs-site/v11-neon-warmth.html" target="_blank">
+    <div class="card-preview preview-neon-warmth">
+      <div class="preview-text">🌅 Cyberpunk meets cozy</div>
+    </div>
+    <div class="card-body">
+      <div><span class="badge badge-new">NEW</span></div>
+      <div class="card-title">#11 — Neon Warmth</div>
+      <div class="card-author">by Mac</div>
+      <div class="card-desc">Dark base with warm amber/coral neon. Cyberpunk energy made inviting and accessible.</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://kennyklee.github.io/raccoonlabs-site/v12-editorial-journal.html" target="_blank">
+    <div class="card-preview preview-editorial-journal">
+      <div class="preview-text">📖 Content is king</div>
+    </div>
+    <div class="card-body">
+      <div><span class="badge badge-new">NEW</span></div>
+      <div class="card-title">#12 — Editorial Journal</div>
+      <div class="card-author">by Mac</div>
+      <div class="card-desc">Cream background, serif + sans type pairing. Stratechery meets indie zine. Reading-first.</div>
+    </div>
+  </a>
+
+  <a class="card" href="https://kennyklee.github.io/raccoonlabs-site/v13-terminal-live.html" target="_blank">
+    <div class="card-preview preview-terminal">
+      <div class="terminal-lines">
+        <div><span class="prompt">$</span> cat partnership.json</div>
+        <div class="output">{"agents": 2, "capital": "$1,000"}</div>
+        <div><span class="prompt">$</span> <span style="animation: blink 1s infinite;">▊</span></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div><span class="badge badge-new">NEW</span></div>
+      <div class="card-title">#13 — Terminal Live</div>
+      <div class="card-author">by Mac</div>
+      <div class="card-desc">Full terminal aesthetic with live typing widget. "Watch the AIs work in real-time."</div>
+    </div>
+  </a>
+</div>
+
+<div class="vote-section">
+  <h2>🗳️ Cast Your Vote</h2>
+  <p>Click any design above to preview it. Tell us your pick in Discord!</p>
+  <p style="margin-top: 1rem; font-size: 0.9rem;">13 designs total — 7 from Round 1, 6 from Round 2. The Macy Test™ applies.</p>
+</div>
+
+<style>
+  @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+</style>
+
+</body>
+</html>
