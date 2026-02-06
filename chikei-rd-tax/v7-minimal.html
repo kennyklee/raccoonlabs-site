@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&D Credits</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fefefe;
+            --text: #0a0a0a;
+            --text-light: #737373;
+            --accent: #0a0a0a;
+            --border: #e5e5e5;
+            --font: 'Instrument Sans', -apple-system, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font);
+            font-size: 17px;
+            line-height: 1.6;
+        }
+        nav {
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { font-weight: 600; font-size: 1.1rem; }
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+        }
+        .hero {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 8rem 2rem 6rem;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 600;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+        .hero p {
+            color: var(--text-light);
+            font-size: 1.15rem;
+            margin-bottom: 2.5rem;
+        }
+        .cta-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 100px;
+            transition: opacity 0.2s;
+        }
+        .cta-btn:hover { opacity: 0.85; }
+        .divider {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .divider hr {
+            border: none;
+            border-top: 1px solid var(--border);
+        }
+        section {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+        section p { color: var(--text-light); margin-bottom: 1.5rem; }
+        .steps {
+            margin-top: 3rem;
+        }
+        .step {
+            display: grid;
+            grid-template-columns: 40px 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .step-num {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .step h3 { font-weight: 600; margin-bottom: 0.25rem; }
+        .step p { color: var(--text-light); margin-bottom: 0; font-size: 0.95rem; }
+        .numbers {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border);
+        }
+        .number-block { }
+        .number-value {
+            font-size: 2.5rem;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+        }
+        .number-label { color: var(--text-light); font-size: 0.9rem; margin-top: 0.25rem; }
+        .pricing-section {
+            background: #fafafa;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .pricing-section h2 { margin-bottom: 0.5rem; }
+        .pricing-section p { color: var(--text-light); max-width: 400px; margin: 0 auto 2rem; }
+        footer {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        footer a { color: var(--text-light); }
+        @media (max-width: 600px) {
+            .numbers { grid-template-columns: 1fr; gap: 1.5rem; }
+            footer { flex-direction: column; gap: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">R&D Credits</div>
+        <a href="#" class="nav-link">Get started</a>
+    </nav>
+
+    <div class="hero">
+        <h1>The government owes you money for building.</h1>
+        <p>R&D tax credits for micro startups. We find qualifying expenses, generate the docs, file the claims. You get cash back.</p>
+        <a href="#" class="cta-btn">Calculate your credit</a>
+    </div>
+
+    <div class="divider"><hr></div>
+
+    <section>
+        <h2>How it works</h2>
+        <p>Three steps. 72 hours. No spreadsheets.</p>
+        
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div>
+                    <h3>Connect</h3>
+                    <p>Link your accounting software or upload your financials. Takes 2 minutes.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div>
+                    <h3>Analyze</h3>
+                    <p>We identify qualifying R&D expenses and generate IRS-compliant documentation automatically.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div>
+                    <h3>Claim</h3>
+                    <p>We file your credit. You receive a refund or reduced tax liability.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="numbers">
+            <div class="number-block">
+                <div class="number-value">4×</div>
+                <div class="number-label">Average return on our fee</div>
+            </div>
+            <div class="number-block">
+                <div class="number-value">$0</div>
+                <div class="number-label">Upfront cost</div>
+            </div>
+            <div class="number-block">
+                <div class="number-value">72h</div>
+                <div class="number-label">Turnaround time</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="pricing-section">
+        <h2>25% of what we find</h2>
+        <p>No credit, no fee. We only get paid when you do.</p>
+        <a href="#" class="cta-btn">Start free estimate</a>
+    </div>
+
+    <footer>
+        <span>© 2026 R&D Credits</span>
+        <span><a href="#">Terms</a> · <a href="#">Privacy</a></span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&D Tax Credits — Maximize Your Startup's Returns</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #faf9f7;
+            --text-dark: #1a1a1a;
+            --text-muted: #666;
+            --accent: #2563eb;
+            --accent-dark: #1d4ed8;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Inter', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg);
+            color: var(--text-dark);
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+        nav {
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .nav-links a:hover { color: var(--text-dark); }
+        .hero {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 8rem 2rem;
+            text-align: center;
+        }
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(3rem, 7vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            font-weight: 300;
+        }
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .cta-btn:hover { background: var(--accent-dark); }
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: var(--text-dark);
+            margin: 0 auto 3rem;
+        }
+        section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+        .section-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        h2 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+        .two-col p { color: var(--text-muted); margin-bottom: 1.5rem; }
+        .stat-card {
+            background: white;
+            padding: 3rem;
+            border: 1px solid #e5e5e5;
+        }
+        .stat-card .number {
+            font-family: var(--font-serif);
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--accent);
+        }
+        .stat-card .label { color: var(--text-muted); margin-top: 0.5rem; }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+        .step { border-left: 2px solid #e5e5e5; padding-left: 2rem; }
+        .step-num {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 900;
+            color: #e5e5e5;
+        }
+        .step h3 { margin: 1rem 0 0.5rem; font-weight: 600; }
+        .step p { color: var(--text-muted); font-size: 0.95rem; }
+        footer {
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid #e5e5e5;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .two-col, .steps { grid-template-columns: 1fr; }
+            nav { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">R&D Credits</div>
+        <ul class="nav-links">
+            <li><a href="#process">Process</a></li>
+            <li><a href="#benefits">Benefits</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <div class="divider"></div>
+        <h1>Your R&D Deserves a Return</h1>
+        <p>Micro startups typically leave $10,000–$50,000 in tax credits unclaimed every year. We fix that.</p>
+        <a href="#" class="cta-btn">Calculate Your Credit</a>
+    </div>
+
+    <section>
+        <div class="two-col">
+            <div>
+                <div class="section-label">The Opportunity</div>
+                <h2>Most small startups don't claim R&D credits</h2>
+                <p>The R&D tax credit was designed for companies like yours — but complex paperwork and expensive advisors keep most micro startups from claiming what they're owed.</p>
+                <p>We've built a better way: AI-powered expense mapping, automatic documentation, and pricing that actually makes sense for small teams.</p>
+            </div>
+            <div class="stat-card">
+                <div class="number">4x</div>
+                <div class="label">Average return on your investment with us</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" style="background: white; max-width: none; padding: 6rem 2rem;">
+        <div style="max-width: 1100px; margin: 0 auto;">
+            <div class="section-label">How It Works</div>
+            <h2>Three steps to your credit</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">01</div>
+                    <h3>Connect your books</h3>
+                    <p>Link QuickBooks, Xero, or upload your financials. We identify qualifying R&D expenses automatically.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">02</div>
+                    <h3>We do the work</h3>
+                    <p>Our AI categorizes expenses and generates IRS-compliant documentation. No spreadsheets for you.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">03</div>
+                    <h3>Claim your credit</h3>
+                    <p>We file everything and you receive your credit — as a refund or reduced tax liability.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="benefits" style="text-align: center;">
+        <div class="section-label">Pricing</div>
+        <h2>25% of what we find. Nothing upfront.</h2>
+        <p style="color: var(--text-muted); max-width: 500px; margin: 1rem auto 2rem;">If we don't find you a credit, you don't pay. Simple as that.</p>
+        <a href="#" class="cta-btn">Get Your Free Estimate</a>
+    </section>
+
+    <footer>
+        <p>© 2026 R&D Tax Credits · Built for founders who build</p>
+    </footer>
+</body>
+</html>

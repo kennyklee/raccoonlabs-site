@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&D TAX CREDITS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000;
+            --white: #fff;
+            --yellow: #ffff00;
+            --red: #ff0000;
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--white); color: var(--black); font-family: var(--font-mono); }
+        .hero {
+            min-height: 100vh;
+            background: var(--black);
+            color: var(--white);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .hero-top { display: flex; justify-content: space-between; font-size: 0.8rem; }
+        .mega-title {
+            font-family: var(--font-display);
+            font-size: clamp(15vw, 20vw, 22rem);
+            line-height: 0.85;
+        }
+        .mega-title .highlight { color: var(--yellow); }
+        .hero-subtitle { max-width: 500px; font-size: 1.1rem; margin-top: 2rem; }
+        section { padding: 4rem 2rem; border-top: 4px solid var(--black); }
+        .split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .split-left {
+            background: var(--yellow);
+            padding: 4rem;
+        }
+        .split-right {
+            padding: 4rem;
+            border-left: 4px solid var(--black);
+        }
+        h2 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 0.9;
+        }
+        .stat-row {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        .stat-num {
+            font-family: var(--font-display);
+            font-size: 5rem;
+            line-height: 1;
+        }
+        .stat-label { font-size: 0.9rem; }
+        .steps-section { background: var(--black); color: var(--white); }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+        }
+        .step {
+            padding: 3rem;
+            border-right: 2px solid var(--white);
+        }
+        .step:last-child { border-right: none; }
+        .step-num {
+            font-family: var(--font-display);
+            font-size: 6rem;
+            color: var(--yellow);
+        }
+        .step h3 { font-size: 1.5rem; margin: 1rem 0; }
+        .cta-section {
+            background: var(--red);
+            color: var(--white);
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+        .brutal-btn {
+            display: inline-block;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            padding: 1.5rem 3rem;
+            background: var(--white);
+            color: var(--black);
+            text-decoration: none;
+            border: 4px solid var(--black);
+            margin-top: 2rem;
+            transition: all 0.1s;
+        }
+        .brutal-btn:hover {
+            background: var(--yellow);
+            transform: translate(-4px, -4px);
+            box-shadow: 4px 4px 0 var(--black);
+        }
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        @media (max-width: 768px) {
+            .split, .steps { grid-template-columns: 1fr; }
+            .step { border-right: none; border-bottom: 2px solid var(--white); }
+            .split-right { border-left: none; border-top: 4px solid var(--black); }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-top">
+            <div>R&D TAX CREDITS</div>
+            <div>FOR MICRO STARTUPS</div>
+        </div>
+        <div>
+            <h1 class="mega-title">GET<br><span class="highlight">4X</span><br>BACK</h1>
+            <p class="hero-subtitle">You're building something. The government owes you money for it. We help you claim every dollar.</p>
+        </div>
+        <div style="font-size: 0.8rem;">SCROLL ↓</div>
+    </div>
+
+    <section class="split">
+        <div class="split-left">
+            <h2>THE<br>PROBLEM</h2>
+        </div>
+        <div class="split-right">
+            <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">R&D tax credits exist. They're real money. But most micro startups don't claim them because:</p>
+            <p style="font-size: 1.1rem;">1. Too complicated<br>2. Advisors charge $15-30K minimum<br>3. Nobody tells you about it</p>
+            <div class="stat-row">
+                <div>
+                    <div class="stat-num">$30K</div>
+                    <div class="stat-label">AVG UNCLAIMED/YEAR</div>
+                </div>
+                <div>
+                    <div class="stat-num">90%</div>
+                    <div class="stat-label">STARTUPS MISS OUT</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="steps-section">
+        <h2 style="padding: 4rem 2rem 0; color: var(--white);">HOW IT WORKS</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <h3>CONNECT</h3>
+                <p>Link your accounting software. 2 minutes.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <h3>WE WORK</h3>
+                <p>AI finds qualifying expenses. Generates docs.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <h3>YOU WIN</h3>
+                <p>Receive credit. Cash back or reduced taxes.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2 style="color: var(--white);">25% OF CREDIT<br>NOTHING UPFRONT</h2>
+        <p style="margin-top: 1rem; font-size: 1.1rem;">No credit found = you pay $0.</p>
+        <a href="#" class="brutal-btn">CALCULATE NOW</a>
+    </section>
+
+    <footer>
+        R&D TAX CREDITS — BUILT FOR FOUNDERS WHO BUILD — 2026
+    </footer>
+</body>
+</html>

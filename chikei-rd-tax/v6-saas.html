@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClaimR&D — Automated Tax Credits for Startups</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --bg-gray: #f9fafb;
+            --text: #111827;
+            --text-muted: #6b7280;
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --success: #10b981;
+            --border: #e5e7eb;
+            --font: 'Inter', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font);
+            line-height: 1.6;
+        }
+        nav {
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo { font-weight: 800; font-size: 1.25rem; color: var(--primary); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+        .nav-links a:hover { color: var(--text); }
+        .nav-btn {
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+        .badge {
+            display: inline-block;
+            background: #ecfdf5;
+            color: var(--success);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        .cta-group { display: flex; gap: 1rem; justify-content: center; }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 0.875rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .btn-primary:hover { background: var(--primary-dark); }
+        .btn-secondary {
+            background: white;
+            color: var(--text);
+            padding: 0.875rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid var(--border);
+        }
+        .hero-image {
+            margin-top: 4rem;
+            background: var(--bg-gray);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .dashboard-preview {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+        }
+        .dashboard-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .dashboard-row:last-child { border-bottom: none; }
+        .row-label { color: var(--text-muted); }
+        .row-value { font-weight: 600; }
+        .row-value.success { color: var(--success); }
+        .logos-section {
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+        .logos-section p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; }
+        .logos { display: flex; justify-content: center; gap: 3rem; opacity: 0.5; font-weight: 700; color: var(--text-muted); }
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .section-header p { color: var(--text-muted); }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .feature {
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: #eef2ff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        .feature h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .feature p { color: var(--text-muted); font-size: 0.95rem; }
+        .pricing-section { background: var(--bg-gray); padding: 5rem 2rem; }
+        .pricing-card {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        .pricing-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .price { font-size: 4rem; font-weight: 800; margin: 1rem 0; }
+        .price span { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
+        .pricing-features {
+            text-align: left;
+            margin: 2rem 0;
+            list-style: none;
+        }
+        .pricing-features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .pricing-features li::before { content: '✓'; color: var(--success); font-weight: 700; }
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+        }
+        @media (max-width: 768px) {
+            .features { grid-template-columns: 1fr; }
+            .cta-group { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">ClaimR&D</div>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#" class="nav-btn">Get Started</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <span class="badge">✨ Built for micro startups</span>
+        <h1>R&D tax credits,<br>without the complexity</h1>
+        <p>Automatically identify qualifying expenses, generate audit-ready docs, and claim your credit. Average startup saves $25K.</p>
+        <div class="cta-group">
+            <a href="#" class="btn-primary">Calculate My Credit →</a>
+            <a href="#" class="btn-secondary">See How It Works</a>
+        </div>
+        
+        <div class="hero-image">
+            <div class="dashboard-preview">
+                <h4 style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.9rem;">Your R&D Credit Summary</h4>
+                <div class="dashboard-row">
+                    <span class="row-label">Qualifying R&D expenses</span>
+                    <span class="row-value">$147,230</span>
+                </div>
+                <div class="dashboard-row">
+                    <span class="row-label">Estimated credit rate</span>
+                    <span class="row-value">20.3%</span>
+                </div>
+                <div class="dashboard-row">
+                    <span class="row-label">Potential credit</span>
+                    <span class="row-value success">$29,888</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="features">
+        <div class="section-header">
+            <h2>Everything you need to claim R&D credits</h2>
+            <p>No accountants. No spreadsheets. Just results.</p>
+        </div>
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🔗</div>
+                <h3>One-click integrations</h3>
+                <p>Connect QuickBooks, Xero, or upload CSVs. We pull your expense data automatically.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🤖</div>
+                <h3>AI-powered analysis</h3>
+                <p>Machine learning identifies qualifying R&D activities from your expenses with 95%+ accuracy.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📄</div>
+                <h3>Audit-ready docs</h3>
+                <p>Auto-generated documentation that meets IRS requirements. No manual work needed.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>72-hour turnaround</h3>
+                <p>From connect to claim-ready in 3 days. Not 3 months like traditional firms.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🛡️</div>
+                <h3>Audit protection</h3>
+                <p>We stand behind our work. If you're audited, we handle it at no extra cost.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💬</div>
+                <h3>Expert support</h3>
+                <p>Questions? Our R&D tax specialists are available via chat and email.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="pricing-section" id="pricing">
+        <div class="section-header">
+            <h2>Simple, transparent pricing</h2>
+            <p>No credit found = no fee. Ever.</p>
+        </div>
+        <div class="pricing-card">
+            <h3>Success-Based Pricing</h3>
+            <div class="price">25%<span> of credit claimed</span></div>
+            <ul class="pricing-features">
+                <li>$0 upfront cost</li>
+                <li>Full expense analysis</li>
+                <li>Audit-ready documentation</li>
+                <li>Filing support</li>
+                <li>Audit protection included</li>
+            </ul>
+            <a href="#" class="btn-primary" style="display: block;">Get Started Free →</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 ClaimR&D · R&D tax credits for startups that build</p>
+    </footer>
+</body>
+</html>

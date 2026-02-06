@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&D TAX CREDITS // SYSTEM ONLINE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0d0208;
+            --amber: #ffb000;
+            --green: #00ff41;
+            --cyan: #00fff9;
+            --font-terminal: 'VT323', monospace;
+            --font-display: 'Orbitron', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg);
+            color: var(--amber);
+            font-family: var(--font-terminal);
+            font-size: 20px;
+            line-height: 1.6;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 3px);
+            pointer-events: none;
+            z-index: 1000;
+        }
+        .glow { text-shadow: 0 0 10px var(--amber), 0 0 20px var(--amber); }
+        .glow-green { text-shadow: 0 0 10px var(--green), 0 0 20px var(--green); color: var(--green); }
+        nav {
+            padding: 1.5rem 2rem;
+            border-bottom: 2px solid var(--amber);
+            display: flex;
+            justify-content: space-between;
+        }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+        }
+        .hero {
+            padding: 6rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .bios {
+            color: var(--green);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+        }
+        .terminal-box {
+            background: rgba(0,0,0,0.5);
+            border: 2px solid var(--amber);
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 0 20px rgba(255,176,0,0.2), inset 0 0 60px rgba(0,0,0,0.5);
+        }
+        .terminal-box pre { line-height: 2; }
+        .key { color: var(--cyan); }
+        .value { color: var(--green); }
+        .cta-btn {
+            display: inline-block;
+            font-family: var(--font-display);
+            padding: 1rem 2rem;
+            border: 2px solid var(--cyan);
+            color: var(--cyan);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            transition: all 0.3s;
+        }
+        .cta-btn:hover {
+            background: var(--cyan);
+            color: var(--bg);
+            box-shadow: 0 0 30px var(--cyan);
+        }
+        section {
+            padding: 4rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255,176,0,0.3);
+        }
+        h2 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: 0.15em;
+            margin-bottom: 2rem;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .feature {
+            border: 1px solid var(--amber);
+            padding: 1.5rem;
+        }
+        .feature h3 { color: var(--cyan); margin-bottom: 0.5rem; }
+        .feature p { color: #888; font-size: 0.95rem; }
+        .stats {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            margin: 3rem 0;
+        }
+        .stat { text-align: center; }
+        .stat-num {
+            font-family: var(--font-display);
+            font-size: 3rem;
+        }
+        .stat-label { color: #888; font-size: 0.9rem; }
+        footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255,176,0,0.3);
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo glow">R&D_TAX_CREDIT_SYSTEM</div>
+        <div style="color: var(--green);">STATUS: ONLINE</div>
+    </nav>
+
+    <div class="hero">
+        <div class="bios">
+            INITIALIZING TAX CREDIT ANALYZER v2.026<br>
+            SCANNING ELIGIBLE EXPENSES... <span class="glow-green">READY</span>
+        </div>
+        
+        <h1 class="glow">RECOVER YOUR R&D INVESTMENT</h1>
+        
+        <div class="terminal-box">
+            <pre>$ analyze_rd_credit --startup-size=micro
+
+<span class="key">SCANNING:</span> OpEx + CapEx R&D expenses
+<span class="key">CREDIT_RATE:</span> <span class="value">~20% of qualifying spend</span>
+<span class="key">ROI_MULTIPLIER:</span> <span class="value">4x our fee</span>
+<span class="key">UPFRONT_COST:</span> <span class="value">$0</span>
+<span class="key">TURNAROUND:</span> <span class="value">72 hours</span>
+
+<span class="glow-green">READY TO CALCULATE YOUR CREDIT...</span></pre>
+        </div>
+        
+        <a href="#" class="cta-btn">INITIALIZE ANALYSIS →</a>
+    </div>
+
+    <section>
+        <h2 class="glow">// SYSTEM.PROCESS</h2>
+        <div class="features">
+            <div class="feature">
+                <h3>> CONNECT</h3>
+                <p>Link accounting software. Auto-detect qualifying R&D expenses from your records.</p>
+            </div>
+            <div class="feature">
+                <h3>> ANALYZE</h3>
+                <p>AI maps expenses to IRS categories. Generates audit-ready documentation.</p>
+            </div>
+            <div class="feature">
+                <h3>> CLAIM</h3>
+                <p>We file. You receive credit as refund or reduced liability.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="glow">// SYSTEM.STATS</h2>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-num glow-green">4x</div>
+                <div class="stat-label">RETURN ON FEE</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num glow">$0</div>
+                <div class="stat-label">UPFRONT COST</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num" style="color: var(--cyan);">25%</div>
+                <div class="stat-label">SUCCESS FEE ONLY</div>
+            </div>
+        </div>
+        <div style="text-align: center;">
+            <a href="#" class="cta-btn">START SCAN →</a>
+        </div>
+    </section>
+
+    <footer>
+        R&D TAX CREDIT SYSTEM // BUILT FOR MICRO STARTUPS // 2026
+    </footer>
+</body>
+</html>

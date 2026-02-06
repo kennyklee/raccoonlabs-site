@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&D Tax Credits for Micro Startups</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a0a0f;
+            --bg-surface: #12121a;
+            --accent-green: #39ff85;
+            --accent-blue: #3b82f6;
+            --text-primary: #e8e6e3;
+            --text-secondary: #8a8a9a;
+            --font-display: 'Outfit', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: var(--font-display);
+            line-height: 1.6;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1000;
+        }
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10,10,15,0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+        .logo { font-family: var(--font-mono); font-weight: 700; color: var(--accent-green); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; }
+        .nav-links a:hover { color: var(--accent-green); }
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 6rem 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 span { color: var(--accent-green); }
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+        .terminal {
+            background: var(--bg-surface);
+            border: 1px solid #2a2a3a;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            max-width: 500px;
+            margin-bottom: 2rem;
+        }
+        .terminal-header {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+        .terminal pre { color: var(--text-secondary); line-height: 1.8; }
+        .terminal .key { color: var(--accent-blue); }
+        .terminal .value { color: var(--accent-green); }
+        .terminal .comment { color: #666; }
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--accent-green);
+            color: var(--bg-deep);
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(57,255,133,0.3); }
+        section {
+            padding: 6rem 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .feature {
+            background: var(--bg-surface);
+            border: 1px solid #2a2a3a;
+            border-radius: 8px;
+            padding: 2rem;
+        }
+        .feature h3 { color: var(--accent-green); margin-bottom: 0.5rem; }
+        .feature p { color: var(--text-secondary); }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--accent-green);
+        }
+        .stat-label { color: var(--text-secondary); }
+        footer {
+            padding: 3rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid #2a2a3a;
+        }
+        @media (max-width: 768px) {
+            .hero, section { padding: 4rem 1.5rem; }
+            .stats { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">R&D_TAX_CREDITS</div>
+        <ul class="nav-links">
+            <li><a href="#how">How It Works</a></li>
+            <li><a href="#benefits">Benefits</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <h1>Get <span>4x</span> Back on Your R&D Spend</h1>
+        <p>Micro startups leave money on the table. We help you claim every dollar of R&D tax credits you're owed — cost-effectively.</p>
+        
+        <div class="terminal">
+            <div class="terminal-header">
+                <span class="terminal-dot dot-red"></span>
+                <span class="terminal-dot dot-yellow"></span>
+                <span class="terminal-dot dot-green"></span>
+            </div>
+            <pre><span class="comment">// Your R&D tax credit potential</span>
+<span class="key">annual_rd_spend</span>: <span class="value">$150,000</span>
+<span class="key">credit_rate</span>: <span class="value">~20%</span>
+<span class="key">potential_credit</span>: <span class="value">$30,000</span>
+<span class="key">our_fee</span>: <span class="value">$7,500</span>
+<span class="key">your_net_benefit</span>: <span class="value">$22,500</span></pre>
+        </div>
+        
+        <a href="#" class="cta-btn">Calculate Your Credit →</a>
+    </div>
+
+    <section id="how">
+        <h2>How It Works</h2>
+        <div class="features">
+            <div class="feature">
+                <h3>1. Connect</h3>
+                <p>Link your accounting software. We automatically identify qualifying R&D expenses from your opex and capex.</p>
+            </div>
+            <div class="feature">
+                <h3>2. Analyze</h3>
+                <p>Our AI maps your expenses to IRS-qualified research activities. No manual documentation needed.</p>
+            </div>
+            <div class="feature">
+                <h3>3. Claim</h3>
+                <p>We prepare audit-ready documentation and file your credit. You get cash back or reduced tax liability.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="benefits">
+        <h2>Built for Micro Startups</h2>
+        <p style="color: var(--text-secondary); max-width: 600px; margin-bottom: 2rem;">Traditional R&D tax credit firms charge $15-30K minimums. We're 4x cheaper with the same quality.</p>
+        <div class="stats">
+            <div>
+                <div class="stat-number">4x</div>
+                <div class="stat-label">Return on Our Fee</div>
+            </div>
+            <div>
+                <div class="stat-number">$0</div>
+                <div class="stat-label">Upfront Cost</div>
+            </div>
+            <div>
+                <div class="stat-number">72hr</div>
+                <div class="stat-label">Turnaround Time</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" style="text-align: center;">
+        <h2>Simple Pricing</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem;">25% of credit claimed. No credit, no fee.</p>
+        <a href="#" class="cta-btn">Get Started Free →</a>
+    </section>
+
+    <footer>
+        <p>© 2026 R&D Tax Credits · Helping micro startups keep more of what they build</p>
+    </footer>
+</body>
+</html>
