@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StartupCredits - Turn Your R&D Into Cash</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #ffffff;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #ff6b35;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 140px 0 80px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            background: #ff6b35;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: #e55a2d;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 1rem 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Calculator Widget */
+        .calculator-widget {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            color: #1a1a1a;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator-widget h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #ff6b35;
+        }
+
+        .calc-input {
+            margin-bottom: 1rem;
+        }
+
+        .calc-input label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .calc-input input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            transition: border-color 0.3s ease;
+        }
+
+        .calc-input input:focus {
+            outline: none;
+            border-color: #ff6b35;
+        }
+
+        .calc-result {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .calc-result .amount {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .calc-result .label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Features Grid */
+        .features-section {
+            padding: 80px 0;
+            background: #f8f9ff;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1a1a1a;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step::after {
+            content: '→';
+            position: absolute;
+            right: -1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #ff6b35;
+            font-weight: 800;
+        }
+
+        .step:last-child::after {
+            display: none;
+        }
+
+        .step-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .step h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Social Proof */
+        .social-proof {
+            background: #1a1a1a;
+            color: white;
+            padding: 80px 0;
+        }
+
+        .testimonial-slider {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: #2a2a2a;
+            padding: 2rem;
+            border-radius: 16px;
+            border-left: 4px solid #ff6b35;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .author-info h4 {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 80px 0;
+            background: #f8f9ff;
+        }
+
+        .faq-item {
+            background: white;
+            margin: 1rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: white;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #f8f9ff;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: #666;
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        /* Animations */
+        .slide-up {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .bounce-in {
+            opacity: 0;
+            transform: scale(0.8);
+            animation: bounceIn 0.6s ease forwards;
+        }
+
+        @keyframes bounceIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .step::after {
+                display: none;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .calculator-widget {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">StartupCredits</a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#testimonials">Success Stories</a></li>
+            </ul>
+            <a href="#" class="nav-cta">Get Started Free</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="slide-up">Turn Your R&D Spending Into Cash Back 💰</h1>
+                    <p class="subtitle slide-up">Stop leaving money on the table! If you're building tech, you're probably eligible for R&D tax credits. We make claiming them stupid simple.</p>
+                    <div class="hero-buttons slide-up">
+                        <a href="#" class="btn-primary">See How Much You Could Save</a>
+                        <a href="#" class="btn-secondary">Learn More</a>
+                    </div>
+                    <p style="opacity: 0.8; font-size: 0.9rem;">⚡ Takes 15 minutes to start • 🎯 4x ROI guaranteed • 🔒 Fully compliant</p>
+                </div>
+
+                <div class="calculator-widget bounce-in">
+                    <h3>💡 Quick Savings Calculator</h3>
+                    <div class="calc-input">
+                        <label>Monthly R&D Spending</label>
+                        <input type="number" id="rdSpending" placeholder="25000" value="25000">
+                    </div>
+                    <div class="calc-input">
+                        <label>Team Size</label>
+                        <input type="number" id="teamSize" placeholder="5" value="5">
+                    </div>
+                    <div class="calc-result">
+                        <div class="amount" id="savingsAmount">$65,000</div>
+                        <div class="label">Estimated Annual Savings</div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%; margin-top: 1rem;">Get My Exact Number →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section" id="features">
+        <div class="container">
+            <h2 class="section-title">Built for Startups, By Startup People</h2>
+            <div class="features-grid">
+                <div class="feature-card slide-up">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI-Powered Analysis</h3>
+                    <p>Our smart system scans your expenses and automatically identifies qualifying R&D activities. No manual categorization needed.</p>
+                </div>
+                <div class="feature-card slide-up">
+                    <div class="feature-icon">⚡</div>
+                    <h3>15-Minute Setup</h3>
+                    <p>Connect your accounting software, answer a few questions, and we'll handle the rest. Seriously, it's that easy.</p>
+                </div>
+                <div class="feature-card slide-up">
+                    <div class="feature-icon">📊</div>
+                    <h3>Audit-Ready Docs</h3>
+                    <p>Complete documentation package that satisfies IRS requirements. Sleep easy knowing you're fully covered.</p>
+                </div>
+                <div class="feature-card slide-up">
+                    <div class="feature-icon">💪</div>
+                    <h3>Startup-Focused</h3>
+                    <p>We understand lean teams and tight budgets. Our process is designed specifically for growing tech companies.</p>
+                </div>
+                <div class="feature-card slide-up">
+                    <div class="feature-icon">🎯</div>
+                    <h3>4x ROI Guarantee</h3>
+                    <p>Our fee is roughly 25% of what you save. You're guaranteed to net at least 3x more than what you pay us.</p>
+                </div>
+                <div class="feature-card slide-up">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Bank-Level Security</h3>
+                    <p>SOC 2 certified with enterprise-grade encryption. Your financial data stays secure and private.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works (The Non-Boring Version)</h2>
+            <div class="steps-container">
+                <div class="step slide-up">
+                    <div class="step-icon">🔌</div>
+                    <h3>Connect</h3>
+                    <p>Link your accounting software. We integrate with QuickBooks, Xero, and most major platforms.</p>
+                </div>
+                <div class="step slide-up">
+                    <div class="step-icon">🧠</div>
+                    <h3>Analyze</h3>
+                    <p>Our AI identifies qualifying activities while our experts review everything for accuracy.</p>
+                </div>
+                <div class="step slide-up">
+                    <div class="step-icon">📋</div>
+                    <h3>File</h3>
+                    <p>We prepare all forms and documentation. You just review and approve before filing.</p>
+                </div>
+                <div class="step slide-up">
+                    <div class="step-icon">💰</div>
+                    <h3>Save</h3>
+                    <p>Get your credits applied to reduce your tax bill. Keep more cash in your business!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-proof" id="testimonials">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Startup Founders Love Us</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial slide-up">
+                    <p class="testimonial-text">"Holy crap, these guys found $120K in R&D credits we had no idea we qualified for. Game changer for our runway. The whole process took like 2 hours of my time total."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div class="author-info">
+                            <h4>Jake Davidson</h4>
+                            <p>Founder, CodeFlow AI</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial slide-up">
+                    <p class="testimonial-text">"StartupCredits saved us 6 months of runway. Their platform is exactly what busy founders need - set it and forget it. Plus their team actually gets the startup struggle."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SC</div>
+                        <div class="author-info">
+                            <h4>Sarah Chen</h4>
+                            <p>CTO, DataVault</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial slide-up">
+                    <p class="testimonial-text">"We were skeptical about R&D credits being worth the hassle. StartupCredits proved us wrong - $85K back with zero headache. Their fee paid for itself 4x over."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MR</div>
+                        <div class="author-info">
+                            <h4>Mike Rodriguez</h4>
+                            <p>CEO, FinTech Labs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">FAQ (The Real Questions)</h2>
+            <div class="faq-item slide-up">
+                <button class="faq-question">Do I actually qualify? I'm just building software...</button>
+                <div class="faq-answer">YES! Software development absolutely qualifies for R&D credits. If you're building new features, improving performance, or solving technical challenges, you're doing R&D. We've helped SaaS, mobile apps, AI companies, and more.</div>
+            </div>
+            <div class="faq-item slide-up">
+                <button class="faq-question">What if I'm pre-revenue or don't owe much in taxes?</button>
+                <div class="faq-answer">R&D credits can be carried forward for up to 20 years OR applied against payroll taxes (up to $250K annually). Even if you don't owe income tax now, these credits are incredibly valuable for your future.</div>
+            </div>
+            <div class="faq-item slide-up">
+                <button class="faq-question">How much do you charge?</button>
+                <div class="faq-answer">Roughly 25% of the credits we secure for you. No upfront costs, no hourly fees. We only get paid when you save money. Average ROI is 4x - you net 3x more than our fee.</div>
+            </div>
+            <div class="faq-item slide-up">
+                <button class="faq-question">What if the IRS comes knocking?</button>
+                <div class="faq-answer">We've got your back with full audit support. Our documentation meets all IRS requirements and we'll represent you if any questions come up. That's included in our service at no extra cost.</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 StartupCredits. Built by startup people, for startup people. 🚀</p>
+        </div>
+    </footer>
+
+    <script>
+        // Calculator functionality
+        function updateCalculator() {
+            const rdSpending = parseFloat(document.getElementById('rdSpending').value) || 0;
+            const teamSize = parseFloat(document.getElementById('teamSize').value) || 0;
+            
+            // Rough calculation: ~26% of qualified expenses as credit
+            const annualSpending = rdSpending * 12;
+            const qualifiedPercentage = Math.min(0.8, 0.4 + (teamSize * 0.05)); // More people = more qualified activities
+            const estimatedCredits = annualSpending * qualifiedPercentage * 0.26;
+            
+            document.getElementById('savingsAmount').textContent = 
+                '$' + Math.round(estimatedCredits).toLocaleString();
+        }
+
+        document.getElementById('rdSpending').addEventListener('input', updateCalculator);
+        document.getElementById('teamSize').addEventListener('input', updateCalculator);
+
+        // Initialize calculator
+        updateCalculator();
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = Math.random() * 0.3 + 's';
+                    if (entry.target.classList.contains('slide-up')) {
+                        entry.target.classList.add('slide-up');
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                    if (entry.target.classList.contains('bounce-in')) {
+                        entry.target.classList.add('bounce-in');
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'scale(1)';
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.slide-up, .bounce-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const isOpen = answer.style.display === 'block';
+                
+                // Close all other answers
+                document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+                
+                // Toggle current answer
+                answer.style.display = isOpen ? 'none' : 'block';
+            });
+        });
+    </script>
+</body>
+</html>

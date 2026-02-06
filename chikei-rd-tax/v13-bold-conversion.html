@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&D Credit Co - STOP LEAVING $250K ON THE TABLE!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #ff3b30;
+            --primary-green: #30d158;
+            --primary-blue: #007aff;
+            --primary-orange: #ff9500;
+            --primary-purple: #af52de;
+            --yellow: #ffcc02;
+            --black: #000000;
+            --white: #ffffff;
+            --gray-light: #f2f2f7;
+            --gray-medium: #8e8e93;
+            --gray-dark: #48484a;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            background: var(--black);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary-red);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary-red);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-red);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-orange) 100%);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            font-weight: 800;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 59, 48, 0.4);
+        }
+
+        .nav-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 59, 48, 0.6);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 140px 0 80px;
+            background: linear-gradient(135deg, var(--black) 0%, #1a1a1a 100%);
+            text-align: center;
+            position: relative;
+        }
+
+        .urgency-banner {
+            background: var(--primary-red);
+            color: var(--white);
+            padding: 0.75rem;
+            margin-bottom: 3rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .hero .highlight-red {
+            color: var(--primary-red);
+            text-shadow: 0 0 20px rgba(255, 59, 48, 0.5);
+        }
+
+        .hero .highlight-green {
+            color: var(--primary-green);
+            text-shadow: 0 0 20px rgba(48, 209, 88, 0.5);
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--gray-medium);
+        }
+
+        .big-numbers {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .big-number {
+            text-align: center;
+        }
+
+        .big-number-value {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--primary-green);
+            text-shadow: 0 0 20px rgba(48, 209, 88, 0.5);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .big-number-label {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--white);
+            text-transform: uppercase;
+        }
+
+        .hero-cta {
+            margin: 3rem 0;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-orange) 100%);
+            color: var(--white);
+            padding: 1.5rem 3rem;
+            border: none;
+            font-size: 1.3rem;
+            font-weight: 900;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(255, 59, 48, 0.4);
+            margin-bottom: 1rem;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 59, 48, 0.6);
+        }
+
+        .risk-free {
+            font-size: 0.9rem;
+            color: var(--gray-medium);
+            font-weight: 600;
+        }
+
+        .social-proof-logos {
+            margin-top: 4rem;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            opacity: 0.7;
+        }
+
+        .social-proof-logos div {
+            background: var(--gray-dark);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* Scarcity Section */
+        .scarcity-section {
+            background: var(--primary-red);
+            color: var(--white);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .scarcity-section h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .scarcity-section p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .countdown-item {
+            background: var(--black);
+            padding: 1.5rem;
+            border-radius: 8px;
+            min-width: 80px;
+        }
+
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--yellow);
+        }
+
+        .countdown-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .scarcity-cta {
+            background: var(--yellow);
+            color: var(--black);
+            padding: 1.2rem 2.5rem;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: 900;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255, 204, 2, 0.4);
+        }
+
+        .scarcity-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 204, 2, 0.6);
+        }
+
+        /* Features Section */
+        .features-section {
+            background: #111111;
+            padding: 100px 0;
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .features-header h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .feature-card {
+            background: var(--black);
+            padding: 2.5rem;
+            border: 2px solid var(--gray-dark);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary-red);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 59, 48, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-red);
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .feature-card p {
+            color: var(--gray-medium);
+            line-height: 1.6;
+            font-weight: 600;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--black);
+            padding: 100px 0;
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .testimonials-header h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            color: var(--primary-green);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background: #1a1a1a;
+            padding: 2.5rem;
+            border-left: 5px solid var(--primary-green);
+            position: relative;
+        }
+
+        .testimonial-amount {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: var(--primary-green);
+            color: var(--black);
+            padding: 0.5rem 1rem;
+            font-weight: 900;
+            font-size: 1.1rem;
+            border-radius: 4px;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-orange) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 900;
+            font-size: 1.3rem;
+        }
+
+        .author-info h4 {
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+            color: var(--white);
+        }
+
+        .author-info p {
+            color: var(--gray-medium);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+        }
+
+        .stat-item h3 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .stat-item p {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: var(--black);
+            padding: 100px 0;
+            text-align: center;
+            border-top: 3px solid var(--primary-red);
+        }
+
+        .final-cta h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            color: var(--primary-red);
+        }
+
+        .final-cta p {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--gray-medium);
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-mega {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-orange) 100%);
+            color: var(--white);
+            padding: 2rem 4rem;
+            border: none;
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(255, 59, 48, 0.4);
+        }
+
+        .cta-mega:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(255, 59, 48, 0.6);
+        }
+
+        .guarantee {
+            background: var(--primary-green);
+            color: var(--black);
+            padding: 1.5rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        /* FAQ */
+        .faq {
+            background: #111111;
+            padding: 80px 0;
+        }
+
+        .faq h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--black);
+            border: 2px solid var(--gray-dark);
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem;
+            background: var(--black);
+            border: none;
+            color: var(--white);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-align: left;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .faq-question:hover {
+            background: #1a1a1a;
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            background: #1a1a1a;
+            color: var(--gray-medium);
+            display: none;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            border-top: 2px solid var(--primary-red);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            color: var(--gray-medium);
+            font-weight: 600;
+        }
+
+        /* Animations */
+        .bounce-in {
+            animation: bounceIn 0.8s ease;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 1; }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        .slide-up {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .big-numbers {
+                gap: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .big-numbers {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .countdown {
+                gap: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">R&D CREDIT CO</a>
+            <ul class="nav-links">
+                <li><a href="#features">FEATURES</a></li>
+                <li><a href="#proof">PROOF</a></li>
+                <li><a href="#testimonials">RESULTS</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <a href="#" class="nav-cta">CLAIM NOW!</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="urgency-banner bounce-in">
+                ⚠️ LIMITED TIME: Q4 2024 R&D CREDITS CLOSING SOON!
+            </div>
+
+            <h1 class="slide-up">
+                STOP LEAVING<br>
+                <span class="highlight-red">$250,000</span><br>
+                ON THE TABLE
+            </h1>
+
+            <p class="subtitle slide-up">Your startup is hemorrhaging money every day you don't claim R&D tax credits</p>
+
+            <div class="big-numbers slide-up">
+                <div class="big-number">
+                    <span class="big-number-value">$125K</span>
+                    <span class="big-number-label">AVERAGE RECOVERY</span>
+                </div>
+                <div class="big-number">
+                    <span class="big-number-value">4X</span>
+                    <span class="big-number-label">GUARANTEED ROI</span>
+                </div>
+                <div class="big-number">
+                    <span class="big-number-value">15</span>
+                    <span class="big-number-label">MINUTES TO START</span>
+                </div>
+            </div>
+
+            <div class="hero-cta slide-up">
+                <a href="#" class="cta-primary">GET MY $250K NOW!</a>
+                <div class="risk-free">✅ 100% Risk-Free • ✅ No Upfront Cost • ✅ 4X ROI Guarantee</div>
+            </div>
+
+            <div class="social-proof-logos slide-up">
+                <div>TechCrunch</div>
+                <div>Y Combinator</div>
+                <div>500 Startups</div>
+                <div>Andreessen</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="scarcity-section">
+        <div class="container">
+            <h2>ONLY 48 HOURS LEFT!</h2>
+            <p>Q4 2024 R&D credit deadline is approaching. Don't miss out on YOUR money!</p>
+            
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number">47</div>
+                    <div class="countdown-label">HOURS</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number">23</div>
+                    <div class="countdown-label">MINUTES</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number">15</div>
+                    <div class="countdown-label">SECONDS</div>
+                </div>
+            </div>
+
+            <a href="#" class="scarcity-cta">SECURE MY CREDITS!</a>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item slide-up">
+                    <h3>$47M</h3>
+                    <p>TOTAL RECOVERED</p>
+                </div>
+                <div class="stat-item slide-up">
+                    <h3>2,847</h3>
+                    <p>STARTUPS HELPED</p>
+                </div>
+                <div class="stat-item slide-up">
+                    <h3>97%</h3>
+                    <p>SUCCESS RATE</p>
+                </div>
+                <div class="stat-item slide-up">
+                    <h3>100%</h3>
+                    <p>AUDIT DEFENSE</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="features-header">
+                <h2 class="slide-up">WHY WE DOMINATE</h2>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card slide-up">
+                    <div class="feature-icon">🚀</div>
+                    <h3>LIGHTNING FAST</h3>
+                    <p>15-minute setup. 14-day turnaround. While competitors take months, we deliver results in weeks.</p>
+                </div>
+
+                <div class="feature-card slide-up">
+                    <div class="feature-icon">💰</div>
+                    <h3>MAXIMUM RECOVERY</h3>
+                    <p>Advanced AI algorithms + expert CPAs = more money back than anyone else in the industry.</p>
+                </div>
+
+                <div class="feature-card slide-up">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>BULLETPROOF DEFENSE</h3>
+                    <p>100% audit success rate. Complete documentation. Expert representation. Sleep easy at night.</p>
+                </div>
+
+                <div class="feature-card slide-up">
+                    <div class="feature-icon">⚡</div>
+                    <h3>STARTUP FOCUSED</h3>
+                    <p>Built for lean teams. No enterprise bloat. We understand startups because we ARE startups.</p>
+                </div>
+
+                <div class="feature-card slide-up">
+                    <div class="feature-icon">🎯</div>
+                    <h3>GUARANTEED RESULTS</h3>
+                    <p>4X ROI or you don't pay. That's how confident we are in our ability to get you money.</p>
+                </div>
+
+                <div class="feature-card slide-up">
+                    <div class="feature-icon">🔥</div>
+                    <h3>PROVEN TRACK RECORD</h3>
+                    <p>$47M recovered. 2,847 startups. 97% success rate. Numbers don't lie.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="testimonials-header">
+                <h2 class="slide-up">REAL RESULTS FROM REAL STARTUPS</h2>
+            </div>
+
+            <div class="testimonial-grid">
+                <div class="testimonial slide-up">
+                    <div class="testimonial-amount">$340K</div>
+                    <p class="testimonial-text">"Holy sh*t! R&D Credit Co just handed us $340K we didn't know existed. Our runway just extended by 8 months. This literally saved our company."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div class="author-info">
+                            <h4>Mark Thompson</h4>
+                            <p>CEO, AI Dynamics Inc</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial slide-up">
+                    <div class="testimonial-amount">$185K</div>
+                    <p class="testimonial-text">"I was skeptical until they put $185K directly into our bank account. Best ROI we've ever had - 6x return on their fee. Absolute game changer!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-info">
+                            <h4>Sarah Kim</h4>
+                            <p>CTO, DataFlow Systems</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial slide-up">
+                    <div class="testimonial-amount">$290K</div>
+                    <p class="testimonial-text">"$290K recovered in 3 weeks. Their process is insane - completely automated, totally painless. I literally did nothing and got a quarter million back."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">J</div>
+                        <div class="author-info">
+                            <h4>James Rodriguez</h4>
+                            <p>Founder, CloudTech Labs</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial slide-up">
+                    <div class="testimonial-amount">$420K</div>
+                    <p class="testimonial-text">"Four hundred and twenty thousand dollars. That's not a typo. That's what they got us back. Our investors are blown away. This is pure magic."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">A</div>
+                        <div class="author-info">
+                            <h4>Alex Chen</h4>
+                            <p>CEO, BioTech Innovations</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <div class="container">
+            <h2 class="slide-up">DON'T LET ANOTHER DAY PASS</h2>
+            <p class="slide-up">Every day you wait is money out of your pocket. Your competitors are already claiming these credits.</p>
+            
+            <div class="cta-buttons slide-up">
+                <a href="#" class="cta-mega">CLAIM MY $250K NOW!</a>
+            </div>
+
+            <div class="guarantee slide-up">
+                🔒 100% RISK-FREE GUARANTEE: IF WE DON'T 4X YOUR INVESTMENT, YOU PAY NOTHING!
+            </div>
+        </div>
+    </section>
+
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2>FREQUENTLY ASKED QUESTIONS</h2>
+            <div class="faq-container">
+                <div class="faq-item slide-up">
+                    <button class="faq-question">HOW MUCH WILL I ACTUALLY GET BACK?</button>
+                    <div class="faq-answer">Most startups recover $50K-$250K. Our record is $420K for a single client. The average is $125K. It depends on your R&D spending, but if you're building software, you're likely leaving massive money on the table.</div>
+                </div>
+
+                <div class="faq-item slide-up">
+                    <button class="faq-question">WHAT'S THE CATCH? WHAT DO YOU CHARGE?</button>
+                    <div class="faq-answer">No catch. We charge 25% of what we recover. So if we get you $100K, our fee is $25K and you keep $75K. If we get you nothing, you pay nothing. Zero upfront costs, zero hidden fees.</div>
+                </div>
+
+                <div class="faq-item slide-up">
+                    <button class="faq-question">HOW FAST CAN YOU GET ME RESULTS?</button>
+                    <div class="faq-answer">15 minutes to get started. 2-3 weeks for full analysis. Credits applied with your next tax filing. We're the fastest in the industry - others take 3-6 months.</div>
+                </div>
+
+                <div class="faq-item slide-up">
+                    <button class="faq-question">WHAT IF THE IRS AUDITS ME?</button>
+                    <div class="faq-answer">100% audit defense included. Complete documentation, expert representation, full compliance support. We've never lost an audit. Ever. That's why we can guarantee our results.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 R&D Credit Co. The most aggressive R&D tax credit recovery firm in America.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = Math.random() * 0.3 + 's';
+                    if (entry.target.classList.contains('slide-up')) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.slide-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const isOpen = answer.style.display === 'block';
+                
+                // Close all other answers
+                document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+                
+                // Toggle current answer
+                answer.style.display = isOpen ? 'none' : 'block';
+            });
+        });
+
+        // Countdown timer (fake but impressive)
+        function updateCountdown() {
+            const hours = document.querySelector('.countdown-item:nth-child(1) .countdown-number');
+            const minutes = document.querySelector('.countdown-item:nth-child(2) .countdown-number');
+            const seconds = document.querySelector('.countdown-item:nth-child(3) .countdown-number');
+
+            let h = parseInt(hours.textContent);
+            let m = parseInt(minutes.textContent);
+            let s = parseInt(seconds.textContent);
+
+            s--;
+            if (s < 0) {
+                s = 59;
+                m--;
+                if (m < 0) {
+                    m = 59;
+                    h--;
+                    if (h < 0) {
+                        h = 47;  // Reset to create urgency
+                    }
+                }
+            }
+
+            hours.textContent = h.toString().padStart(2, '0');
+            minutes.textContent = m.toString().padStart(2, '0');
+            seconds.textContent = s.toString().padStart(2, '0');
+        }
+
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+
+        // Add click tracking for CTAs (for demonstration)
+        document.querySelectorAll('[href="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log('CTA clicked:', e.target.textContent);
+                // In real implementation, this would track conversions
+            });
+        });
+
+        // Pulse effect for urgency elements
+        setInterval(() => {
+            document.querySelectorAll('.urgency-banner, .scarcity-cta').forEach(el => {
+                el.style.transform = 'scale(1.02)';
+                setTimeout(() => {
+                    el.style.transform = 'scale(1)';
+                }, 100);
+            });
+        }, 3000);
+    </script>
+</body>
+</html>

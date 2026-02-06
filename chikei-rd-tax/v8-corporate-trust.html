@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&D Credit Co - Maximize Your R&D Tax Credits</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            line-height: 1.6;
+            color: #1a365d;
+            background-color: #f7fafc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2c5282 0%, #3182ce 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            padding: 140px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Crimson Text', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: #4a5568;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        .trust-icon {
+            width: 24px;
+            height: 24px;
+            background: #48bb78;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(72, 187, 120, 0.4);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.5rem;
+            color: #3182ce;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            color: #4a5568;
+            font-weight: 600;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: #f7fafc;
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1a365d;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(26, 54, 93, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1a365d;
+        }
+
+        /* Security & Compliance */
+        .security-section {
+            background: #1a365d;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .security-item {
+            padding: 2rem;
+        }
+
+        .security-item h4 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: #f7fafc;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #48bb78;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #3182ce;
+        }
+
+        /* FAQ */
+        .faq {
+            background: #f7fafc;
+            padding: 80px 0;
+        }
+
+        .faq-item {
+            background: white;
+            margin: 1rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(26, 54, 93, 0.1);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: #edf2f7;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1.1rem;
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            color: #4a5568;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a365d;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .trust-badges {
+                gap: 1rem;
+            }
+
+            .stats-grid, .steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">R&D Credit Co</a>
+            <ul class="nav-links">
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#security">Security</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="fade-in">Maximize Your R&D Tax Credits with Confidence</h1>
+            <p class="subtitle fade-in">For startups investing in R&D, you're probably leaving significant money on the table. Our expert-driven platform ensures compliance while maximizing your credits.</p>
+            
+            <div class="trust-badges fade-in">
+                <div class="trust-badge">
+                    <span class="trust-icon">✓</span>
+                    IRS Compliant
+                </div>
+                <div class="trust-badge">
+                    <span class="trust-icon">🔒</span>
+                    Bank-Level Security
+                </div>
+                <div class="trust-badge">
+                    <span class="trust-icon">📊</span>
+                    Audit-Ready Documentation
+                </div>
+                <div class="trust-badge">
+                    <span class="trust-icon">⚡</span>
+                    Expert Review Process
+                </div>
+            </div>
+
+            <a href="#" class="cta-button fade-in">Calculate Your Credits</a>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <h3>$50K-$250K</h3>
+                    <p>Average Savings per Startup</p>
+                </div>
+                <div class="stat-item fade-in">
+                    <h3>4x ROI</h3>
+                    <p>Return on Our Fee</p>
+                </div>
+                <div class="stat-item fade-in">
+                    <h3>15 Minutes</h3>
+                    <p>To Get Started</p>
+                </div>
+                <div class="stat-item fade-in">
+                    <h3>100%</h3>
+                    <p>Compliance Guaranteed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps-grid">
+                <div class="step fade-in">
+                    <div class="step-number">1</div>
+                    <h3>Connect</h3>
+                    <p>Securely connect your financial systems and provide R&D expense documentation through our encrypted platform.</p>
+                </div>
+                <div class="step fade-in">
+                    <h3>Analyze</h3>
+                    <div class="step-number">2</div>
+                    <p>Our expert team reviews your expenses against IRS guidelines to identify all qualifying R&D activities and expenses.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">3</div>
+                    <h3>File</h3>
+                    <p>We prepare and file all necessary documentation with complete audit trails and compliance verification.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">4</div>
+                    <h3>Save</h3>
+                    <p>Receive your maximum R&D tax credits while maintaining full compliance and peace of mind.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="security-section" id="security">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Enterprise-Grade Security & Compliance</h2>
+            <div class="security-grid">
+                <div class="security-item fade-in">
+                    <h4>SOC 2 Certified</h4>
+                    <p>Rigorous security controls protecting your sensitive financial data</p>
+                </div>
+                <div class="security-item fade-in">
+                    <h4>End-to-End Encryption</h4>
+                    <p>Your data is encrypted in transit and at rest using industry standards</p>
+                </div>
+                <div class="security-item fade-in">
+                    <h4>Expert Tax Professionals</h4>
+                    <p>Licensed CPAs and tax attorneys oversee every claim</p>
+                </div>
+                <div class="security-item fade-in">
+                    <h4>IRS Audit Support</h4>
+                    <p>Complete documentation and expert support if questions arise</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Trusted by Leading Startups</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial fade-in">
+                    <p class="testimonial-text">"R&D Credit Co helped us recover $180K in R&D credits we didn't even know we qualified for. Their attention to compliance detail gave us complete confidence."</p>
+                    <p class="testimonial-author">— Sarah Chen, CTO, DataFlow Analytics</p>
+                </div>
+                <div class="testimonial fade-in">
+                    <p class="testimonial-text">"The process was seamless and the documentation they provided was incredibly thorough. Worth every penny of their fee."</p>
+                    <p class="testimonial-author">— Michael Rodriguez, CEO, BioTech Innovations</p>
+                </div>
+                <div class="testimonial fade-in">
+                    <p class="testimonial-text">"Professional, compliant, and results-driven. They turned our R&D expenses into significant tax savings while handling all the complexity."</p>
+                    <p class="testimonial-author">— Jennifer Park, CFO, CloudSecure Systems</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-item fade-in">
+                <button class="faq-question">What qualifies as R&D for tax credit purposes?</button>
+                <div class="faq-answer">R&D tax credits apply to qualifying research activities including software development, product design, process improvement, and technology innovation that meets IRS Section 41 criteria.</div>
+            </div>
+            <div class="faq-item fade-in">
+                <button class="faq-question">How much do your services cost?</button>
+                <div class="faq-answer">Our fee is approximately 25% of the credits we secure for you, ensuring a 4x return on investment. You only pay when we deliver results.</div>
+            </div>
+            <div class="faq-item fade-in">
+                <button class="faq-question">What if the IRS audits my R&D tax credit claim?</button>
+                <div class="faq-answer">We provide complete audit support including all documentation, expert testimony, and full compliance assistance at no additional cost.</div>
+            </div>
+            <div class="faq-item fade-in">
+                <button class="faq-question">How long does the process take?</button>
+                <div class="faq-answer">Initial assessment takes 15 minutes, full analysis typically completes within 2-3 weeks, and credits are claimed with your next tax filing.</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 R&D Credit Co. All rights reserved. | Expert R&D tax credit services for growth-stage companies.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = Math.random() * 0.3 + 's';
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const isOpen = answer.style.display === 'block';
+                
+                // Close all other answers
+                document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+                
+                // Toggle current answer
+                answer.style.display = isOpen ? 'none' : 'block';
+            });
+        });
+    </script>
+</body>
+</html>

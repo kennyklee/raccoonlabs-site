@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaxLab - R&D Credit Analytics Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #b4b4b4;
+            --text-muted: #666666;
+            --accent-green: #00ff88;
+            --accent-blue: #00aaff;
+            --accent-purple: #aa00ff;
+            --accent-orange: #ff8800;
+            --border-color: #333333;
+            --grid-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Monospace for numbers */
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-green);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-blue) 100%);
+            color: var(--bg-primary);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            transform: scale(1.05);
+        }
+
+        /* Hero Dashboard */
+        .hero {
+            padding: 120px 0 80px;
+            background: var(--bg-primary);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 500px;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-stat {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            border-radius: 4px;
+        }
+
+        .hero-stat-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            margin-bottom: 0.25rem;
+        }
+
+        .hero-stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .cta-button {
+            background: var(--accent-green);
+            color: var(--bg-primary);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .cta-button:hover {
+            background: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Dashboard Widget */
+        .dashboard-widget {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .widget-header {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: between;
+            align-items: center;
+        }
+
+        .widget-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--accent-green);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .widget-content {
+            padding: 1.5rem;
+        }
+
+        .chart-container {
+            height: 200px;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            position: relative;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 1rem;
+        }
+
+        .chart-bar {
+            background: linear-gradient(to top, var(--accent-green), var(--accent-blue));
+            border-radius: 2px 2px 0 0;
+            min-width: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .chart-bar:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .metric-row:last-child {
+            border-bottom: none;
+        }
+
+        .metric-label {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .metric-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            color: var(--accent-green);
+        }
+
+        /* Terminal Section */
+        .terminal-section {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 80px 0;
+            margin: 80px 0;
+        }
+
+        .terminal-window {
+            background: #000000;
+            border-radius: 8px;
+            overflow: hidden;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .terminal-header {
+            background: #2a2a2a;
+            padding: 0.75rem;
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-button.red { background: #ff5f57; }
+        .terminal-button.yellow { background: #ffbd2e; }
+        .terminal-button.green { background: #28ca42; }
+
+        .terminal-title {
+            margin-left: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .terminal-content {
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        .terminal-line {
+            margin-bottom: 0.5rem;
+        }
+
+        .terminal-prompt {
+            color: var(--accent-green);
+        }
+
+        .terminal-command {
+            color: var(--text-primary);
+        }
+
+        .terminal-output {
+            color: var(--text-secondary);
+        }
+
+        .terminal-success {
+            color: var(--accent-green);
+        }
+
+        .terminal-warning {
+            color: var(--accent-orange);
+        }
+
+        /* Features Grid */
+        .features-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent-green);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-green);
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Data Visualization Section */
+        .data-viz-section {
+            padding: 80px 0;
+            background: var(--bg-secondary);
+        }
+
+        .viz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .viz-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .viz-header {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+        }
+
+        .viz-content {
+            padding: 2rem;
+            height: 200px;
+            position: relative;
+        }
+
+        .progress-bar {
+            background: var(--bg-tertiary);
+            height: 8px;
+            border-radius: 4px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
+            border-radius: 4px;
+            animation: fillProgress 2s ease-out;
+        }
+
+        @keyframes fillProgress {
+            from { width: 0; }
+            to { width: var(--progress-width, 75%); }
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-green);
+            padding: 2rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .testimonial-text {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--accent-green);
+        }
+
+        .testimonial-role {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        /* FAQ */
+        .faq {
+            background: var(--bg-secondary);
+            padding: 80px 0;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .faq-item {
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem;
+            background: var(--bg-primary);
+            border: none;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .faq-question:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            display: none;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-color);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+        }
+
+        /* Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .typing {
+            overflow: hidden;
+            border-right: 2px solid var(--accent-green);
+            white-space: nowrap;
+            animation: typing 3s steps(40) 1s forwards, blink 0.5s infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            from { border-color: var(--accent-green); }
+            to { border-color: transparent; }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .viz-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .terminal-content {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">TaxLab.AI</a>
+            <ul class="nav-links">
+                <li><a href="#analytics">Analytics</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#data">Data</a></li>
+                <li><a href="#testimonials">Results</a></li>
+            </ul>
+            <a href="#" class="nav-cta">RUN_ANALYSIS</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="fade-in-up">R&D Credit Analytics Platform</h1>
+                    <p class="subtitle fade-in-up">Advanced data analysis and machine learning algorithms identify maximum R&D tax credit opportunities. Real-time processing, compliance monitoring, and predictive modeling for optimal results.</p>
+                    
+                    <div class="hero-stats fade-in-up">
+                        <div class="hero-stat">
+                            <div class="hero-stat-value mono">$125K</div>
+                            <div class="hero-stat-label">AVG RECOVERY</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-value mono">97.3%</div>
+                            <div class="hero-stat-label">ACCURACY RATE</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-value mono">4.2X</div>
+                            <div class="hero-stat-label">ROI MULTIPLE</div>
+                        </div>
+                    </div>
+
+                    <a href="#" class="cta-button fade-in-up">EXECUTE_ANALYSIS</a>
+                </div>
+
+                <div class="dashboard-widget fade-in-up">
+                    <div class="widget-header">
+                        <div class="widget-title">R&D CREDIT PROJECTIONS</div>
+                    </div>
+                    <div class="widget-content">
+                        <div class="chart-container">
+                            <div class="chart-bar" style="height: 60%;"></div>
+                            <div class="chart-bar" style="height: 80%;"></div>
+                            <div class="chart-bar" style="height: 45%;"></div>
+                            <div class="chart-bar" style="height: 95%;"></div>
+                            <div class="chart-bar" style="height: 75%;"></div>
+                            <div class="chart-bar" style="height: 85%;"></div>
+                        </div>
+                        
+                        <div class="metric-row">
+                            <span class="metric-label">Qualified Expenses</span>
+                            <span class="metric-value mono">$480,250</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Credit Rate</span>
+                            <span class="metric-value mono">26.0%</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Est. Credit</span>
+                            <span class="metric-value mono">$124,865</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Confidence</span>
+                            <span class="metric-value mono">97.3%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="terminal-section">
+        <div class="container">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-button red"></div>
+                    <div class="terminal-button yellow"></div>
+                    <div class="terminal-button green"></div>
+                    <div class="terminal-title">taxlab-analyzer v2.1.3</div>
+                </div>
+                <div class="terminal-content">
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">$</span> 
+                        <span class="terminal-command">taxlab analyze --company startup-xyz --year 2024</span>
+                    </div>
+                    <div class="terminal-line terminal-output">Initializing R&D credit analysis...</div>
+                    <div class="terminal-line terminal-output">Loading expense data... ████████████████ 100%</div>
+                    <div class="terminal-line terminal-output">Categorizing activities... ████████████████ 100%</div>
+                    <div class="terminal-line terminal-output">Applying IRS guidelines... ████████████████ 100%</div>
+                    <div class="terminal-line terminal-success">✓ Analysis complete</div>
+                    <div class="terminal-line">&nbsp;</div>
+                    <div class="terminal-line terminal-success">RESULTS:</div>
+                    <div class="terminal-line terminal-output">├── Qualified expenses: $480,250</div>
+                    <div class="terminal-line terminal-output">├── Credit calculation: $124,865</div>
+                    <div class="terminal-line terminal-output">├── Compliance score: 97.3%</div>
+                    <div class="terminal-line terminal-output">└── Documentation: audit-ready</div>
+                    <div class="terminal-line">&nbsp;</div>
+                    <div class="terminal-line terminal-warning">⚠ Potential additional credits detected</div>
+                    <div class="terminal-line terminal-output">Run with --deep-scan for comprehensive analysis</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section" id="features">
+        <div class="container">
+            <h2 class="section-title">Advanced Analytics Engine</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">🤖</div>
+                    <h3 class="feature-title">Machine Learning Analysis</h3>
+                    <p class="feature-description">Advanced algorithms analyze expense patterns, categorization, and compliance requirements to maximize credit opportunities.</p>
+                </div>
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Real-time Dashboard</h3>
+                    <p class="feature-description">Live monitoring of R&D activities, expense tracking, and credit projections with interactive data visualizations.</p>
+                </div>
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Automated Processing</h3>
+                    <p class="feature-description">Streamlined data ingestion, analysis, and report generation reducing manual effort by 95%.</p>
+                </div>
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">🔍</div>
+                    <h3 class="feature-title">Compliance Monitoring</h3>
+                    <p class="feature-description">Continuous validation against IRS requirements with real-time alerts for potential compliance issues.</p>
+                </div>
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">🛡️</div>
+                    <h3 class="feature-title">Audit Defense System</h3>
+                    <p class="feature-description">Comprehensive documentation engine with audit trail generation and expert support protocols.</p>
+                </div>
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">📈</div>
+                    <h3 class="feature-title">Predictive Modeling</h3>
+                    <p class="feature-description">Forecasting future credit opportunities based on planned R&D activities and historical patterns.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="data-viz-section" id="data">
+        <div class="container">
+            <h2 class="section-title">Data-Driven Results</h2>
+            <div class="viz-grid">
+                <div class="viz-card">
+                    <div class="viz-header">CREDIT_RECOVERY_METRICS</div>
+                    <div class="viz-content">
+                        <div class="metric-row">
+                            <span class="metric-label">Total Credits Recovered</span>
+                            <span class="metric-value mono">$12.4M</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="--progress-width: 85%;"></div>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Success Rate</span>
+                            <span class="metric-value mono">97.3%</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Avg Processing Time</span>
+                            <span class="metric-value mono">14 days</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="viz-card">
+                    <div class="viz-header">COMPLIANCE_STATUS</div>
+                    <div class="viz-content">
+                        <div class="metric-row">
+                            <span class="metric-label">Audit Success Rate</span>
+                            <span class="metric-value mono">100%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="--progress-width: 100%;"></div>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">IRS Guidelines</span>
+                            <span class="metric-value mono">COMPLIANT</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Documentation Score</span>
+                            <span class="metric-value mono">A+</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Client Data Points</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial fade-in-up">
+                    <p class="testimonial-text">"TaxLab's analytics platform identified $340K in R&D credits our previous firm missed. Their data-driven approach and real-time monitoring gave us complete visibility into our tax strategy."</p>
+                    <div class="testimonial-author">david.kim@neuraltech.ai</div>
+                    <div class="testimonial-role">Chief Technology Officer</div>
+                </div>
+                <div class="testimonial fade-in-up">
+                    <p class="testimonial-text">"The dashboard interface and automated reporting saved our team 40+ hours per quarter. TaxLab's ML algorithms consistently outperform traditional analysis methods."</p>
+                    <div class="testimonial-author">sarah.chen@quantumdev.io</div>
+                    <div class="testimonial-role">Head of Finance</div>
+                </div>
+                <div class="testimonial fade-in-up">
+                    <p class="testimonial-text">"Impressive accuracy and compliance rates. Their predictive modeling helped us optimize our R&D strategy for maximum tax efficiency. ROI exceeded 5x our investment."</p>
+                    <div class="testimonial-author">alex.rivera@biotech-labs.com</div>
+                    <div class="testimonial-role">Chief Executive Officer</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">System Documentation</h2>
+            <div class="faq-container">
+                <div class="faq-item fade-in-up">
+                    <button class="faq-question">What data sources does the platform analyze?</button>
+                    <div class="faq-answer">TaxLab integrates with 50+ accounting systems, ERP platforms, and project management tools to analyze payroll, expenses, contracts, and R&D activities across your entire organization.</div>
+                </div>
+                <div class="faq-item fade-in-up">
+                    <button class="faq-question">How accurate is the machine learning analysis?</button>
+                    <div class="faq-answer">Our ML models achieve 97.3% accuracy in credit calculations, validated against IRS audits and expert reviews. The system continuously learns and improves from new data patterns.</div>
+                </div>
+                <div class="faq-item fade-in-up">
+                    <button class="faq-question">What is the fee structure for the analytics platform?</button>
+                    <div class="faq-answer">Performance-based pricing at 25% of recovered credits. No setup fees, no monthly subscriptions. Payment only occurs when credits are successfully claimed and verified.</div>
+                </div>
+                <div class="faq-item fade-in-up">
+                    <button class="faq-question">How does audit defense work?</button>
+                    <div class="faq-answer">Automated documentation generation, complete audit trails, and expert support team. 100% success rate in IRS audits with comprehensive defense protocols included.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 TaxLab.AI | Advanced R&D Credit Analytics | SOC2 Compliant | v2.1.3</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = Math.random() * 0.5 + 's';
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const isOpen = answer.style.display === 'block';
+                
+                // Close all other answers
+                document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+                
+                // Toggle current answer
+                answer.style.display = isOpen ? 'none' : 'block';
+            });
+        });
+
+        // Chart animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const bars = document.querySelectorAll('.chart-bar');
+            bars.forEach((bar, index) => {
+                setTimeout(() => {
+                    bar.style.opacity = '1';
+                    bar.style.transform = 'scaleY(1)';
+                }, index * 200);
+            });
+        });
+
+        // Terminal typing effect
+        const terminalLines = document.querySelectorAll('.terminal-line');
+        terminalLines.forEach((line, index) => {
+            setTimeout(() => {
+                line.style.opacity = '1';
+            }, index * 300);
+        });
+    </script>
+</body>
+</html>

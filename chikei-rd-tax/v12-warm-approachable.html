@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&D Boost - Simple R&D Tax Credits for Startups</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-orange: #ff7849;
+            --primary-yellow: #ffd93d;
+            --primary-blue: #4dabf7;
+            --warm-green: #69db7c;
+            --soft-pink: #ffc9c9;
+            --warm-purple: #b197fc;
+            --cream: #fff8f0;
+            --warm-gray: #f8f9fa;
+            --text-dark: #2e2e2e;
+            --text-medium: #5c5c5c;
+            --text-light: #8e8e8e;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(255, 120, 73, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-orange);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: '🚀';
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-medium);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-orange);
+            transform: translateY(-2px);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-yellow) 100%);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 120, 73, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 120, 73, 0.4);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 140px 0 100px;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--warm-gray) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 120, 73, 0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .hero-text .highlight {
+            color: var(--primary-orange);
+            position: relative;
+        }
+
+        .hero-text .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(135deg, var(--primary-yellow) 0%, var(--primary-orange) 100%);
+            border-radius: 4px;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-medium);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-benefits {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 1rem;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .benefit-icon {
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-yellow) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .benefit-text {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-yellow) 100%);
+            color: var(--white);
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255, 120, 73, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 120, 73, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--primary-orange);
+            padding: 1.2rem 2.5rem;
+            border: 2px solid var(--primary-orange);
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-orange);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* Illustration */
+        .hero-illustration {
+            background: var(--white);
+            border-radius: 25px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .illustration-content {
+            text-align: center;
+        }
+
+        .money-visual {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .savings-amount {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 2.5rem;
+            color: var(--primary-orange);
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .savings-label {
+            color: var(--text-medium);
+            font-weight: 600;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-medium);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            position: relative;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+            background: var(--cream);
+            border-radius: 25px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .step::after {
+            content: '→';
+            position: absolute;
+            top: 50%;
+            right: -1.5rem;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--primary-orange);
+            font-weight: 800;
+        }
+
+        .step:last-child::after {
+            display: none;
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--warm-purple) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--primary-orange);
+            color: var(--white);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        .step h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .step p {
+            color: var(--text-medium);
+            line-height: 1.6;
+        }
+
+        /* Demystify Section */
+        .demystify-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--soft-pink) 0%, var(--primary-yellow) 100%);
+        }
+
+        .demystify-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .demystify-text h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .demystify-text p {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .myth-buster {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .myth-buster .myth {
+            font-weight: 600;
+            color: #dc3545;
+            margin-bottom: 0.5rem;
+        }
+
+        .myth-buster .myth::before {
+            content: '❌ ';
+        }
+
+        .myth-buster .truth {
+            color: var(--text-medium);
+        }
+
+        .myth-buster .truth::before {
+            content: '✅ ';
+            color: var(--warm-green);
+        }
+
+        .demystify-visual {
+            text-align: center;
+        }
+
+        .confused-face {
+            font-size: 8rem;
+            margin-bottom: 1rem;
+            animation: wobble 3s ease-in-out infinite;
+        }
+
+        .arrow-down {
+            font-size: 3rem;
+            color: var(--primary-orange);
+            margin: 1rem 0;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .happy-face {
+            font-size: 8rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        /* Features */
+        .features-section {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--cream);
+            padding: 2.5rem;
+            border-radius: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-orange);
+            box-shadow: 0 20px 40px rgba(255, 120, 73, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-medium);
+            line-height: 1.6;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--warm-green) 0%, var(--primary-blue) 100%);
+        }
+
+        .testimonials .section-title,
+        .testimonials .section-subtitle {
+            color: var(--white);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--primary-orange);
+            font-family: 'Patrick Hand', cursive;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-yellow) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        .author-info h4 {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 100px 0;
+            background: var(--cream);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 1rem;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem;
+            background: var(--white);
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-align: left;
+            cursor: pointer;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background: var(--cream);
+        }
+
+        .faq-question::after {
+            content: '😊';
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active::after {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-medium);
+            display: none;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--primary-orange);
+        }
+
+        .footer-text {
+            color: #ccc;
+            line-height: 1.7;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes wobble {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 0.8s ease forwards;
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            animation: slideInRight 0.8s ease forwards;
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content,
+            .demystify-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .steps-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 3rem;
+            }
+
+            .step::after {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                text-align: center;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .confused-face,
+            .happy-face {
+                font-size: 6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">R&D Boost</a>
+            <ul class="nav-links">
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#testimonials">Success Stories</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <a href="#" class="nav-cta">Get Started - It's Easy!</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="slide-in-left">R&D tax credits made <span class="highlight">simple & friendly</span></h1>
+                    <p class="subtitle slide-in-left">Hey there, startup founder! 👋 If you're building cool tech stuff, you're probably leaving money on the table. Let's fix that together!</p>
+                    
+                    <div class="hero-benefits slide-in-left">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">💰</div>
+                            <div class="benefit-text">Average startup saves $50K-$250K</div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">⏰</div>
+                            <div class="benefit-text">Takes just 15 minutes to get started</div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">🎯</div>
+                            <div class="benefit-text">We handle all the scary tax stuff</div>
+                        </div>
+                    </div>
+
+                    <div class="hero-buttons slide-in-left">
+                        <a href="#" class="btn-primary">Show Me My Savings! 🎉</a>
+                        <a href="#" class="btn-secondary">Learn More First</a>
+                    </div>
+                </div>
+
+                <div class="hero-illustration slide-in-right">
+                    <div class="illustration-content">
+                        <div class="money-visual">💸</div>
+                        <div class="savings-amount">$125,000</div>
+                        <div class="savings-label">What you could save!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="demystify-section">
+        <div class="container">
+            <div class="demystify-content">
+                <div class="demystify-text">
+                    <h2 class="slide-in-left">Let's bust some myths! 🕵️</h2>
+                    <p class="slide-in-left">R&D tax credits sound scary, but they're actually pretty cool. Let's clear up the confusion:</p>
+                    
+                    <div class="myth-buster slide-in-left">
+                        <div class="myth">You need a lab coat to qualify</div>
+                        <div class="truth">Writing code totally counts as R&D!</div>
+                    </div>
+                    
+                    <div class="myth-buster slide-in-left">
+                        <div class="myth">Only big companies can claim credits</div>
+                        <div class="truth">Startups often get the biggest benefit!</div>
+                    </div>
+                    
+                    <div class="myth-buster slide-in-left">
+                        <div class="myth">The paperwork is impossible</div>
+                        <div class="truth">We handle all that boring stuff for you!</div>
+                    </div>
+                </div>
+
+                <div class="demystify-visual">
+                    <div class="confused-face">😕</div>
+                    <div class="arrow-down">⬇️</div>
+                    <div class="happy-face">🤩</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title fade-in-up">Here's how we make it super easy</h2>
+                <p class="section-subtitle fade-in-up">No stress, no confusion, no scary tax jargon. Just four simple steps to get your money back!</p>
+            </div>
+
+            <div class="steps-container">
+                <div class="step fade-in-up">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">🔌</div>
+                    <h3>Connect Your Stuff</h3>
+                    <p>Link up your accounting software (we play nice with QuickBooks, Xero, and friends). Takes 2 minutes, tops!</p>
+                </div>
+
+                <div class="step fade-in-up">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">🔍</div>
+                    <h3>We Do the Detective Work</h3>
+                    <p>Our friendly experts comb through your expenses to find every penny you can claim. You can grab a coffee while we work!</p>
+                </div>
+
+                <div class="step fade-in-up">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">📝</div>
+                    <h3>We Handle the Paperwork</h3>
+                    <p>All that intimidating tax documentation? We've got it covered. You'll get everything organized and audit-ready.</p>
+                </div>
+
+                <div class="step fade-in-up">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">🎉</div>
+                    <h3>Celebrate Your Savings!</h3>
+                    <p>Watch the money flow back into your business. Use it to hire that developer, buy better coffee, or just sleep better at night!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title fade-in-up">Why startups choose R&D Boost</h2>
+                <p class="section-subtitle fade-in-up">We're not your typical stuffy tax firm. We get startups because we ARE startup people!</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Startup-Focused</h3>
+                    <p>We understand lean teams, tight budgets, and the unique challenges of growing a tech company. No corporate nonsense here!</p>
+                </div>
+
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Human Support</h3>
+                    <p>Real people who speak normal English (not tax-ese). Got questions? We're here to help, not hide behind jargon.</p>
+                </div>
+
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Super Fast Setup</h3>
+                    <p>Other firms take weeks to get started. We get you up and running in minutes. Time is money, especially for startups!</p>
+                </div>
+
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">💪</div>
+                    <h3>4x ROI Guarantee</h3>
+                    <p>Our fee is roughly 25% of what you save. You're guaranteed to net at least 3x more than what you pay us. Fair deal, right?</p>
+                </div>
+
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Audit Protection</h3>
+                    <p>Sleep easy knowing we've got your back. Complete documentation and expert support if the IRS ever has questions.</p>
+                </div>
+
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Bank-Level Security</h3>
+                    <p>Your financial data is precious. We protect it with the same security standards as major banks. No compromises.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Happy founder stories 😊</h2>
+                <p class="section-subtitle">Don't just take our word for it - here's what other startup folks have to say!</p>
+            </div>
+
+            <div class="testimonial-grid">
+                <div class="testimonial fade-in-up">
+                    <p class="testimonial-text">OMG, these guys are amazing! They found $95K in R&D credits I had no clue I could claim. The whole process was so painless - I literally just connected my QuickBooks and they did the rest. Game changer!</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">J</div>
+                        <div class="author-info">
+                            <h4>Jessica Park</h4>
+                            <p>Founder, CodeCraft AI</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial fade-in-up">
+                    <p class="testimonial-text">I was terrified of anything tax-related, but R&D Boost made it feel like a friendly conversation. They explained everything in plain English and saved us $140K. Best investment we've made!</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div class="author-info">
+                            <h4>Mike Chen</h4>
+                            <p>CTO, DataFlow Systems</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial fade-in-up">
+                    <p class="testimonial-text">R&D Boost turned our biggest tax headache into our biggest cash windfall. $180K back in our pocket! Their team is genuinely nice and made the whole thing stress-free.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-info">
+                            <h4>Sarah Rodriguez</h4>
+                            <p>CEO, TechFlow Inc</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Questions? We've got answers! 🤔</h2>
+                <p class="section-subtitle">Here are the questions we get asked most often (and our friendly answers!)</p>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item fade-in-up">
+                    <button class="faq-question">Do I really qualify? I'm just building software...</button>
+                    <div class="faq-answer">YES! Software development absolutely qualifies for R&D credits. If you're building new features, solving technical problems, or improving your product, you're doing research and development. Most tech startups qualify - it's more common than you think!</div>
+                </div>
+
+                <div class="faq-item fade-in-up">
+                    <button class="faq-question">How much does this cost?</button>
+                    <div class="faq-answer">We charge roughly 25% of the credits we recover for you. No upfront costs, no hidden fees. If we don't find you money, you don't pay us anything. It's that simple! Most clients save 4x more than our fee.</div>
+                </div>
+
+                <div class="faq-item fade-in-up">
+                    <button class="faq-question">What if I don't owe much in taxes?</button>
+                    <div class="faq-answer">Great news! R&D credits can be applied against payroll taxes (up to $250K annually) or carried forward for up to 20 years. Even if you're pre-revenue or don't owe income tax now, these credits are incredibly valuable for your future!</div>
+                </div>
+
+                <div class="faq-item fade-in-up">
+                    <button class="faq-question">What if the IRS audits me?</button>
+                    <div class="faq-answer">Don't worry - we've got your back! We provide complete audit support, including all documentation and expert representation. Our documentation meets all IRS requirements, and we'll be there every step of the way if any questions come up. It's included at no extra cost!</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">R&D Boost 🚀</div>
+                <p class="footer-text">Making R&D tax credits simple, friendly, and stress-free for startups everywhere. Built by startup people, for startup people. Let's grow together!</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = Math.random() * 0.3 + 's';
+                    if (entry.target.classList.contains('slide-in-left')) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateX(0)';
+                    }
+                    if (entry.target.classList.contains('slide-in-right')) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateX(0)';
+                    }
+                    if (entry.target.classList.contains('fade-in-up')) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.slide-in-left, .slide-in-right, .fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const isActive = button.classList.contains('active');
+                
+                // Close all other answers
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.style.display = 'none';
+                });
+                
+                // Toggle current answer
+                if (!isActive) {
+                    button.classList.add('active');
+                    answer.style.display = 'block';
+                }
+            });
+        });
+
+        // Add some fun interactions
+        document.addEventListener('DOMContentLoaded', () => {
+            // Make money visual interactive
+            const moneyVisual = document.querySelector('.money-visual');
+            if (moneyVisual) {
+                moneyVisual.addEventListener('click', () => {
+                    moneyVisual.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        moneyVisual.style.transform = 'scale(1)';
+                    }, 200);
+                });
+            }
+
+            // Add hover effects to benefit items
+            const benefitItems = document.querySelectorAll('.benefit-item');
+            benefitItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    item.style.transform = 'scale(1.05)';
+                });
+                item.addEventListener('mouseleave', () => {
+                    item.style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

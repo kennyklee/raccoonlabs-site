@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sterling R&D Advisory - Bespoke Tax Credit Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dark-charcoal: #1a1a1a;
+            --midnight-black: #0f0f0f;
+            --rich-gold: #d4af37;
+            --amber: #ffb347;
+            --warm-gold: #ffd700;
+            --bronze: #cd7f32;
+            --pearl-white: #faf9f6;
+            --champagne: #f7e7ce;
+            --text-light: #e0e0e0;
+            --text-medium: #b0b0b0;
+            --text-muted: #808080;
+            --accent-line: rgba(212, 175, 55, 0.3);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--midnight-black);
+            color: var(--text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Typography */
+        .serif {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .gold-text {
+            color: var(--rich-gold);
+        }
+
+        /* Header */
+        header {
+            background: var(--midnight-black);
+            padding: 2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--accent-line);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--rich-gold);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            color: var(--text-medium);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, var(--rich-gold), var(--amber));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--rich-gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--rich-gold) 0%, var(--bronze) 100%);
+            color: var(--midnight-black);
+            padding: 0.75rem 2rem;
+            border: none;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .nav-cta:hover {
+            background: linear-gradient(135deg, var(--warm-gold) 0%, var(--rich-gold) 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 180px 0 120px;
+            background: linear-gradient(135deg, var(--midnight-black) 0%, var(--dark-charcoal) 100%);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            color: var(--pearl-white);
+        }
+
+        .hero-text .tagline {
+            font-size: 1.5rem;
+            color: var(--rich-gold);
+            font-weight: 300;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-medium);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .expertise-badges {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .expertise-badge {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border: 1px solid var(--accent-line);
+            padding: 1rem 1.5rem;
+            border-radius: 2px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, var(--rich-gold) 0%, var(--bronze) 100%);
+            color: var(--midnight-black);
+            padding: 1.25rem 3rem;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-right: 2rem;
+        }
+
+        .cta-primary:hover {
+            background: linear-gradient(135deg, var(--warm-gold) 0%, var(--rich-gold) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-secondary {
+            color: var(--rich-gold);
+            padding: 1.25rem 3rem;
+            border: 1px solid var(--rich-gold);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: transparent;
+        }
+
+        .cta-secondary:hover {
+            background: var(--rich-gold);
+            color: var(--midnight-black);
+        }
+
+        /* Prestige Indicators */
+        .prestige-section {
+            background: var(--dark-charcoal);
+            padding: 4rem 0;
+            border-top: 1px solid var(--accent-line);
+            border-bottom: 1px solid var(--accent-line);
+        }
+
+        .prestige-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .prestige-item h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--rich-gold);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .prestige-item p {
+            color: var(--text-medium);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        /* Services */
+        .services-section {
+            padding: 120px 0;
+            background: var(--midnight-black);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 6rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--pearl-white);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-medium);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, var(--dark-charcoal) 0%, #252525 100%);
+            padding: 3rem;
+            border: 1px solid var(--accent-line);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--rich-gold), var(--amber));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--rich-gold);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--rich-gold) 0%, var(--bronze) 100%);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--midnight-black);
+        }
+
+        .service-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--pearl-white);
+        }
+
+        .service-card p {
+            color: var(--text-medium);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .service-features {
+            list-style: none;
+        }
+
+        .service-features li {
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 1.5rem;
+            font-weight: 500;
+        }
+
+        .service-features li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: var(--rich-gold);
+            font-size: 0.8rem;
+        }
+
+        /* Process */
+        .process-section {
+            background: var(--dark-charcoal);
+            padding: 120px 0;
+        }
+
+        .process-timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--rich-gold), var(--bronze));
+            transform: translateX(-50%);
+        }
+
+        .process-step {
+            display: flex;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .process-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .process-content {
+            flex: 1;
+            padding: 2rem;
+            background: var(--midnight-black);
+            border: 1px solid var(--accent-line);
+            margin: 0 2rem;
+            position: relative;
+        }
+
+        .process-number {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--rich-gold) 0%, var(--bronze) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--midnight-black);
+            z-index: 2;
+        }
+
+        .process-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--rich-gold);
+        }
+
+        .process-content p {
+            color: var(--text-medium);
+            line-height: 1.8;
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            padding: 120px 0;
+            background: var(--midnight-black);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            background: var(--dark-charcoal);
+            padding: 3rem;
+            border-left: 4px solid var(--rich-gold);
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 6rem;
+            color: var(--rich-gold);
+            opacity: 0.3;
+        }
+
+        .testimonial-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .testimonial-author {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            color: var(--pearl-white);
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            color: var(--text-medium);
+            font-size: 0.9rem;
+        }
+
+        .testimonial-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--rich-gold);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--dark-charcoal);
+            padding: 120px 0;
+            text-align: center;
+            border-top: 1px solid var(--accent-line);
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--pearl-white);
+        }
+
+        .contact-section p {
+            font-size: 1.2rem;
+            color: var(--text-medium);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin: 4rem 0;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-item h4 {
+            font-weight: 600;
+            color: var(--rich-gold);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-item p {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--midnight-black);
+            border-top: 1px solid var(--accent-line);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--rich-gold);
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideLeft 0.8s ease forwards;
+        }
+
+        @keyframes slideLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .prestige-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-timeline::before {
+                left: 30px;
+            }
+
+            .process-step,
+            .process-step:nth-child(even) {
+                flex-direction: row;
+            }
+
+            .process-number {
+                left: 30px;
+            }
+
+            .process-content {
+                margin-left: 80px;
+                margin-right: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 120px 0 80px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .expertise-badges {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .cta-primary,
+            .cta-secondary {
+                width: 100%;
+                text-align: center;
+                margin: 0.5rem 0;
+            }
+
+            .prestige-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">Sterling R&D Advisory</a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#" class="nav-cta">Schedule Consultation</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="serif fade-in">Bespoke R&D Tax Credit Advisory</h1>
+                    <p class="tagline fade-in">Where expertise meets excellence</p>
+                    <p class="subtitle fade-in">Sterling R&D Advisory provides sophisticated tax credit optimization for discerning technology companies. Our boutique approach ensures personalized attention and maximum value realization.</p>
+                    
+                    <div class="expertise-badges fade-in">
+                        <div class="expertise-badge">CPA Certified</div>
+                        <div class="expertise-badge">Tax Court Experience</div>
+                        <div class="expertise-badge">IRS Audit Defense</div>
+                    </div>
+
+                    <div class="fade-in">
+                        <a href="#" class="cta-primary">Begin Consultation</a>
+                        <a href="#" class="cta-secondary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="prestige-section">
+        <div class="container">
+            <div class="prestige-content">
+                <div class="prestige-item fade-in">
+                    <h3 class="serif">$38M</h3>
+                    <p>Credits Secured</p>
+                </div>
+                <div class="prestige-item fade-in">
+                    <h3 class="serif">127</h3>
+                    <p>Elite Clients Served</p>
+                </div>
+                <div class="prestige-item fade-in">
+                    <h3 class="serif">15+</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="prestige-item fade-in">
+                    <h3 class="serif">100%</h3>
+                    <p>Audit Success Rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title serif fade-in">Our Distinguished Services</h2>
+                <p class="section-subtitle fade-in">Comprehensive R&D tax credit solutions tailored to your organization's unique requirements</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">⚖️</div>
+                    <h3 class="serif">Strategic Credit Analysis</h3>
+                    <p>Comprehensive evaluation of your R&D activities with sophisticated modeling to maximize credit opportunities while ensuring complete compliance.</p>
+                    <ul class="service-features">
+                        <li>Advanced tax optimization strategies</li>
+                        <li>Risk assessment and mitigation</li>
+                        <li>Multi-year planning approach</li>
+                        <li>Industry-specific expertise</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon">🏛️</div>
+                    <h3 class="serif">Audit Defense & Representation</h3>
+                    <p>Premier audit defense services with experienced tax attorneys and CPAs who have successfully defended credits before the IRS and Tax Court.</p>
+                    <ul class="service-features">
+                        <li>Expert witness testimony</li>
+                        <li>Tax Court representation</li>
+                        <li>Documentation review and enhancement</li>
+                        <li>Settlement negotiation</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon">📜</div>
+                    <h3 class="serif">Documentation & Compliance</h3>
+                    <p>Meticulous documentation preparation that exceeds IRS standards, ensuring your credits withstand scrutiny and examination.</p>
+                    <ul class="service-features">
+                        <li>Contemporary documentation</li>
+                        <li>Technical narrative development</li>
+                        <li>Process documentation</li>
+                        <li>Compliance monitoring</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon">🎖️</div>
+                    <h3 class="serif">Executive Advisory Services</h3>
+                    <p>Strategic guidance for C-suite executives on tax credit opportunities, planning, and integration with broader business objectives.</p>
+                    <ul class="service-features">
+                        <li>Executive briefings and reporting</li>
+                        <li>Board presentation preparation</li>
+                        <li>Strategic tax planning</li>
+                        <li>M&A due diligence support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process-section" id="process">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title serif fade-in">Our Refined Process</h2>
+                <p class="section-subtitle fade-in">A methodical approach honed through years of experience and success</p>
+            </div>
+
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="process-content slide-left">
+                        <h3 class="serif">Discovery & Assessment</h3>
+                        <p>Comprehensive evaluation of your organization's R&D activities, financial records, and strategic objectives. We conduct detailed interviews with key personnel and perform a thorough analysis of qualifying activities.</p>
+                    </div>
+                    <div class="process-number">1</div>
+                </div>
+
+                <div class="process-step">
+                    <div class="process-content slide-left">
+                        <h3 class="serif">Strategic Planning</h3>
+                        <p>Development of a customized credit optimization strategy that aligns with your business goals while maximizing available benefits. We consider multi-year implications and future planning opportunities.</p>
+                    </div>
+                    <div class="process-number">2</div>
+                </div>
+
+                <div class="process-step">
+                    <div class="process-content slide-left">
+                        <h3 class="serif">Expert Analysis</h3>
+                        <p>Detailed technical and financial analysis performed by our team of CPAs, tax attorneys, and industry specialists. We ensure every qualifying dollar is identified and properly documented.</p>
+                    </div>
+                    <div class="process-number">3</div>
+                </div>
+
+                <div class="process-step">
+                    <div class="process-content slide-left">
+                        <h3 class="serif">Implementation & Filing</h3>
+                        <p>Seamless implementation of the credit strategy with meticulous preparation of all required forms and supporting documentation. We handle all aspects of the filing process with precision.</p>
+                    </div>
+                    <div class="process-number">4</div>
+                </div>
+
+                <div class="process-step">
+                    <div class="process-content slide-left">
+                        <h3 class="serif">Ongoing Advisory</h3>
+                        <p>Continued partnership to monitor compliance, optimize future credits, and provide strategic guidance as your business evolves. We remain your trusted advisor for all R&D tax matters.</p>
+                    </div>
+                    <div class="process-number">5</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title serif fade-in">Client Testimonials</h2>
+                <p class="section-subtitle fade-in">Exceptional results for exceptional companies</p>
+            </div>
+
+            <div class="testimonial-grid">
+                <div class="testimonial fade-in">
+                    <p class="testimonial-text">Sterling R&D Advisory's sophisticated approach to R&D tax credits exceeded our expectations. Their attention to detail and deep expertise secured substantial credits while ensuring complete compliance. Truly world-class service.</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Victoria Hamilton</h4>
+                            <p>Chief Financial Officer, Quantum Dynamics Corporation</p>
+                        </div>
+                        <div class="testimonial-value">$420K</div>
+                    </div>
+                </div>
+
+                <div class="testimonial fade-in">
+                    <p class="testimonial-text">The level of professionalism and expertise demonstrated by Sterling's team is unparalleled. Their strategic approach not only maximized our current year credits but established a framework for future optimization. Outstanding advisory partnership.</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Alexander Chen</h4>
+                            <p>Chief Executive Officer, Neural Technologies Inc</p>
+                        </div>
+                        <div class="testimonial-value">$675K</div>
+                    </div>
+                </div>
+
+                <div class="testimonial fade-in">
+                    <p class="testimonial-text">When facing an IRS examination, Sterling's audit defense services proved invaluable. Their meticulous documentation and expert representation resulted in a complete validation of our credits. Exceptional professional service.</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Margaret Thornfield</h4>
+                            <p>General Counsel, BioTech Innovations Ltd</p>
+                        </div>
+                        <div class="testimonial-value">$290K</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="serif fade-in">Schedule Your Consultation</h2>
+                <p class="fade-in">Experience the Sterling difference. Our expert advisors are ready to discuss your R&D tax credit opportunities and develop a strategy tailored to your organization.</p>
+
+                <div class="contact-info fade-in">
+                    <div class="contact-item">
+                        <h4>Direct Line</h4>
+                        <p>(555) 123-4567</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Private Email</h4>
+                        <p>consultation@sterlingrd.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Executive Suite</h4>
+                        <p>Manhattan Financial District</p>
+                    </div>
+                </div>
+
+                <div class="fade-in">
+                    <a href="#" class="cta-primary">Request Private Consultation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo serif">Sterling R&D Advisory</div>
+                <p class="footer-text">Bespoke R&D tax credit advisory services for discerning technology companies. Where sophisticated expertise meets exceptional results.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = Math.random() * 0.5 + 's';
+                    if (entry.target.classList.contains('fade-in')) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                    if (entry.target.classList.contains('slide-left')) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateX(0)';
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .slide-left').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add sophisticated hover effects
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.background = 'linear-gradient(135deg, #252525 0%, #1a1a1a 100%)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.background = 'linear-gradient(135deg, var(--dark-charcoal) 0%, #252525 100%)';
+            });
+        });
+
+        // Elegant page loading effect
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>

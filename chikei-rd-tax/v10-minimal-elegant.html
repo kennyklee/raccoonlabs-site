@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreditMax - Elegant R&D Tax Credit Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=GT+America:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --accent: #ff4444;
+            --gray-light: #f8f8f8;
+            --gray-medium: #e8e8e8;
+            --gray-dark: #666666;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+        }
+
+        body {
+            font-family: 'GT America', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--white);
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Typography Scale */
+        .h1 {
+            font-family: 'Fraunces', serif;
+            font-size: 4rem;
+            font-weight: 600;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 2.5rem;
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        .h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .body-large {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .body {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .small {
+            font-size: 0.875rem;
+            line-height: 1.5;
+            color: var(--gray-dark);
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            padding: 2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-medium);
+            backdrop-filter: blur(20px);
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 200px 0 120px;
+            text-align: center;
+        }
+
+        .hero .h1 {
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero .body-large {
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 4rem;
+        }
+
+        .btn-primary {
+            background: var(--black);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover::before {
+            left: 0;
+        }
+
+        .btn-secondary {
+            color: var(--text-primary);
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--gray-medium);
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--black);
+        }
+
+        .trust-indicator {
+            margin-top: 6rem;
+            color: var(--gray-dark);
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .trust-dot {
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 120px 0;
+            border-top: 1px solid var(--gray-medium);
+            border-bottom: 1px solid var(--gray-medium);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Fraunces', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 120px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 6rem;
+        }
+
+        .section-header .h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-subtitle {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6rem 4rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--gray-medium);
+        }
+
+        .step:nth-child(even) {
+            border-bottom: none;
+        }
+
+        .step-number {
+            color: var(--gray-dark);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .step .h3 {
+            margin-bottom: 1rem;
+        }
+
+        .step-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Features */
+        .features-section {
+            background: var(--gray-light);
+            padding: 120px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .feature {
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            border: 1px solid var(--gray-medium);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: var(--white);
+        }
+
+        .feature .h3 {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 120px 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            margin-top: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .testimonial {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid var(--gray-medium);
+        }
+
+        .testimonial:first-child {
+            border-top: none;
+        }
+
+        .testimonial-text {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+
+        .testimonial-author {
+            color: var(--gray-dark);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* FAQ */
+        .faq {
+            background: var(--gray-light);
+            padding: 120px 0;
+        }
+
+        .faq-container {
+            max-width: 700px;
+            margin: 4rem auto 0;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--gray-medium);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 2rem 0;
+            background: none;
+            border: none;
+            font-size: 1.125rem;
+            font-weight: 500;
+            text-align: left;
+            cursor: pointer;
+            color: var(--text-primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding-bottom: 2rem;
+            color: var(--text-secondary);
+            display: none;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            text-align: center;
+            padding: 6rem 0 4rem;
+        }
+
+        .footer-content {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .footer-text {
+            color: #aaa;
+            line-height: 1.7;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 30px;
+            }
+
+            .h1 {
+                font-size: 3rem;
+            }
+
+            .h2 {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 3rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            header {
+                padding: 1.5rem 0;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 150px 0 80px;
+            }
+
+            .h1 {
+                font-size: 2.5rem;
+            }
+
+            .cta-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .step {
+                border-bottom: 1px solid var(--gray-medium);
+                padding: 2rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">CreditMax</a>
+            <ul class="nav-links">
+                <li><a href="#how">Process</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="h1 fade-in">Maximize R&D tax credits with precision and elegance.</h1>
+            <p class="body-large fade-in">For startups investing in research and development, you're likely eligible for significant tax credits. Our refined approach ensures you capture every opportunity.</p>
+            
+            <div class="cta-container fade-in">
+                <a href="#" class="btn-primary">Calculate Credits</a>
+                <a href="#" class="btn-secondary">Learn More</a>
+            </div>
+
+            <div class="trust-indicator fade-in">
+                IRS Compliant
+                <span class="trust-dot"></span>
+                Audit Ready
+                <span class="trust-dot"></span>
+                Expert Reviewed
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="fade-in">
+                    <div class="stat-number">$125K</div>
+                    <div class="stat-label">Average Recovery</div>
+                </div>
+                <div class="fade-in">
+                    <div class="stat-number">4×</div>
+                    <div class="stat-label">Return Multiple</div>
+                </div>
+                <div class="fade-in">
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">Minutes Setup</div>
+                </div>
+                <div class="fade-in">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Compliance Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="h2">How it works</h2>
+                <p class="section-subtitle body-large">A streamlined process designed for precision and simplicity.</p>
+            </div>
+
+            <div class="steps-container">
+                <div class="step fade-in">
+                    <div class="step-number">Step 01</div>
+                    <h3 class="h3">Connect</h3>
+                    <p class="step-description">Securely link your financial systems through our encrypted platform. We integrate seamlessly with your existing tools.</p>
+                </div>
+
+                <div class="step fade-in">
+                    <div class="step-number">Step 02</div>
+                    <h3 class="h3">Analyze</h3>
+                    <p class="step-description">Our expert team conducts a comprehensive review of your R&D activities against current IRS guidelines and regulations.</p>
+                </div>
+
+                <div class="step fade-in">
+                    <div class="step-number">Step 03</div>
+                    <h3 class="h3">Document</h3>
+                    <p class="step-description">We prepare detailed documentation and forms with complete audit trails, ensuring full compliance and transparency.</p>
+                </div>
+
+                <div class="step fade-in">
+                    <div class="step-number">Step 04</div>
+                    <h3 class="h3">Optimize</h3>
+                    <p class="step-description">Receive maximum credits while maintaining pristine compliance standards. Keep more capital in your business.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="h2">Built for modern startups</h2>
+                <p class="section-subtitle body-large">Sophisticated tools and expert guidance designed specifically for growing technology companies.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature fade-in">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="h3">Precision Analysis</h3>
+                    <p class="feature-description">Advanced algorithms paired with expert review ensure maximum credit recovery with zero compliance risk.</p>
+                </div>
+
+                <div class="feature fade-in">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="h3">Rapid Processing</h3>
+                    <p class="feature-description">Streamlined workflows and automated systems deliver results in weeks, not months.</p>
+                </div>
+
+                <div class="feature fade-in">
+                    <div class="feature-icon">🛡️</div>
+                    <h3 class="h3">Audit Protection</h3>
+                    <p class="feature-description">Complete documentation package with ongoing support. Peace of mind guaranteed.</p>
+                </div>
+
+                <div class="feature fade-in">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="h3">Transparent Reporting</h3>
+                    <p class="feature-description">Clear, detailed reports showing exactly how credits were calculated and applied.</p>
+                </div>
+
+                <div class="feature fade-in">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="h3">Enterprise Security</h3>
+                    <p class="feature-description">Bank-level encryption and SOC 2 compliance protect your most sensitive financial data.</p>
+                </div>
+
+                <div class="feature fade-in">
+                    <div class="feature-icon">💼</div>
+                    <h3 class="h3">Expert Guidance</h3>
+                    <p class="feature-description">Licensed tax professionals and R&D specialists oversee every engagement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="h2">Client perspectives</h2>
+            </div>
+
+            <div class="testimonial-grid">
+                <div class="testimonial fade-in">
+                    <p class="testimonial-text">"CreditMax recovered $280K in R&D credits with impeccable documentation. Their attention to detail and compliance expertise gave us complete confidence throughout the process."</p>
+                    <p class="testimonial-author">Alexandra Chen — Chief Technology Officer, Quantum Dynamics</p>
+                </div>
+
+                <div class="testimonial fade-in">
+                    <p class="testimonial-text">"The most professional R&D credit service we've encountered. Their sophisticated approach and expert guidance delivered exceptional results with zero hassle."</p>
+                    <p class="testimonial-author">David Kim — Chief Financial Officer, Neural Networks Inc</p>
+                </div>
+
+                <div class="testimonial fade-in">
+                    <p class="testimonial-text">"CreditMax transformed our understanding of R&D tax benefits. Their refined process and expert insights recovered credits we never knew were available."</p>
+                    <p class="testimonial-author">Rachel Martinez — CEO, BioTech Innovations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="h2">Frequently asked questions</h2>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item fade-in">
+                    <button class="faq-question">What qualifies as research and development for tax purposes?</button>
+                    <div class="faq-answer">R&D tax credits apply to qualifying research activities including software development, product innovation, process improvement, and technology advancement that meets IRS Section 41 criteria. Most technology startups qualify.</div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <button class="faq-question">How is your fee structure determined?</button>
+                    <div class="faq-answer">Our fee represents approximately 25% of the credits we secure, ensuring a 4× return on investment. There are no upfront costs or hourly fees—we're compensated only when you achieve results.</div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <button class="faq-question">What level of audit protection do you provide?</button>
+                    <div class="faq-answer">We provide comprehensive audit defense including complete documentation, expert representation, and full compliance support. Our documentation standards exceed IRS requirements, ensuring robust protection.</div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <button class="faq-question">What is the typical timeline from start to completion?</button>
+                    <div class="faq-answer">Initial assessment requires 15 minutes of your time. Complete analysis typically concludes within 2-3 weeks. Credits are applied with your subsequent tax filing or through amended returns.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">CreditMax</div>
+                <p class="footer-text">Sophisticated R&D tax credit solutions for forward-thinking technology companies. Expert guidance, maximum results, complete compliance.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const isActive = button.classList.contains('active');
+                
+                // Close all other FAQs
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.style.display = 'none';
+                });
+                
+                // Toggle current FAQ
+                if (!isActive) {
+                    button.classList.add('active');
+                    answer.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
