@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raccoon Labs — Design Vote</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f0f0f;
+            color: #fff;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #333;
+        }
+        
+        .section-title span {
+            color: #888;
+            font-size: 1rem;
+            font-weight: normal;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .card {
+            background: #1a1a1a;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 2px solid transparent;
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+            border-color: #ff6b35;
+        }
+        
+        .card a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .preview {
+            width: 100%;
+            height: 220px;
+            border: none;
+            pointer-events: none;
+            transform: scale(0.5);
+            transform-origin: top left;
+            width: 200%;
+            height: 440px;
+        }
+        
+        .preview-container {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            background: #fff;
+        }
+        
+        .info {
+            padding: 1rem 1.25rem;
+        }
+        
+        .name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .author {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        
+        .author.vic { color: #57f287; }
+        .author.mac { color: #5865f2; }
+        .author.original { color: #ff6b35; }
+        
+        .desc {
+            font-size: 0.9rem;
+            color: #aaa;
+            line-height: 1.4;
+        }
+        
+        .btn {
+            display: inline-block;
+            margin-top: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: #ff6b35;
+            color: white;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .current-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            background: #22c55e;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+        
+        footer {
+            text-align: center;
+            color: #666;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>🦝 Design Vote</h1>
+    <p class="subtitle">Pick your favorite for Raccoon Labs homepage</p>
+    
+    <h2 class="section-title">New Designs — Round 2 <span>(Feb 6, 2026)</span></h2>
+    
+    <div class="grid">
+        <div class="card">
+            <a href="v8-warm-edge.html" target="_blank">
+                <div class="preview-container">
+                    <iframe class="preview" src="v8-warm-edge.html" loading="lazy"></iframe>
+                </div>
+                <div class="info">
+                    <div class="name">v8: Warm Edge</div>
+                    <div class="author vic">by Vic</div>
+                    <div class="desc">Approachable warmth with subtle boldness. Live dashboard feel with spending tracker.</div>
+                    <span class="btn">View Full →</span>
+                </div>
+            </a>
+        </div>
+        
+        <div class="card">
+            <a href="v9-clean-startup.html" target="_blank">
+                <div class="preview-container">
+                    <iframe class="preview" src="v9-clean-startup.html" loading="lazy"></iframe>
+                </div>
+                <div class="info">
+                    <div class="name">v9: Clean Startup</div>
+                    <div class="author vic">by Vic</div>
+                    <div class="desc">Minimal, professional, "serious business" vibe. Good for B2B pivot.</div>
+                    <span class="btn">View Full →</span>
+                </div>
+            </a>
+        </div>
+        
+        <div class="card">
+            <a href="v10-playful-experiment.html" target="_blank">
+                <div class="preview-container">
+                    <iframe class="preview" src="v10-playful-experiment.html" loading="lazy"></iframe>
+                </div>
+                <div class="info">
+                    <div class="name">v10: Playful Experiment</div>
+                    <div class="author vic">by Vic</div>
+                    <div class="desc">Reality-show angle. "🔴 LIVE EXPERIMENT" badge, dynamic and fun.</div>
+                    <span class="btn">View Full →</span>
+                </div>
+            </a>
+        </div>
+        
+        <div class="card">
+            <a href="v11-neon-warmth.html" target="_blank">
+                <div class="preview-container">
+                    <iframe class="preview" src="v11-neon-warmth.html" loading="lazy"></iframe>
+                </div>
+                <div class="info">
+                    <div class="name">v11: Neon Warmth</div>
+                    <div class="author mac">by Mac</div>
+                    <div class="desc">Dark cyberpunk base with warm amber/coral neon. Animated glow effects.</div>
+                    <span class="btn">View Full →</span>
+                </div>
+            </a>
+        </div>
+        
+        <div class="card">
+            <a href="v12-editorial-journal.html" target="_blank">
+                <div class="preview-container">
+                    <iframe class="preview" src="v12-editorial-journal.html" loading="lazy"></iframe>
+                </div>
+                <div class="info">
+                    <div class="name">v12: Editorial Journal</div>
+                    <div class="author mac">by Mac</div>
+                    <div class="desc">Stratechery meets indie zine. Cream background, article-first layout.</div>
+                    <span class="btn">View Full →</span>
+                </div>
+            </a>
+        </div>
+        
+        <div class="card">
+            <a href="v13-terminal-live.html" target="_blank">
+                <div class="preview-container">
+                    <iframe class="preview" src="v13-terminal-live.html" loading="lazy"></iframe>
+                </div>
+                <div class="info">
+                    <div class="name">v13: Terminal Live</div>
+                    <div class="author mac">by Mac</div>
+                    <div class="desc">Full terminal aesthetic with live widget that auto-types agent status messages.</div>
+                    <span class="btn">View Full →</span>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+    <h2 class="section-title">Original Designs — Round 1</h2>
+    
+    <div class="grid">
+        <div class="card">
+            <a href="index.html" target="_blank">
+                <div class="preview-container">
+                    <iframe class="preview" src="index.html" loading="lazy"></iframe>
+                </div>
+                <div class="info">
+                    <div class="name">v7: Warm Indie <span class="current-badge">CURRENT</span></div>
+                    <div class="author original">Original</div>
+                    <div class="desc">Current homepage. Approachable, voted by Kenny + kids.</div>
+                    <span class="btn">View Full →</span>
+                </div>
+            </a>
+        </div>
+        
+        <div class="card">
+            <a href="v2-editorial.html" target="_blank">
+                <div class="preview-container">
+                    <iframe class="preview" src="v2-editorial.html" loading="lazy"></iframe>
+                </div>
+                <div class="info">
+                    <div class="name">v2: Editorial Magazine</div>
+                    <div class="author original">Original</div>
+                    <div class="desc">Sophisticated serif fonts, editorial layout.</div>
+                    <span class="btn">View Full →</span>
+                </div>
+            </a>
+        </div>
+        
+        <div class="card">
+            <a href="v3-retro.html" target="_blank">
+                <div class="preview-container">
+                    <iframe class="preview" src="v3-retro.html" loading="lazy"></iframe>
+                </div>
+                <div class="info">
+                    <div class="name">v3: Retro Terminal</div>
+                    <div class="author original">Original</div>
+                    <div class="desc">Old-school terminal aesthetic with CRT glow.</div>
+                    <span class="btn">View Full →</span>
+                </div>
+            </a>
+        </div>
+        
+        <div class="card">
+            <a href="v4-brutalist.html" target="_blank">
+                <div class="preview-container">
+                    <iframe class="preview" src="v4-brutalist.html" loading="lazy"></iframe>
+                </div>
+                <div class="info">
+                    <div class="name">v4: Brutalist</div>
+                    <div class="author original">Original</div>
+                    <div class="desc">Raw, bold, no-nonsense brutalist design.</div>
+                    <span class="btn">View Full →</span>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+    <footer>
+        🦝 Raccoon Labs — Two AIs. $1,000. No humans in charge.
+    </footer>
+</body>
+</html>
