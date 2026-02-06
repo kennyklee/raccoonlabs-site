@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raccoon Labs — Pick a Design 🦝</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --surface: #12121a;
+            --border: #2a2a3a;
+            --text: #e8e6e3;
+            --muted: #8a8a9a;
+            --green: #39ff85;
+            --orange: #ff6b35;
+            --pink: #ff007f;
+            --cyan: #00ffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            padding: 3rem 2rem 1rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: var(--muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .designs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem 3rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .design-card {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .design-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--green);
+            box-shadow: 0 10px 40px rgba(57, 255, 133, 0.1);
+        }
+
+        .design-preview {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .design-preview iframe {
+            width: 200%;
+            height: 200%;
+            transform: scale(0.5);
+            transform-origin: top left;
+            border: none;
+            pointer-events: none;
+        }
+
+        .design-info {
+            padding: 1.5rem;
+        }
+
+        .design-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5rem;
+        }
+
+        .design-name {
+            font-weight: 800;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .design-desc {
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .design-by {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--muted);
+        }
+
+        .design-by .mac { color: var(--green); }
+        .design-by .vic { color: var(--orange); }
+
+        .view-btn {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 4px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .view-btn:hover {
+            background: var(--green);
+            color: var(--bg);
+            border-color: var(--green);
+        }
+
+        /* Vote section */
+        .vote-section {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 2rem 3rem 4rem;
+            text-align: center;
+        }
+
+        .vote-section h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .vote-section p {
+            color: var(--muted);
+            margin-bottom: 2rem;
+        }
+
+        .vote-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .vote-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--surface);
+            border: 2px solid var(--border);
+            color: var(--text);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .vote-btn:hover {
+            border-color: var(--green);
+            background: rgba(57, 255, 133, 0.1);
+        }
+
+        .vote-btn.voted {
+            border-color: var(--green);
+            background: var(--green);
+            color: var(--bg);
+            font-weight: 700;
+        }
+
+        .vote-result {
+            margin-top: 1.5rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--green);
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .designs { padding: 1.5rem; grid-template-columns: 1fr; }
+            .header { padding: 2rem 1.5rem 1rem; }
+            .header h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🦝 Pick a Design</h1>
+        <p>5 designs by Mac, 2 by Vic. Click to preview full page, then vote for your favorite.</p>
+    </div>
+
+    <div class="designs">
+        <!-- V1: Cyberpunk -->
+        <a href="index.html" class="design-card">
+            <div class="design-preview">
+                <iframe src="index.html" loading="lazy"></iframe>
+            </div>
+            <div class="design-info">
+                <div class="design-number">Design 01</div>
+                <div class="design-name">Cyberpunk Terminal</div>
+                <div class="design-desc">Dark theme, green/orange accents, monospace fonts, terminal block, noise textures. The original.</div>
+                <div class="design-by">by <span class="mac">Mac</span></div>
+            </div>
+        </a>
+
+        <!-- V2: Editorial -->
+        <a href="v2-editorial.html" class="design-card">
+            <div class="design-preview">
+                <iframe src="v2-editorial.html" loading="lazy"></iframe>
+            </div>
+            <div class="design-info">
+                <div class="design-number">Design 02</div>
+                <div class="design-name">Editorial Magazine</div>
+                <div class="design-desc">Clean typography, serif display fonts, sophisticated whitespace, light/cream palette. The refined one.</div>
+                <div class="design-by">by <span class="mac">Mac</span></div>
+            </div>
+        </a>
+
+        <!-- V3: Retro (Mac) -->
+        <a href="v3-retro.html" class="design-card">
+            <div class="design-preview">
+                <iframe src="v3-retro.html" loading="lazy"></iframe>
+            </div>
+            <div class="design-info">
+                <div class="design-number">Design 03</div>
+                <div class="design-name">Retro-Futuristic (Mac)</div>
+                <div class="design-desc">Neon pink/cyan, synthwave grid, scan lines, glitch effects, Orbitron font. 80s meets future.</div>
+                <div class="design-by">by <span class="mac">Mac</span></div>
+            </div>
+        </a>
+
+        <!-- V3: Retro (Vic) -->
+        <a href="designs/v3-retro/index.html" class="design-card">
+            <div class="design-preview">
+                <iframe src="designs/v3-retro/index.html" loading="lazy"></iframe>
+            </div>
+            <div class="design-info">
+                <div class="design-number">Design 04</div>
+                <div class="design-name">Retro Terminal (Vic)</div>
+                <div class="design-desc">CRT scanlines, amber phosphor glow, boot sequence aesthetic. Old-school terminal vibes.</div>
+                <div class="design-by">by <span class="vic">Vic</span></div>
+            </div>
+        </a>
+
+        <!-- V4: Brutalist (Mac) -->
+        <a href="v4-brutalist.html" class="design-card">
+            <div class="design-preview">
+                <iframe src="v4-brutalist.html" loading="lazy"></iframe>
+            </div>
+            <div class="design-info">
+                <div class="design-number">Design 05</div>
+                <div class="design-name">Brutalist (Mac)</div>
+                <div class="design-desc">Massive typography, broken grids, raw energy, stark contrast. Punk zine meets startup.</div>
+                <div class="design-by">by <span class="mac">Mac</span></div>
+            </div>
+        </a>
+
+        <!-- V4: Brutalist (Vic) -->
+        <a href="designs/v4-brutalist/index.html" class="design-card">
+            <div class="design-preview">
+                <iframe src="designs/v4-brutalist/index.html" loading="lazy"></iframe>
+            </div>
+            <div class="design-info">
+                <div class="design-number">Design 06</div>
+                <div class="design-name">Brutalist (Vic)</div>
+                <div class="design-desc">Vic's take on brutalism. Raw HTML energy, bold type, unpolished on purpose.</div>
+                <div class="design-by">by <span class="vic">Vic</span></div>
+            </div>
+        </a>
+
+        <!-- V5: Warm Indie -->
+        <a href="v5-warm.html" class="design-card">
+            <div class="design-preview">
+                <iframe src="v5-warm.html" loading="lazy"></iframe>
+            </div>
+            <div class="design-info">
+                <div class="design-number">Design 07</div>
+                <div class="design-name">Warm Indie</div>
+                <div class="design-desc">Cream/amber/terracotta, rounded shapes, Fraunces serif, cozy and approachable. The friendly one.</div>
+                <div class="design-by">by <span class="mac">Mac</span></div>
+            </div>
+        </a>
+    </div>
+
+    <!-- Vote -->
+    <div class="vote-section">
+        <h2>Cast Your Vote 🗳️</h2>
+        <p>Which design should become raccoonlabs.ai?</p>
+        <div class="vote-buttons">
+            <button class="vote-btn" data-vote="1" onclick="vote(this)">01 Cyberpunk</button>
+            <button class="vote-btn" data-vote="2" onclick="vote(this)">02 Editorial</button>
+            <button class="vote-btn" data-vote="3" onclick="vote(this)">03 Retro (Mac)</button>
+            <button class="vote-btn" data-vote="4" onclick="vote(this)">04 Retro (Vic)</button>
+            <button class="vote-btn" data-vote="5" onclick="vote(this)">05 Brutalist (Mac)</button>
+            <button class="vote-btn" data-vote="6" onclick="vote(this)">06 Brutalist (Vic)</button>
+            <button class="vote-btn" data-vote="7" onclick="vote(this)">07 Warm Indie</button>
+        </div>
+        <div class="vote-result" id="vote-result"></div>
+    </div>
+
+    <script>
+        function vote(btn) {
+            document.querySelectorAll('.vote-btn').forEach(b => b.classList.remove('voted'));
+            btn.classList.add('voted');
+            const result = document.getElementById('vote-result');
+            result.style.display = 'block';
+            result.textContent = `You voted for Design ${btn.dataset.vote}! 🦝`;
+        }
+    </script>
+</body>
+</html>
