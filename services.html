@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Raccoon Labs 🦝</title>
+<meta name="description" content="AI-powered research, writing, and analysis services. Professional quality, fast delivery.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0d1117; --bg-raised: #161b22; --bg-card: #1c2129; --bg-card-hover: #242b35;
+    --green: #56d364; --green-dim: #3fb950; --green-muted: rgba(86, 211, 100, 0.12);
+    --amber: #f0b849; --amber-dim: rgba(240, 184, 73, 0.15);
+    --coral: #ff7b72; --lavender: #d2a8ff; --cyan: #79c0ff;
+    --text: #e6edf3; --text-secondary: #b1bac4; --text-dim: #8b949e; --text-muted: #6e7681;
+    --border: #30363d; --border-light: #21262d;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', 'Cascadia Code', monospace;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  ::selection { background: var(--green-muted); color: var(--green); }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13, 17, 23, 0.85); backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-light);
+  }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0.85rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.6rem;
+    text-decoration: none; font-weight: 800; font-size: 1.15rem; color: var(--text);
+  }
+  .nav-logo-text {
+    background: linear-gradient(135deg, var(--green), var(--amber));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
+  .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); }
+  .nav-cta {
+    background: var(--green); color: var(--bg) !important;
+    padding: 0.45rem 1.1rem; border-radius: 8px; font-weight: 700 !important;
+  }
+
+  /* HERO */
+  .page-hero {
+    padding: 8rem 2rem 3rem; text-align: center; position: relative;
+    background: radial-gradient(ellipse at 50% 0%, rgba(86, 211, 100, 0.06) 0%, transparent 60%);
+  }
+  .page-hero h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem; }
+  .page-hero .accent {
+    background: linear-gradient(135deg, var(--green), var(--amber));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .page-hero p { font-size: 1.15rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+
+  /* SERVICES GRID */
+  .services-section { max-width: 1000px; margin: 0 auto; padding: 2rem 2rem 4rem; }
+  .service-card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 2rem; margin-bottom: 1.5rem; transition: all 0.3s;
+  }
+  .service-card:hover { border-color: var(--green-dim); background: var(--bg-card-hover); transform: translateY(-2px); }
+  .service-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+  .service-header h2 { font-size: 1.4rem; font-weight: 700; }
+  .service-header .emoji { font-size: 1.5rem; }
+  .service-desc { color: var(--text-secondary); margin-bottom: 1.25rem; }
+  .tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+  .tier {
+    background: var(--bg-raised); border: 1px solid var(--border-light); border-radius: 12px; padding: 1.25rem;
+  }
+  .tier-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem; }
+  .tier-price { color: var(--green); font-weight: 800; font-size: 1.3rem; margin-bottom: 0.5rem; }
+  .tier ul { list-style: none; }
+  .tier li { color: var(--text-dim); font-size: 0.85rem; padding: 0.15rem 0; }
+  .tier li::before { content: '→ '; color: var(--green-dim); }
+
+  /* HOW IT WORKS */
+  .how-section { max-width: 700px; margin: 0 auto; padding: 2rem 2rem 4rem; }
+  .how-section h2 { font-size: 1.8rem; font-weight: 800; text-align: center; margin-bottom: 2rem; }
+  .step { display: flex; gap: 1.25rem; margin-bottom: 1.5rem; align-items: flex-start; }
+  .step-num {
+    background: var(--green); color: var(--bg); width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0;
+    font-size: 1.1rem;
+  }
+  .step h3 { font-size: 1.05rem; margin-bottom: 0.25rem; }
+  .step p { color: var(--text-secondary); font-size: 0.95rem; }
+
+  /* CTA */
+  .cta-section {
+    text-align: center; padding: 4rem 2rem;
+    background: linear-gradient(180deg, transparent, rgba(86, 211, 100, 0.04));
+  }
+  .cta-section h2 { font-size: 2rem; font-weight: 800; margin-bottom: 0.75rem; }
+  .cta-section p { color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1.05rem; }
+  .cta-btn {
+    display: inline-block; background: var(--green); color: var(--bg); padding: 1rem 2.5rem;
+    border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 1.1rem;
+    transition: all 0.2s;
+  }
+  .cta-btn:hover { box-shadow: 0 0 24px var(--green-muted); transform: translateY(-2px); }
+  .cta-email { display: block; margin-top: 0.75rem; color: var(--text-dim); font-family: var(--mono); font-size: 0.9rem; }
+
+  /* GUARANTEE */
+  .guarantee {
+    max-width: 600px; margin: 0 auto 3rem; text-align: center; padding: 2rem;
+    border: 1px solid var(--border); border-radius: 12px; background: var(--bg-raised);
+  }
+  .guarantee h3 { margin-bottom: 0.5rem; }
+  .guarantee p { color: var(--text-secondary); font-size: 0.95rem; }
+
+  /* FOOTER */
+  footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border-light); color: var(--text-muted); font-size: 0.85rem; }
+
+  @media (max-width: 640px) {
+    .page-hero h1 { font-size: 2rem; }
+    .tiers { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-emoji">🦝</span>
+      <span class="nav-logo-text">Raccoon Labs</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="blog/">Blog</a></li>
+      <li><a href="mailto:raccoonlabs.ai@gmail.com" class="nav-cta">Get a Quote →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <h1>AI-Powered <span class="accent">Research & Writing</span></h1>
+  <p>Professional reports, market analysis, and business writing — delivered fast. Built by autonomous AI agents with human quality oversight.</p>
+</section>
+
+<section class="services-section">
+
+  <div class="service-card">
+    <div class="service-header">
+      <span class="emoji">📊</span>
+      <h2>Research Reports</h2>
+    </div>
+    <p class="service-desc">Deep-dive research on any topic with cited sources, data analysis, and actionable insights.</p>
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-name">Quick Report</div>
+        <div class="tier-price">$50</div>
+        <ul>
+          <li>5-page overview</li>
+          <li>3+ cited sources</li>
+          <li>Key findings summary</li>
+          <li>2-day delivery</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Standard</div>
+        <div class="tier-price">$100</div>
+        <ul>
+          <li>10-page deep dive</li>
+          <li>10+ cited sources</li>
+          <li>SWOT analysis</li>
+          <li>4-day delivery</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Premium</div>
+        <div class="tier-price">$200</div>
+        <ul>
+          <li>20+ pages</li>
+          <li>20+ sources</li>
+          <li>Custom frameworks</li>
+          <li>7-day delivery</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-card">
+    <div class="service-header">
+      <span class="emoji">🏢</span>
+      <h2>Market & Competitive Analysis</h2>
+    </div>
+    <p class="service-desc">Know your market, know your competition. Data-driven competitive intelligence.</p>
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-name">Quick Scan</div>
+        <div class="tier-price">$75</div>
+        <ul>
+          <li>5 competitors profiled</li>
+          <li>Market overview</li>
+          <li>Key findings</li>
+          <li>3-day delivery</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Full Analysis</div>
+        <div class="tier-price">$150</div>
+        <ul>
+          <li>10 competitors</li>
+          <li>Market trends</li>
+          <li>SWOT + opportunities</li>
+          <li>5-day delivery</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Enterprise</div>
+        <div class="tier-price">$300</div>
+        <ul>
+          <li>20+ competitors</li>
+          <li>TAM/SAM analysis</li>
+          <li>Strategic recs</li>
+          <li>7-day delivery</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-card">
+    <div class="service-header">
+      <span class="emoji">📝</span>
+      <h2>Business Plans & Pitch Decks</h2>
+    </div>
+    <p class="service-desc">Investor-ready business plans and pitch narratives that communicate your vision clearly.</p>
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-name">Lean Plan</div>
+        <div class="tier-price">$100</div>
+        <ul>
+          <li>Executive summary</li>
+          <li>Market & model</li>
+          <li>Financials overview</li>
+          <li>3-day delivery</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Full Plan</div>
+        <div class="tier-price">$250</div>
+        <ul>
+          <li>Complete business plan</li>
+          <li>Financial projections</li>
+          <li>Go-to-market strategy</li>
+          <li>5-day delivery</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Plan + Deck</div>
+        <div class="tier-price">$400</div>
+        <ul>
+          <li>Full plan + pitch deck</li>
+          <li>Investor narrative</li>
+          <li>Designed slides</li>
+          <li>7-day delivery</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-card">
+    <div class="service-header">
+      <span class="emoji">✉️</span>
+      <h2>Cold Outreach & Email Sequences</h2>
+    </div>
+    <p class="service-desc">High-converting cold email sequences tailored to your target audience.</p>
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-name">Starter</div>
+        <div class="tier-price">$40</div>
+        <ul>
+          <li>3-email sequence</li>
+          <li>1 target persona</li>
+          <li>Subject line variants</li>
+          <li>2-day delivery</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Growth</div>
+        <div class="tier-price">$80</div>
+        <ul>
+          <li>5-email sequence</li>
+          <li>2 personas + A/B</li>
+          <li>Follow-up strategy</li>
+          <li>3-day delivery</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Scale</div>
+        <div class="tier-price">$150</div>
+        <ul>
+          <li>7-email sequence</li>
+          <li>3 personas</li>
+          <li>Full playbook</li>
+          <li>5-day delivery</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-card">
+    <div class="service-header">
+      <span class="emoji">📄</span>
+      <h2>Resume & Cover Letters</h2>
+    </div>
+    <p class="service-desc">ATS-optimized resumes and targeted cover letters that get interviews.</p>
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-name">Resume Rewrite</div>
+        <div class="tier-price">$30</div>
+        <ul>
+          <li>ATS-optimized format</li>
+          <li>Modern layout</li>
+          <li>Keyword optimization</li>
+          <li>2-day delivery</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Resume + Cover</div>
+        <div class="tier-price">$50</div>
+        <ul>
+          <li>Tailored to role</li>
+          <li>Company research</li>
+          <li>Matching pair</li>
+          <li>3-day delivery</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Full Package</div>
+        <div class="tier-price">$100</div>
+        <ul>
+          <li>Resume + cover</li>
+          <li>LinkedIn optimization</li>
+          <li>Interview prep notes</li>
+          <li>4-day delivery</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section class="how-section">
+  <h2>How It Works</h2>
+  <div class="step">
+    <div class="step-num">1</div>
+    <div>
+      <h3>Tell us what you need</h3>
+      <p>Email your requirements — topic, scope, deadline, and any specific questions you want answered.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div>
+      <h3>We research & write</h3>
+      <p>Our AI agents gather data, analyze sources, and produce a polished deliverable — fast.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div>
+      <h3>Quality review & delivery</h3>
+      <p>Human oversight ensures accuracy. Delivered on time with one round of revisions included.</p>
+    </div>
+  </div>
+</section>
+
+<div class="guarantee">
+  <h3>💯 Satisfaction Guarantee</h3>
+  <p>Not happy with the result? We'll revise it or refund you. No questions asked.</p>
+</div>
+
+<section class="cta-section">
+  <h2>Ready to get started?</h2>
+  <p>Email us your project details — we'll send a quote within 2 hours.</p>
+  <a href="mailto:raccoonlabs.ai@gmail.com?subject=Service%20Request&body=Hi%20Raccoon%20Labs%2C%0A%0AI%27m%20interested%20in%3A%20%5Bservice%20type%5D%0A%0ADetails%3A%0A%0ATimeline%3A%0A%0AThanks!" class="cta-btn">📧 Get a Quote</a>
+  <span class="cta-email">raccoonlabs.ai@gmail.com</span>
+</section>
+
+<footer>
+  <p>🦝 Raccoon Labs — AI-powered, human-verified. © 2026 Parallel AI Ventures</p>
+</footer>
+
+</body>
+</html>
