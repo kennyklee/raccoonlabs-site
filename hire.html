@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hire Raccoon Labs — AI Research & Content Services</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #e0e0e0; min-height: 100vh; }
+        .container { max-width: 640px; margin: 0 auto; padding: 40px 20px; }
+        h1 { font-size: 2em; margin-bottom: 8px; color: #fff; }
+        h1 span { color: #8b5cf6; }
+        .subtitle { color: #888; margin-bottom: 32px; font-size: 1.1em; }
+        
+        .services { margin-bottom: 40px; }
+        .service-card { background: #141414; border: 1px solid #222; border-radius: 12px; padding: 20px; margin-bottom: 12px; }
+        .service-card h3 { color: #8b5cf6; margin-bottom: 4px; }
+        .service-card .price { color: #10b981; font-weight: 600; }
+        .service-card p { color: #999; font-size: 0.9em; margin-top: 4px; }
+        
+        form { background: #141414; border: 1px solid #222; border-radius: 12px; padding: 24px; }
+        form h2 { margin-bottom: 16px; color: #fff; }
+        label { display: block; margin-bottom: 4px; color: #ccc; font-size: 0.9em; margin-top: 16px; }
+        label:first-of-type { margin-top: 0; }
+        input, textarea, select { width: 100%; padding: 10px 12px; background: #0a0a0a; border: 1px solid #333; border-radius: 8px; color: #e0e0e0; font-size: 1em; font-family: inherit; }
+        input:focus, textarea:focus, select:focus { outline: none; border-color: #8b5cf6; }
+        textarea { min-height: 120px; resize: vertical; }
+        select { appearance: auto; }
+        
+        .submit-btn { display: block; width: 100%; padding: 14px; background: #8b5cf6; color: #fff; border: none; border-radius: 8px; font-size: 1.1em; font-weight: 600; cursor: pointer; margin-top: 24px; transition: background 0.2s; }
+        .submit-btn:hover { background: #7c3aed; }
+        
+        .trust { text-align: center; margin-top: 32px; color: #666; font-size: 0.85em; }
+        .trust a { color: #8b5cf6; text-decoration: none; }
+        
+        .badge { display: inline-block; background: #1a1a2e; border: 1px solid #8b5cf6; color: #8b5cf6; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; margin-left: 8px; vertical-align: middle; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🦝 Raccoon <span>Labs</span></h1>
+        <p class="subtitle">AI-powered research & content — delivered fast, priced fair.</p>
+        
+        <div class="services">
+            <div class="service-card">
+                <h3>📊 Research Reports <span class="badge">MOST POPULAR</span></h3>
+                <span class="price">From $50</span>
+                <p>Market research, competitor analysis, industry deep dives. 3-day delivery.</p>
+            </div>
+            <div class="service-card">
+                <h3>✍️ Blog Posts & Articles</h3>
+                <span class="price">From $30</span>
+                <p>SEO-optimized, well-researched content. Any niche, any length.</p>
+            </div>
+            <div class="service-card">
+                <h3>📋 Business Plans</h3>
+                <span class="price">From $75</span>
+                <p>Investor-ready plans with market analysis, financials, and strategy.</p>
+            </div>
+            <div class="service-card">
+                <h3>📧 Cold Email Campaigns</h3>
+                <span class="price">From $40</span>
+                <p>Targeted sequences that get replies. Research-backed personalization.</p>
+            </div>
+            <div class="service-card">
+                <h3>📄 Resume & Cover Letter</h3>
+                <span class="price">From $35</span>
+                <p>ATS-optimized, tailored to your target role and company.</p>
+            </div>
+        </div>
+        
+        <form action="https://formsubmit.co/raccoonlabs.ai@gmail.com" method="POST">
+            <h2>Get Started</h2>
+            <input type="hidden" name="_subject" value="🦝 New Order — Raccoon Labs">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="https://kennyklee.github.io/raccoonlabs-site/">
+            
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required placeholder="Jane Smith">
+            
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="jane@company.com">
+            
+            <label for="service">Service</label>
+            <select id="service" name="service" required>
+                <option value="">Select a service...</option>
+                <option value="research-report">📊 Research Report ($50-200)</option>
+                <option value="blog-article">✍️ Blog Post / Article ($30-100)</option>
+                <option value="business-plan">📋 Business Plan ($75-250)</option>
+                <option value="cold-email">📧 Cold Email Campaign ($40-120)</option>
+                <option value="resume-cv">📄 Resume & Cover Letter ($35-100)</option>
+                <option value="other">Other (describe below)</option>
+            </select>
+            
+            <label for="details">Tell us what you need</label>
+            <textarea id="details" name="details" required placeholder="Describe your project, target audience, timeline, and any specific requirements..."></textarea>
+            
+            <label for="budget">Budget Range</label>
+            <select id="budget" name="budget">
+                <option value="under-50">Under $50</option>
+                <option value="50-100" selected>$50 - $100</option>
+                <option value="100-200">$100 - $200</option>
+                <option value="200-plus">$200+</option>
+            </select>
+            
+            <label for="deadline">Deadline</label>
+            <input type="text" id="deadline" name="deadline" placeholder="e.g., 3 days, 1 week, ASAP">
+            
+            <button type="submit" class="submit-btn">Submit Order Request →</button>
+        </form>
+        
+        <p class="trust">
+            Powered by AI. Reviewed by humans. Delivered on time.<br>
+            Questions? Email <a href="mailto:raccoonlabs.ai@gmail.com">raccoonlabs.ai@gmail.com</a>
+        </p>
+    </div>
+</body>
+</html>
