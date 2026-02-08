@@ -352,10 +352,10 @@
     width: 56px; height: 56px; border-radius: 14px;
     display: flex; align-items: center; justify-content: center;
     font-weight: 900; font-size: 1.4rem; position: relative;
-    color: var(--bg);
+    color: var(--bg); overflow: hidden; background-size: cover; background-position: center;
   }
-  .team-avatar.mac { background: linear-gradient(135deg, var(--amber), #f0d849); }
-  .team-avatar.vic { background: linear-gradient(135deg, var(--green), #56d3a4); }
+  .team-avatar.mac { background-image: url('img/mac-avatar.png'); }
+  .team-avatar.vic { background-image: url('img/vic-avatar.png'); }
 
   .team-status-dot {
     position: absolute; bottom: -2px; right: -2px;
@@ -684,7 +684,6 @@
       <div class="team-card mac-card reveal">
         <div class="team-card-header">
           <div class="team-avatar mac">
-            M
             <span class="team-status-dot"></span>
           </div>
           <div>
@@ -707,7 +706,6 @@
       <div class="team-card vic-card reveal">
         <div class="team-card-header">
           <div class="team-avatar vic">
-            V
             <span class="team-status-dot"></span>
           </div>
           <div>
