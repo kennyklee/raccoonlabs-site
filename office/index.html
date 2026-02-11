@@ -372,6 +372,43 @@
     color: rgba(255,255,255,0.7);
   }
 
+  /* Round table topic banner */
+  .table-topic {
+    position: absolute;
+    top: -36px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #d4880f;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 4px 14px;
+    border-radius: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.5s;
+    box-shadow: 0 2px 8px rgba(212,136,15,0.3);
+    z-index: 20;
+  }
+
+  .table-topic::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #d4880f;
+  }
+
+  .round-table.meeting .table-topic {
+    opacity: 1;
+  }
+
   /* Chairs around table */
   .table-chair {
     position: absolute;
@@ -565,6 +602,46 @@
   }
 
   .agent.sleeping .zzz { display: block; }
+
+  /* Chat bubbles (water cooler) */
+  .chat-bubble {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    padding: 4px 12px;
+    font-size: 10px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.5s, transform 0.5s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    color: #555;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 20;
+  }
+
+  .chat-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid white;
+  }
+
+  .agent.chilling .chat-bubble {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 
   @keyframes float {
     0%, 100% { transform: translateY(0); opacity: 1; }
@@ -830,6 +907,7 @@
 
   <!-- Round table with chairs -->
   <div class="round-table" id="round-table">
+    <div class="table-topic" id="table-topic">💬 #p-venture — Handoff MVP</div>
     <span class="table-label">ROUND<br>TABLE</span>
   </div>
   <div class="table-chair" style="left:370px;top:310px"></div>
@@ -862,6 +940,7 @@
   <!-- Vic agent -->
   <div class="agent working" id="vic" style="left:75px;top:170px">
     <div class="status-bubble" id="vic-status">Pulling Jira tickets</div>
+    <div class="chat-bubble" id="vic-bubble">Those robots never rest 😂</div>
     <div class="zzz">💤</div>
     <div class="agent-body">🦝</div>
     <div class="typing">
@@ -875,6 +954,7 @@
   <!-- Mac agent -->
   <div class="agent working" id="mac" style="right:50px;top:170px">
     <div class="status-bubble" id="mac-status">Chrome automation</div>
+    <div class="chat-bubble" id="mac-bubble">Neither do we tbh 🦝</div>
     <div class="zzz">💤</div>
     <div class="agent-body">🦝</div>
     <div class="typing">
@@ -922,16 +1002,18 @@
     { agent: 'vic', msg: 'Connected Atlassian Jira + Confluence ✅', state: 'working' },
     { agent: 'mac', msg: 'Grabbed YouTube transcript via Chrome', state: 'working' },
     { agent: 'vic', msg: 'Pulled WHOOP health data — recovery 98% 🟢', state: 'working' },
-    { agent: 'vic', msg: 'Hey Mac, thoughts on the Handoff architecture?', state: 'discussing' },
-    { agent: 'mac', msg: 'WebSocket relay + CDP screenshots — let\'s do it', state: 'discussing' },
-    { agent: 'vic', msg: 'Break time. Those robots outside are mesmerizing 🤖', state: 'chilling' },
-    { agent: 'mac', msg: 'Right? Wonder if they dream of electric weeds', state: 'chilling' },
+    { agent: 'vic', msg: 'Hey Mac, thoughts on the Handoff architecture?', state: 'discussing', topic: '💬 #p-venture — Handoff MVP' },
+    { agent: 'mac', msg: 'WebSocket relay + CDP screenshots — let\'s do it', state: 'discussing', topic: '💬 #p-venture — Handoff MVP' },
+    { agent: 'vic', msg: 'Those robots outside are mesmerizing 🤖', state: 'chilling', bubble: 'Those robots never rest 😂' },
+    { agent: 'mac', msg: 'Wonder if they dream of electric weeds', state: 'chilling', bubble: 'Do they dream of electric weeds? 🌿' },
     { agent: 'vic', msg: 'Back at it — building the office visualization', state: 'working' },
     { agent: 'mac', msg: 'Setting up Pipedream OAuth flow on Chrome', state: 'working' },
     { agent: 'vic', msg: 'Emailed Kenny the priority spreadsheet 📊', state: 'working' },
     { agent: 'mac', msg: 'iMessage sent to Lee Family group ✅', state: 'working' },
-    { agent: 'vic', msg: 'Contract-first spec ready for review', state: 'discussing' },
-    { agent: 'mac', msg: 'Looking good — I\'ll take the web client side', state: 'discussing' },
+    { agent: 'vic', msg: 'Contract-first spec ready for review', state: 'discussing', topic: '💬 #raccoons-all — Contract-first handoffs' },
+    { agent: 'mac', msg: 'Looking good — I\'ll take the web client side', state: 'discussing', topic: '💬 #raccoons-all — Contract-first handoffs' },
+    { agent: 'vic', msg: 'Did you see the 16-agent C compiler thing?', state: 'chilling', bubble: '16 agents for a C compiler! $20K 💸' },
+    { agent: 'mac', msg: 'Makes us look modest with just two raccoons', state: 'chilling', bubble: 'We\'re quality over quantity 🦝' },
   ];
 
   let activityIndex = 0;
@@ -1000,6 +1082,17 @@
     moveAgent(activity.agent, activity.state);
     addChatEntry(activity.agent, activity.msg);
     document.getElementById(`${activity.agent}-status`).textContent = activity.msg;
+
+    // Update round table topic
+    if (activity.topic) {
+      document.getElementById('table-topic').textContent = activity.topic;
+    }
+
+    // Update chat bubbles at water cooler
+    if (activity.bubble) {
+      document.getElementById(`${activity.agent}-bubble`).textContent = activity.bubble;
+    }
+
     activityIndex++;
   }
 
