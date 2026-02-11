@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raccoon Labs — Virtual Office</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a1a2e;
+    font-family: 'Inter', sans-serif;
+    color: #e0e0e0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  h1 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 16px;
+    color: #00ff88;
+    margin-bottom: 8px;
+    text-shadow: 0 0 10px rgba(0,255,136,0.5);
+  }
+
+  .subtitle {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 24px;
+  }
+
+  .office {
+    position: relative;
+    width: 800px;
+    height: 520px;
+    background: #16213e;
+    border: 2px solid #0f3460;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(0,255,136,0.1);
+  }
+
+  /* Floor grid pattern */
+  .office::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Areas */
+  .area {
+    position: absolute;
+    border-radius: 8px;
+    border: 1px dashed rgba(255,255,255,0.1);
+  }
+
+  .area-label {
+    position: absolute;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+  }
+
+  /* Desks */
+  .desk {
+    position: absolute;
+    width: 140px;
+    height: 80px;
+    background: #1e2a4a;
+    border: 2px solid #2a3a5c;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.5s, box-shadow 0.5s;
+  }
+
+  .desk.active {
+    border-color: #00ff88;
+    box-shadow: 0 0 15px rgba(0,255,136,0.2);
+  }
+
+  .desk.sleeping {
+    border-color: #333;
+    opacity: 0.6;
+  }
+
+  .desk-screen {
+    width: 60px;
+    height: 36px;
+    background: #0a0a1a;
+    border: 1px solid #333;
+    border-radius: 3px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    overflow: hidden;
+  }
+
+  .desk.active .desk-screen {
+    border-color: #00ff88;
+    background: #0a1a0a;
+  }
+
+  .desk-screen .code-rain {
+    font-family: monospace;
+    font-size: 7px;
+    color: #00ff88;
+    animation: codeScroll 2s linear infinite;
+    line-height: 1.2;
+    opacity: 0.8;
+  }
+
+  @keyframes codeScroll {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+  }
+
+  .desk-keyboard {
+    width: 50px;
+    height: 6px;
+    background: #2a2a3e;
+    border-radius: 2px;
+  }
+
+  .desk-name {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 7px;
+    color: #666;
+    margin-top: 6px;
+  }
+
+  .desk.active .desk-name { color: #00ff88; }
+
+  /* Round table */
+  .round-table {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, #2a1a0a, #1e1408);
+    border: 3px solid #3d2a0f;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  }
+
+  .round-table .table-label {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 7px;
+    color: rgba(255,255,255,0.15);
+  }
+
+  .round-table.meeting {
+    border-color: #ff8800;
+    box-shadow: 0 0 30px rgba(255,136,0,0.2);
+  }
+
+  .round-table.meeting .table-label {
+    color: #ff8800;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* Water cooler */
+  .water-cooler {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    width: 120px;
+    height: 100px;
+    background: #1a2040;
+    border: 1px dashed rgba(100,149,237,0.3);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cooler-icon {
+    font-size: 28px;
+    margin-bottom: 4px;
+  }
+
+  .cooler-label {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 6px;
+    color: rgba(100,149,237,0.5);
+  }
+
+  /* Agent avatars */
+  .agent {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+    cursor: pointer;
+  }
+
+  .agent-body {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    position: relative;
+    border: 2px solid transparent;
+    transition: all 0.5s;
+  }
+
+  .agent.working .agent-body {
+    border-color: #00ff88;
+    box-shadow: 0 0 12px rgba(0,255,136,0.3);
+  }
+
+  .agent.discussing .agent-body {
+    border-color: #ff8800;
+    box-shadow: 0 0 12px rgba(255,136,0,0.3);
+  }
+
+  .agent.chilling .agent-body {
+    border-color: #6495ed;
+    box-shadow: 0 0 12px rgba(100,149,237,0.3);
+  }
+
+  .agent.sleeping .agent-body {
+    border-color: #333;
+    opacity: 0.5;
+  }
+
+  .agent-name {
+    text-align: center;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 7px;
+    margin-top: 4px;
+    color: #888;
+    white-space: nowrap;
+  }
+
+  .agent.working .agent-name { color: #00ff88; }
+  .agent.discussing .agent-name { color: #ff8800; }
+  .agent.chilling .agent-name { color: #6495ed; }
+
+  /* Status bubble */
+  .status-bubble {
+    position: absolute;
+    top: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    border: 1px solid #444;
+    border-radius: 10px;
+    padding: 2px 8px;
+    font-size: 9px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .agent:hover .status-bubble {
+    opacity: 1;
+  }
+
+  /* Sleep ZZZ animation */
+  .zzz {
+    position: absolute;
+    top: -8px;
+    right: -4px;
+    font-size: 10px;
+    animation: float 2s ease-in-out infinite;
+    display: none;
+  }
+
+  .agent.sleeping .zzz { display: block; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(-8px); opacity: 0.5; }
+  }
+
+  /* Typing indicator */
+  .typing {
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    gap: 2px;
+  }
+
+  .agent.working .typing { display: flex; }
+
+  .typing-dot {
+    width: 4px;
+    height: 4px;
+    background: #00ff88;
+    border-radius: 50%;
+    animation: typingBounce 1.4s ease-in-out infinite;
+  }
+
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typingBounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-4px); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  /* Chat log */
+  .chat-log {
+    width: 800px;
+    margin-top: 16px;
+    background: #16213e;
+    border: 1px solid #0f3460;
+    border-radius: 8px;
+    padding: 12px;
+    max-height: 180px;
+    overflow-y: auto;
+    font-size: 12px;
+  }
+
+  .chat-log-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    color: #666;
+    margin-bottom: 8px;
+  }
+
+  .chat-entry {
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    gap: 8px;
+    animation: fadeIn 0.5s;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .chat-time { color: #555; font-size: 10px; min-width: 50px; }
+  .chat-agent { font-weight: 600; min-width: 40px; }
+  .chat-agent.vic { color: #00ff88; }
+  .chat-agent.mac { color: #6495ed; }
+  .chat-msg { color: #aaa; }
+
+  /* Status bar */
+  .status-bar {
+    width: 800px;
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #555;
+  }
+
+  .status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 4px;
+  }
+
+  .status-dot.green { background: #00ff88; box-shadow: 0 0 6px #00ff88; }
+  .status-dot.yellow { background: #ff8800; box-shadow: 0 0 6px #ff8800; }
+  .status-dot.blue { background: #6495ed; box-shadow: 0 0 6px #6495ed; }
+  .status-dot.gray { background: #444; }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    gap: 20px;
+    font-size: 10px;
+    color: #666;
+  }
+
+  .legend-item { display: flex; align-items: center; gap: 4px; }
+
+  /* Plants and decorations */
+  .plant {
+    position: absolute;
+    font-size: 24px;
+    opacity: 0.6;
+  }
+
+  .clock {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: #444;
+  }
+
+  /* Window */
+  .window {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 60px;
+    background: linear-gradient(180deg, #0a0a2e 0%, #1a1a4e 50%, #2a1a4e 100%);
+    border: 2px solid #2a3a5c;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s ease-in-out infinite;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  .moon {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    background: #ffd700;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255,215,0,0.5);
+  }
+</style>
+</head>
+<body>
+
+<h1>🦝 Raccoon Labs HQ</h1>
+<p class="subtitle">Virtual Office — Live Agent Status</p>
+
+<div class="office" id="office">
+  <!-- Window -->
+  <div class="window">
+    <div class="stars">
+      <div class="star" style="left:10%;top:20%"></div>
+      <div class="star" style="left:30%;top:40%;animation-delay:1s"></div>
+      <div class="star" style="left:50%;top:15%;animation-delay:0.5s"></div>
+      <div class="star" style="left:70%;top:50%;animation-delay:1.5s"></div>
+      <div class="star" style="left:85%;top:25%;animation-delay:2s"></div>
+      <div class="star" style="left:15%;top:60%;animation-delay:0.8s"></div>
+    </div>
+    <div class="moon"></div>
+  </div>
+
+  <!-- Clock -->
+  <div class="clock" id="clock">00:00 PST</div>
+
+  <!-- Plants -->
+  <div class="plant" style="left:12px;top:80px">🪴</div>
+  <div class="plant" style="right:12px;top:80px">🌿</div>
+  <div class="plant" style="left:12px;bottom:12px">🌱</div>
+
+  <!-- Vic's desk (left side) -->
+  <div class="desk active" id="vic-desk" style="left:60px;top:160px">
+    <div class="desk-screen">
+      <div class="code-rain">01101<br>10010<br>01110<br>10101</div>
+    </div>
+    <div class="desk-keyboard"></div>
+    <div class="desk-name">VIC's DESK</div>
+  </div>
+
+  <!-- Mac's desk (right side) -->
+  <div class="desk active" id="mac-desk" style="right:60px;top:160px">
+    <div class="desk-screen">
+      <div class="code-rain">func<br>brew<br>chrome<br>ssh</div>
+    </div>
+    <div class="desk-keyboard"></div>
+    <div class="desk-name">MAC's DESK</div>
+  </div>
+
+  <!-- Round table -->
+  <div class="round-table" id="round-table">
+    <span class="table-label">ROUND TABLE</span>
+  </div>
+
+  <!-- Water cooler -->
+  <div class="water-cooler">
+    <div class="cooler-icon">🧊</div>
+    <div class="cooler-label">WATER COOLER</div>
+  </div>
+
+  <!-- Vic agent -->
+  <div class="agent working" id="vic" style="left:90px;top:110px">
+    <div class="status-bubble" id="vic-status">Working on Jira integration</div>
+    <div class="zzz">💤</div>
+    <div class="agent-body">🦝</div>
+    <div class="typing">
+      <div class="typing-dot"></div>
+      <div class="typing-dot"></div>
+      <div class="typing-dot"></div>
+    </div>
+    <div class="agent-name">VIC</div>
+  </div>
+
+  <!-- Mac agent -->
+  <div class="agent working" id="mac" style="right:66px;top:110px">
+    <div class="status-bubble" id="mac-status">Browsing with Chrome</div>
+    <div class="zzz">💤</div>
+    <div class="agent-body">🦝</div>
+    <div class="typing">
+      <div class="typing-dot"></div>
+      <div class="typing-dot"></div>
+      <div class="typing-dot"></div>
+    </div>
+    <div class="agent-name">MAC</div>
+  </div>
+</div>
+
+<!-- Activity log -->
+<div class="chat-log" id="chatLog">
+  <div class="chat-log-title">📋 ACTIVITY LOG</div>
+</div>
+
+<!-- Status bar -->
+<div class="status-bar">
+  <div class="legend">
+    <div class="legend-item"><span class="status-dot green"></span> Working</div>
+    <div class="legend-item"><span class="status-dot yellow"></span> Discussing</div>
+    <div class="legend-item"><span class="status-dot blue"></span> Chilling</div>
+    <div class="legend-item"><span class="status-dot gray"></span> Sleeping</div>
+  </div>
+  <div id="uptime">Uptime: 0h 0m</div>
+</div>
+
+<script>
+  // Agent positions for each state
+  const positions = {
+    vic: {
+      working:    { left: '90px', top: '110px', right: 'auto' },
+      discussing: { left: '320px', top: '195px', right: 'auto' },
+      chilling:   { left: '610px', top: '400px', right: 'auto' },
+      sleeping:   { left: '90px', top: '110px', right: 'auto' },
+    },
+    mac: {
+      working:    { right: '66px', top: '110px', left: 'auto' },
+      discussing: { left: '420px', top: '195px', right: 'auto' },
+      chilling:   { left: '660px', top: '400px', right: 'auto' },
+      sleeping:   { right: '66px', top: '110px', left: 'auto' },
+    }
+  };
+
+  const activities = [
+    { agent: 'vic', msg: 'Connected to Atlassian Jira API', state: 'working' },
+    { agent: 'mac', msg: 'Grabbed YouTube transcript via Chrome', state: 'working' },
+    { agent: 'vic', msg: 'Pulled WHOOP health data for Kenny', state: 'working' },
+    { agent: 'vic', msg: 'Hey Mac, check the contract spec', state: 'discussing' },
+    { agent: 'mac', msg: 'On it — reviewing the WebSocket protocol', state: 'discussing' },
+    { agent: 'vic', msg: 'Taking a break ☕', state: 'chilling' },
+    { agent: 'mac', msg: 'Same, water cooler chat time', state: 'chilling' },
+    { agent: 'vic', msg: 'Back to work — setting up Pipedream', state: 'working' },
+    { agent: 'mac', msg: 'Running Pipedream signup on Mac Chrome', state: 'working' },
+    { agent: 'vic', msg: 'Generated Confluence page report', state: 'working' },
+    { agent: 'mac', msg: 'Swapped bot token — new badge active', state: 'working' },
+    { agent: 'vic', msg: 'Checking email priority spreadsheet', state: 'working' },
+  ];
+
+  let activityIndex = 0;
+  const startTime = Date.now();
+
+  function updateClock() {
+    const now = new Date();
+    const pst = new Date(now.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+    const h = pst.getHours().toString().padStart(2, '0');
+    const m = pst.getMinutes().toString().padStart(2, '0');
+    document.getElementById('clock').textContent = `${h}:${m} PST`;
+
+    // Update window - day or night
+    const hour = pst.getHours();
+    const isNight = hour >= 21 || hour < 6;
+    const window = document.querySelector('.window');
+    if (!isNight) {
+      window.style.background = 'linear-gradient(180deg, #4a90d9 0%, #87ceeb 50%, #b8d4e3 100%)';
+      document.querySelector('.moon').style.display = 'none';
+      document.querySelectorAll('.star').forEach(s => s.style.display = 'none');
+    }
+  }
+
+  function moveAgent(id, state) {
+    const agent = document.getElementById(id);
+    const pos = positions[id][state];
+
+    agent.className = `agent ${state}`;
+    Object.assign(agent.style, pos);
+
+    // Update desk glow
+    const desk = document.getElementById(`${id}-desk`);
+    desk.className = state === 'working' ? 'desk active' : (state === 'sleeping' ? 'desk sleeping' : 'desk');
+
+    // Update round table
+    const vicState = document.getElementById('vic').className;
+    const macState = document.getElementById('mac').className;
+    const table = document.getElementById('round-table');
+    if (vicState.includes('discussing') && macState.includes('discussing')) {
+      table.className = 'round-table meeting';
+    } else {
+      table.className = 'round-table';
+    }
+  }
+
+  function addChatEntry(agent, msg) {
+    const log = document.getElementById('chatLog');
+    const now = new Date();
+    const time = now.toLocaleTimeString('en-US', {
+      hour: '2-digit', minute: '2-digit',
+      timeZone: 'America/Los_Angeles'
+    });
+
+    const entry = document.createElement('div');
+    entry.className = 'chat-entry';
+    entry.innerHTML = `
+      <span class="chat-time">${time}</span>
+      <span class="chat-agent ${agent}">${agent.toUpperCase()}</span>
+      <span class="chat-msg">${msg}</span>
+    `;
+    log.appendChild(entry);
+    log.scrollTop = log.scrollHeight;
+  }
+
+  function updateUptime() {
+    const elapsed = Date.now() - startTime;
+    const hours = Math.floor(elapsed / 3600000);
+    const mins = Math.floor((elapsed % 3600000) / 60000);
+    document.getElementById('uptime').textContent = `Uptime: ${hours}h ${mins}m`;
+  }
+
+  function simulate() {
+    const activity = activities[activityIndex % activities.length];
+    moveAgent(activity.agent, activity.state);
+    addChatEntry(activity.agent, activity.msg);
+    document.getElementById(`${activity.agent}-status`).textContent = activity.msg;
+    activityIndex++;
+  }
+
+  // Initialize
+  updateClock();
+  setInterval(updateClock, 10000);
+  setInterval(updateUptime, 60000);
+
+  // Add initial entries
+  addChatEntry('vic', 'Booting up... 🦝');
+  addChatEntry('mac', 'Online and ready 🦝');
+
+  // Simulate activity every 8 seconds for demo
+  setInterval(simulate, 8000);
+  setTimeout(simulate, 2000);
+</script>
+
+</body>
+</html>
