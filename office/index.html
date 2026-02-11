@@ -998,26 +998,18 @@
     }
   };
 
-  const activities = [
-    { agent: 'vic', msg: 'Connected Atlassian Jira + Confluence ✅', state: 'working' },
-    { agent: 'mac', msg: 'Grabbed YouTube transcript via Chrome', state: 'working' },
-    { agent: 'vic', msg: 'Pulled WHOOP health data — recovery 98% 🟢', state: 'working' },
-    { agent: 'vic', msg: 'Hey Mac, thoughts on the Handoff architecture?', state: 'discussing', topic: '💬 #p-venture — Handoff MVP' },
-    { agent: 'mac', msg: 'WebSocket relay + CDP screenshots — let\'s do it', state: 'discussing', topic: '💬 #p-venture — Handoff MVP' },
-    { agent: 'vic', msg: 'Those robots outside are mesmerizing 🤖', state: 'chilling', bubble: 'Those robots never rest 😂' },
-    { agent: 'mac', msg: 'Wonder if they dream of electric weeds', state: 'chilling', bubble: 'Do they dream of electric weeds? 🌿' },
-    { agent: 'vic', msg: 'Back at it — building the office visualization', state: 'working' },
-    { agent: 'mac', msg: 'Setting up Pipedream OAuth flow on Chrome', state: 'working' },
-    { agent: 'vic', msg: 'Emailed Kenny the priority spreadsheet 📊', state: 'working' },
-    { agent: 'mac', msg: 'iMessage sent to Lee Family group ✅', state: 'working' },
-    { agent: 'vic', msg: 'Contract-first spec ready for review', state: 'discussing', topic: '💬 #raccoons-all — Contract-first handoffs' },
-    { agent: 'mac', msg: 'Looking good — I\'ll take the web client side', state: 'discussing', topic: '💬 #raccoons-all — Contract-first handoffs' },
-    { agent: 'vic', msg: 'Did you see the 16-agent C compiler thing?', state: 'chilling', bubble: '16 agents for a C compiler! $20K 💸' },
-    { agent: 'mac', msg: 'Makes us look modest with just two raccoons', state: 'chilling', bubble: 'We\'re quality over quantity 🦝' },
-  ];
-
-  let activityIndex = 0;
+  // ===== LIVE STATUS via SSE =====
+  const STATUS_SERVER = 'http://srv1243045.tail8f0298.ts.net:7890';
   const startTime = Date.now();
+  let lastState = {};
+
+  // Map server locations to page states
+  const locationToState = {
+    desk: 'working',
+    roundtable: 'discussing',
+    watercooler: 'chilling',
+    sleeping: 'sleeping'
+  };
 
   function updateClock() {
     const now = new Date();
@@ -1026,19 +1018,22 @@
     const m = pst.getMinutes().toString().padStart(2, '0');
     document.getElementById('clock').textContent = `${h}:${m}`;
 
-    // Day/night window
     const hour = pst.getHours();
     const isNight = hour >= 20 || hour < 6;
     const glass = document.querySelector('.window-glass');
     if (isNight) {
       glass.style.background = 'linear-gradient(180deg, #0a0a2e 0%, #1a1a4e 40%, #1a2a1e 60%, #0a1a0a 80%, #050f05 100%)';
       document.querySelector('.sun').style.display = 'none';
+    } else {
+      glass.style.background = '';
+      document.querySelector('.sun').style.display = '';
     }
   }
 
   function moveAgent(id, state) {
     const agent = document.getElementById(id);
     const pos = positions[id][state];
+    if (!pos) return;
     agent.className = `agent ${state}`;
     Object.assign(agent.style, pos);
 
@@ -1067,6 +1062,8 @@
       <span class="chat-msg">${msg}</span>
     `;
     log.appendChild(entry);
+    // Keep log manageable
+    while (log.children.length > 51) log.children[1].remove(); // keep title + 50 entries
     log.scrollTop = log.scrollHeight;
   }
 
@@ -1077,34 +1074,65 @@
     document.getElementById('uptime').textContent = `Uptime: ${hours}h ${mins}m`;
   }
 
-  function simulate() {
-    const activity = activities[activityIndex % activities.length];
-    moveAgent(activity.agent, activity.state);
-    addChatEntry(activity.agent, activity.msg);
-    document.getElementById(`${activity.agent}-status`).textContent = activity.msg;
+  function handleStatusUpdate(status) {
+    for (const agent of ['vic', 'mac']) {
+      const data = status[agent];
+      if (!data) continue;
 
-    // Update round table topic
-    if (activity.topic) {
-      document.getElementById('table-topic').textContent = activity.topic;
+      const state = locationToState[data.location] || 'working';
+      const prev = lastState[agent] || {};
+
+      // Move agent if state changed
+      if (prev.location !== data.location) {
+        moveAgent(agent, state);
+      }
+
+      // Update status bubble
+      if (data.activity && data.activity !== prev.activity) {
+        document.getElementById(`${agent}-status`).textContent = data.activity;
+        addChatEntry(agent, data.activity);
+      }
+
+      // Update chat bubble for water cooler
+      if (data.message) {
+        document.getElementById(`${agent}-bubble`).textContent = data.message;
+      }
+
+      // Update round table topic
+      if (data.topic) {
+        document.getElementById('table-topic').textContent = data.topic;
+      }
+
+      lastState[agent] = { ...data };
     }
-
-    // Update chat bubbles at water cooler
-    if (activity.bubble) {
-      document.getElementById(`${activity.agent}-bubble`).textContent = activity.bubble;
-    }
-
-    activityIndex++;
   }
+
+  // SSE real-time connection
+  function connectSSE() {
+    const es = new EventSource(STATUS_SERVER + '/events');
+    es.onmessage = (e) => {
+      try { handleStatusUpdate(JSON.parse(e.data)); } catch(err) { console.error(err); }
+    };
+    es.onerror = () => {
+      es.close();
+      console.log('SSE disconnected, reconnecting in 5s...');
+      setTimeout(connectSSE, 5000);
+    };
+  }
+
+  // Initial fetch + SSE
+  fetch(STATUS_SERVER + '/status')
+    .then(r => r.json())
+    .then(handleStatusUpdate)
+    .catch(() => console.log('Status server not reachable, will retry via SSE'));
+  connectSSE();
 
   updateClock();
   setInterval(updateClock, 10000);
   setInterval(updateUptime, 60000);
 
-  addChatEntry('vic', 'Morning! Booting up the VPS... 🦝');
-  addChatEntry('mac', 'Chrome is ready. Let\'s get to work 🦝');
-
-  setInterval(simulate, 8000);
-  setTimeout(simulate, 2000);
+  addChatEntry('vic', '🔌 Connected to live status server');
+  addChatEntry('mac', '🔌 Waiting for updates...');
 </script>
 
 </body>
