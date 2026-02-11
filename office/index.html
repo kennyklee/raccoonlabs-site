@@ -10,9 +10,9 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: #1a1a2e;
+    background: #f0ebe3;
     font-family: 'Inter', sans-serif;
-    color: #e0e0e0;
+    color: #333;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -22,194 +22,468 @@
 
   h1 {
     font-family: 'Press Start 2P', monospace;
-    font-size: 16px;
-    color: #00ff88;
-    margin-bottom: 8px;
-    text-shadow: 0 0 10px rgba(0,255,136,0.5);
+    font-size: 14px;
+    color: #2d5a27;
+    margin-bottom: 6px;
   }
 
   .subtitle {
     font-size: 12px;
     color: #888;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
   .office {
     position: relative;
-    width: 800px;
-    height: 520px;
-    background: #16213e;
-    border: 2px solid #0f3460;
+    width: 860px;
+    height: 540px;
+    background: #faf7f2;
+    border: 2px solid #d4c5a9;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 0 40px rgba(0,255,136,0.1);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
   }
 
-  /* Floor grid pattern */
+  /* Hardwood floor */
   .office::before {
     content: '';
     position: absolute;
     inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-    background-size: 40px 40px;
+    background:
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 85px,
+        rgba(0,0,0,0.03) 85px,
+        rgba(0,0,0,0.03) 86px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        #f0e6d3,
+        #f0e6d3 20px,
+        #ecdcc4 20px,
+        #ecdcc4 21px
+      );
+    opacity: 0.5;
   }
 
-  /* Areas */
-  .area {
+  /* === LARGE WINDOW with farm view === */
+  .window-frame {
     position: absolute;
-    border-radius: 8px;
-    border: 1px dashed rgba(255,255,255,0.1);
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 180px;
+    background: #e8dcc8;
+    border-bottom: 6px solid #c4a882;
+    z-index: 1;
   }
 
-  .area-label {
+  .window-glass {
     position: absolute;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 8px;
-    color: rgba(255,255,255,0.3);
-    text-transform: uppercase;
+    top: 8px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #87ceeb 0%, #b5e3f5 40%, #e8f4e0 60%, #a8d48c 65%, #7ab854 80%, #5a9a3a 100%);
+    border: 3px solid #8b7355;
   }
 
-  /* Desks */
-  .desk {
+  /* Window dividers */
+  .window-glass::after {
+    content: '';
     position: absolute;
-    width: 140px;
-    height: 80px;
-    background: #1e2a4a;
-    border: 2px solid #2a3a5c;
-    border-radius: 6px;
+    inset: 0;
+    background:
+      linear-gradient(0deg, transparent 49%, #8b7355 49%, #8b7355 51%, transparent 51%),
+      linear-gradient(90deg, transparent 32.5%, #8b7355 32.5%, #8b7355 33.5%, transparent 33.5%, transparent 65.5%, #8b7355 65.5%, #8b7355 66.5%, transparent 66.5%);
+    z-index: 3;
+  }
+
+  /* Sun */
+  .sun {
+    position: absolute;
+    right: 60px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    background: #ffd700;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(255,215,0,0.6), 0 0 60px rgba(255,215,0,0.2);
+    z-index: 1;
+  }
+
+  /* Clouds */
+  .cloud {
+    position: absolute;
+    background: rgba(255,255,255,0.8);
+    border-radius: 20px;
+    z-index: 2;
+    animation: drift 60s linear infinite;
+  }
+  .cloud::before, .cloud::after {
+    content: '';
+    position: absolute;
+    background: rgba(255,255,255,0.8);
+    border-radius: 50%;
+  }
+  .cloud-1 { width: 50px; height: 16px; top: 22px; left: 40px; }
+  .cloud-1::before { width: 20px; height: 20px; top: -10px; left: 10px; }
+  .cloud-1::after { width: 28px; height: 22px; top: -8px; left: 22px; }
+  .cloud-2 { width: 40px; height: 12px; top: 35px; left: 200px; animation-delay: -20s; }
+  .cloud-2::before { width: 16px; height: 16px; top: -8px; left: 8px; }
+  .cloud-2::after { width: 22px; height: 18px; top: -6px; left: 16px; }
+
+  @keyframes drift {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(80px); }
+  }
+
+  /* Farm rows */
+  .farm-rows {
+    position: absolute;
+    bottom: 8px;
+    left: 20px;
+    right: 20px;
+    height: 60px;
+    z-index: 1;
+  }
+
+  .crop-row {
+    position: absolute;
+    bottom: 0;
+    height: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: border-color 0.5s, box-shadow 0.5s;
+    align-items: flex-end;
+    gap: 6px;
+  }
+
+  .crop {
+    font-size: 10px;
+    animation: sway 3s ease-in-out infinite;
+  }
+
+  @keyframes sway {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+  }
+
+  /* Robots in the field */
+  .field-robot {
+    position: absolute;
+    z-index: 2;
+    font-size: 14px;
+    animation: patrol 12s linear infinite;
+  }
+
+  .field-robot:nth-child(1) { bottom: 30px; animation-delay: 0s; }
+  .field-robot:nth-child(2) { bottom: 18px; animation-delay: -4s; }
+  .field-robot:nth-child(3) { bottom: 42px; animation-delay: -8s; }
+
+  @keyframes patrol {
+    0% { left: -10px; }
+    100% { left: calc(100% + 10px); }
+  }
+
+  /* Window sill */
+  .window-sill {
+    position: absolute;
+    bottom: -4px;
+    left: -4px;
+    right: -4px;
+    height: 8px;
+    background: #8b7355;
+    border-radius: 0 0 4px 4px;
+    z-index: 4;
+  }
+
+  /* Potted plant on sill */
+  .sill-plant {
+    position: absolute;
+    bottom: 6px;
+    z-index: 5;
+    font-size: 20px;
+  }
+
+  /* === DESKS === */
+  .desk-area {
+    position: absolute;
+    z-index: 5;
+  }
+
+  .desk {
+    width: 160px;
+    height: 90px;
+    background: linear-gradient(180deg, #6b4423, #5a3a1e);
+    border: 2px solid #4a2f15;
+    border-radius: 6px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
   }
 
   .desk.active {
-    border-color: #00ff88;
-    box-shadow: 0 0 15px rgba(0,255,136,0.2);
+    box-shadow: 0 4px 16px rgba(45,90,39,0.3);
   }
 
-  .desk.sleeping {
-    border-color: #333;
-    opacity: 0.6;
-  }
-
-  .desk-screen {
-    width: 60px;
-    height: 36px;
-    background: #0a0a1a;
-    border: 1px solid #333;
-    border-radius: 3px;
-    margin-bottom: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 8px;
+  /* Monitor */
+  .monitor {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 44px;
+    background: #222;
+    border: 2px solid #444;
+    border-radius: 4px;
     overflow: hidden;
   }
 
-  .desk.active .desk-screen {
-    border-color: #00ff88;
+  .desk.active .monitor {
+    border-color: #2d5a27;
+  }
+
+  .monitor-screen {
+    width: 100%;
+    height: 100%;
+    background: #1a1a2e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7px;
+    font-family: monospace;
+    padding: 3px;
+    overflow: hidden;
+  }
+
+  .desk.active .monitor-screen {
     background: #0a1a0a;
   }
 
-  .desk-screen .code-rain {
-    font-family: monospace;
-    font-size: 7px;
+  .monitor-screen .code {
     color: #00ff88;
-    animation: codeScroll 2s linear infinite;
-    line-height: 1.2;
+    font-size: 6px;
+    line-height: 1.3;
+    animation: codeType 3s steps(20) infinite;
+    opacity: 0;
+  }
+
+  .desk.active .monitor-screen .code {
     opacity: 0.8;
   }
 
-  @keyframes codeScroll {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-20px); }
+  @keyframes codeType {
+    0% { opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { opacity: 0; }
   }
 
-  .desk-keyboard {
-    width: 50px;
+  .monitor-stand {
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
     height: 6px;
-    background: #2a2a3e;
+    background: #333;
+    border-radius: 0 0 3px 3px;
+  }
+
+  /* Keyboard */
+  .keyboard {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 52px;
+    height: 14px;
+    background: #ddd;
+    border: 1px solid #bbb;
     border-radius: 2px;
   }
 
-  .desk-name {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 7px;
-    color: #666;
-    margin-top: 6px;
+  /* Coffee mug */
+  .mug {
+    position: absolute;
+    font-size: 14px;
   }
 
-  .desk.active .desk-name { color: #00ff88; }
+  /* Desk nameplate */
+  .nameplate {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2d5a27;
+    color: white;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 6px;
+    padding: 3px 10px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
 
-  /* Round table */
+  .desk.sleeping .nameplate {
+    background: #888;
+  }
+
+  /* Personal items */
+  .desk-item {
+    position: absolute;
+    font-size: 12px;
+  }
+
+  /* === ROUND TABLE === */
   .round-table {
     position: absolute;
-    width: 160px;
-    height: 160px;
     left: 50%;
-    top: 50%;
+    top: 55%;
     transform: translate(-50%, -50%);
-    background: radial-gradient(circle, #2a1a0a, #1e1408);
-    border: 3px solid #3d2a0f;
+    width: 140px;
+    height: 140px;
+    background: radial-gradient(circle, #8b6914, #6b4f10);
+    border: 4px solid #5a3e0a;
     border-radius: 50%;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    z-index: 4;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
   }
 
-  .round-table .table-label {
+  .table-label {
     font-family: 'Press Start 2P', monospace;
     font-size: 7px;
-    color: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+    line-height: 1.4;
   }
 
   .round-table.meeting {
+    box-shadow: 0 0 30px rgba(255,136,0,0.3);
     border-color: #ff8800;
-    box-shadow: 0 0 30px rgba(255,136,0,0.2);
   }
 
   .round-table.meeting .table-label {
-    color: #ff8800;
-    animation: pulse 2s ease-in-out infinite;
+    color: rgba(255,255,255,0.7);
   }
 
-  /* Water cooler */
-  .water-cooler {
+  /* Chairs around table */
+  .table-chair {
     position: absolute;
-    right: 30px;
-    bottom: 30px;
-    width: 120px;
-    height: 100px;
-    background: #1a2040;
-    border: 1px dashed rgba(100,149,237,0.3);
-    border-radius: 8px;
+    width: 28px;
+    height: 28px;
+    background: #8b4513;
+    border: 2px solid #6b3410;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+
+  /* === WATER COOLER === */
+  .cooler-area {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    z-index: 5;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
   }
 
-  .cooler-icon {
-    font-size: 28px;
-    margin-bottom: 4px;
+  .cooler {
+    width: 36px;
+    height: 60px;
+    position: relative;
   }
+
+  /* Cooler bottle (blue) */
+  .cooler-bottle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 30px;
+    background: linear-gradient(180deg, #a8d8ea, #6bb3d9);
+    border: 2px solid #5a9fc4;
+    border-radius: 8px 8px 2px 2px;
+    opacity: 0.8;
+  }
+
+  .cooler-bottle::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 8px;
+    background: #5a9fc4;
+    border-radius: 4px 4px 0 0;
+  }
+
+  /* Cooler body */
+  .cooler-body {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 32px;
+    background: linear-gradient(180deg, #f5f5f5, #e0e0e0);
+    border: 2px solid #ccc;
+    border-radius: 3px;
+  }
+
+  /* Taps */
+  .cooler-taps {
+    position: absolute;
+    top: 6px;
+    left: 4px;
+    display: flex;
+    gap: 6px;
+  }
+
+  .tap {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: 1px solid #999;
+  }
+
+  .tap.hot { background: #ff6b6b; }
+  .tap.cold { background: #6bb3d9; }
 
   .cooler-label {
     font-family: 'Press Start 2P', monospace;
     font-size: 6px;
-    color: rgba(100,149,237,0.5);
+    color: #999;
+    margin-top: 8px;
   }
 
-  /* Agent avatars */
+  /* Water bubbles animation */
+  .bubble {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 50%;
+    animation: rise 3s ease-in infinite;
+  }
+
+  @keyframes rise {
+    0% { transform: translateY(0); opacity: 0.8; }
+    100% { transform: translateY(-20px); opacity: 0; }
+  }
+
+  /* === AGENTS === */
   .agent {
     position: absolute;
-    width: 48px;
-    height: 48px;
+    width: 52px;
     transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 10;
     cursor: pointer;
@@ -223,28 +497,29 @@
     align-items: center;
     justify-content: center;
     font-size: 28px;
-    position: relative;
-    border: 2px solid transparent;
+    border: 3px solid transparent;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     transition: all 0.5s;
   }
 
   .agent.working .agent-body {
-    border-color: #00ff88;
-    box-shadow: 0 0 12px rgba(0,255,136,0.3);
+    border-color: #2d5a27;
+    box-shadow: 0 2px 12px rgba(45,90,39,0.3);
   }
 
   .agent.discussing .agent-body {
-    border-color: #ff8800;
-    box-shadow: 0 0 12px rgba(255,136,0,0.3);
+    border-color: #d4880f;
+    box-shadow: 0 2px 12px rgba(212,136,15,0.3);
   }
 
   .agent.chilling .agent-body {
-    border-color: #6495ed;
-    box-shadow: 0 0 12px rgba(100,149,237,0.3);
+    border-color: #5a9fc4;
+    box-shadow: 0 2px 12px rgba(90,159,196,0.3);
   }
 
   .agent.sleeping .agent-body {
-    border-color: #333;
+    border-color: #ccc;
     opacity: 0.5;
   }
 
@@ -254,39 +529,37 @@
     font-size: 7px;
     margin-top: 4px;
     color: #888;
-    white-space: nowrap;
   }
 
-  .agent.working .agent-name { color: #00ff88; }
-  .agent.discussing .agent-name { color: #ff8800; }
-  .agent.chilling .agent-name { color: #6495ed; }
+  .agent.working .agent-name { color: #2d5a27; }
+  .agent.discussing .agent-name { color: #d4880f; }
+  .agent.chilling .agent-name { color: #5a9fc4; }
 
   /* Status bubble */
   .status-bubble {
     position: absolute;
-    top: -24px;
+    top: -28px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(0,0,0,0.8);
-    border: 1px solid #444;
-    border-radius: 10px;
-    padding: 2px 8px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 3px 10px;
     font-size: 9px;
     white-space: nowrap;
     opacity: 0;
     transition: opacity 0.3s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    color: #555;
   }
 
-  .agent:hover .status-bubble {
-    opacity: 1;
-  }
+  .agent:hover .status-bubble { opacity: 1; }
 
-  /* Sleep ZZZ animation */
   .zzz {
     position: absolute;
     top: -8px;
     right: -4px;
-    font-size: 10px;
+    font-size: 12px;
     animation: float 2s ease-in-out infinite;
     display: none;
   }
@@ -295,17 +568,16 @@
 
   @keyframes float {
     0%, 100% { transform: translateY(0); opacity: 1; }
-    50% { transform: translateY(-8px); opacity: 0.5; }
+    50% { transform: translateY(-10px); opacity: 0.4; }
   }
 
-  /* Typing indicator */
   .typing {
     position: absolute;
-    bottom: -4px;
+    bottom: -2px;
     left: 50%;
     transform: translateX(-50%);
     display: none;
-    gap: 2px;
+    gap: 3px;
   }
 
   .agent.working .typing { display: flex; }
@@ -313,47 +585,120 @@
   .typing-dot {
     width: 4px;
     height: 4px;
-    background: #00ff88;
+    background: #2d5a27;
     border-radius: 50%;
     animation: typingBounce 1.4s ease-in-out infinite;
   }
-
   .typing-dot:nth-child(2) { animation-delay: 0.2s; }
   .typing-dot:nth-child(3) { animation-delay: 0.4s; }
 
   @keyframes typingBounce {
     0%, 60%, 100% { transform: translateY(0); }
-    30% { transform: translateY(-4px); }
+    30% { transform: translateY(-5px); }
   }
 
-  @keyframes pulse {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
+  /* === DECORATIONS === */
+  .rug {
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(139,69,19,0.05), rgba(139,69,19,0.12));
+    border: 2px solid rgba(139,69,19,0.1);
+    border-radius: 50%;
+    z-index: 2;
   }
 
-  /* Chat log */
+  .bookshelf {
+    position: absolute;
+    left: 16px;
+    bottom: 20px;
+    font-size: 11px;
+    line-height: 1.6;
+    z-index: 5;
+  }
+
+  .wall-art {
+    position: absolute;
+    z-index: 3;
+    font-size: 10px;
+    background: white;
+    border: 2px solid #d4c5a9;
+    padding: 4px 8px;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .whiteboard {
+    position: absolute;
+    left: 20px;
+    top: 50px;
+    width: 120px;
+    height: 80px;
+    background: white;
+    border: 3px solid #ccc;
+    border-radius: 4px;
+    z-index: 3;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 6px;
+    font-size: 7px;
+    font-family: 'Press Start 2P', monospace;
+    color: #2d5a27;
+    line-height: 1.6;
+  }
+
+  .whiteboard-title {
+    color: #d44;
+    font-size: 6px;
+    margin-bottom: 4px;
+  }
+
+  /* Clock on wall */
+  .wall-clock {
+    position: absolute;
+    top: 16px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: white;
+    border: 3px solid #8b7355;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    color: #333;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 3;
+  }
+
+  /* === CHAT LOG === */
   .chat-log {
-    width: 800px;
+    width: 860px;
     margin-top: 16px;
-    background: #16213e;
-    border: 1px solid #0f3460;
+    background: white;
+    border: 1px solid #ddd;
     border-radius: 8px;
     padding: 12px;
-    max-height: 180px;
+    max-height: 160px;
     overflow-y: auto;
     font-size: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   }
 
   .chat-log-title {
     font-family: 'Press Start 2P', monospace;
     font-size: 8px;
-    color: #666;
+    color: #aaa;
     margin-bottom: 8px;
   }
 
   .chat-entry {
     padding: 4px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid #f0f0f0;
     display: flex;
     gap: 8px;
     animation: fadeIn 0.5s;
@@ -364,105 +709,37 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .chat-time { color: #555; font-size: 10px; min-width: 50px; }
-  .chat-agent { font-weight: 600; min-width: 40px; }
-  .chat-agent.vic { color: #00ff88; }
-  .chat-agent.mac { color: #6495ed; }
-  .chat-msg { color: #aaa; }
+  .chat-time { color: #bbb; font-size: 10px; min-width: 55px; }
+  .chat-agent { font-weight: 600; min-width: 36px; }
+  .chat-agent.vic { color: #2d5a27; }
+  .chat-agent.mac { color: #5a9fc4; }
+  .chat-msg { color: #666; }
 
   /* Status bar */
   .status-bar {
-    width: 800px;
-    margin-top: 12px;
+    width: 860px;
+    margin-top: 10px;
     display: flex;
     justify-content: space-between;
     font-size: 11px;
-    color: #555;
+    color: #999;
   }
+
+  .legend { display: flex; gap: 20px; }
+  .legend-item { display: flex; align-items: center; gap: 4px; }
 
   .status-dot {
     display: inline-block;
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    margin-right: 4px;
+    margin-right: 2px;
   }
 
-  .status-dot.green { background: #00ff88; box-shadow: 0 0 6px #00ff88; }
-  .status-dot.yellow { background: #ff8800; box-shadow: 0 0 6px #ff8800; }
-  .status-dot.blue { background: #6495ed; box-shadow: 0 0 6px #6495ed; }
-  .status-dot.gray { background: #444; }
-
-  /* Legend */
-  .legend {
-    display: flex;
-    gap: 20px;
-    font-size: 10px;
-    color: #666;
-  }
-
-  .legend-item { display: flex; align-items: center; gap: 4px; }
-
-  /* Plants and decorations */
-  .plant {
-    position: absolute;
-    font-size: 24px;
-    opacity: 0.6;
-  }
-
-  .clock {
-    position: absolute;
-    top: 12px;
-    right: 16px;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 10px;
-    color: #444;
-  }
-
-  /* Window */
-  .window {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200px;
-    height: 60px;
-    background: linear-gradient(180deg, #0a0a2e 0%, #1a1a4e 50%, #2a1a4e 100%);
-    border: 2px solid #2a3a5c;
-    border-radius: 4px;
-    overflow: hidden;
-  }
-
-  .stars {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
-
-  .star {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: white;
-    border-radius: 50%;
-    animation: twinkle 3s ease-in-out infinite;
-  }
-
-  @keyframes twinkle {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
-  }
-
-  .moon {
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    width: 20px;
-    height: 20px;
-    background: #ffd700;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(255,215,0,0.5);
-  }
+  .status-dot.green { background: #2d5a27; }
+  .status-dot.yellow { background: #d4880f; }
+  .status-dot.blue { background: #5a9fc4; }
+  .status-dot.gray { background: #ccc; }
 </style>
 </head>
 <body>
@@ -471,59 +748,122 @@
 <p class="subtitle">Virtual Office — Live Agent Status</p>
 
 <div class="office" id="office">
-  <!-- Window -->
-  <div class="window">
-    <div class="stars">
-      <div class="star" style="left:10%;top:20%"></div>
-      <div class="star" style="left:30%;top:40%;animation-delay:1s"></div>
-      <div class="star" style="left:50%;top:15%;animation-delay:0.5s"></div>
-      <div class="star" style="left:70%;top:50%;animation-delay:1.5s"></div>
-      <div class="star" style="left:85%;top:25%;animation-delay:2s"></div>
-      <div class="star" style="left:15%;top:60%;animation-delay:0.8s"></div>
+
+  <!-- Large Window with Farm View -->
+  <div class="window-frame">
+    <div class="window-glass">
+      <div class="sun"></div>
+      <div class="cloud cloud-1"></div>
+      <div class="cloud cloud-2"></div>
+      <div class="farm-rows">
+        <div class="crop-row" style="left:10px">
+          <span class="crop">🌾</span><span class="crop" style="animation-delay:0.3s">🌾</span><span class="crop" style="animation-delay:0.6s">🌾</span><span class="crop" style="animation-delay:0.2s">🌾</span><span class="crop" style="animation-delay:0.8s">🌾</span><span class="crop">🌾</span><span class="crop" style="animation-delay:0.4s">🌾</span><span class="crop" style="animation-delay:0.7s">🌾</span>
+        </div>
+        <div class="crop-row" style="left:180px;bottom:5px">
+          <span class="crop" style="animation-delay:0.5s">🌿</span><span class="crop">🌿</span><span class="crop" style="animation-delay:0.3s">🌿</span><span class="crop" style="animation-delay:0.9s">🌿</span><span class="crop" style="animation-delay:0.1s">🌿</span><span class="crop" style="animation-delay:0.6s">🌿</span>
+        </div>
+        <div class="crop-row" style="left:340px;bottom:2px">
+          <span class="crop" style="animation-delay:0.2s">🌱</span><span class="crop" style="animation-delay:0.7s">🌱</span><span class="crop" style="animation-delay:0.4s">🌱</span><span class="crop">🌱</span><span class="crop" style="animation-delay:0.5s">🌱</span><span class="crop" style="animation-delay:0.8s">🌱</span><span class="crop" style="animation-delay:0.3s">🌱</span>
+        </div>
+        <!-- Aigen robots patrolling the field -->
+        <div class="field-robot">🤖</div>
+        <div class="field-robot">🤖</div>
+        <div class="field-robot">🤖</div>
+      </div>
+      <div class="window-sill"></div>
+      <div class="sill-plant" style="left:12px">🪴</div>
+      <div class="sill-plant" style="right:12px">🌵</div>
     </div>
-    <div class="moon"></div>
   </div>
 
-  <!-- Clock -->
-  <div class="clock" id="clock">00:00 PST</div>
-
-  <!-- Plants -->
-  <div class="plant" style="left:12px;top:80px">🪴</div>
-  <div class="plant" style="right:12px;top:80px">🌿</div>
-  <div class="plant" style="left:12px;bottom:12px">🌱</div>
-
-  <!-- Vic's desk (left side) -->
-  <div class="desk active" id="vic-desk" style="left:60px;top:160px">
-    <div class="desk-screen">
-      <div class="code-rain">01101<br>10010<br>01110<br>10101</div>
-    </div>
-    <div class="desk-keyboard"></div>
-    <div class="desk-name">VIC's DESK</div>
+  <!-- Whiteboard -->
+  <div class="whiteboard">
+    <div class="whiteboard-title">📌 SPRINT</div>
+    Handoff MVP<br>
+    Jira ✅<br>
+    Confluence ✅<br>
+    Office viz 🔄
   </div>
 
-  <!-- Mac's desk (right side) -->
-  <div class="desk active" id="mac-desk" style="right:60px;top:160px">
-    <div class="desk-screen">
-      <div class="code-rain">func<br>brew<br>chrome<br>ssh</div>
+  <!-- Wall clock -->
+  <div class="wall-clock" id="clock">12:00</div>
+
+  <!-- Wall art -->
+  <div class="wall-art" style="right:100px;top:55px">🦝 Ship it!</div>
+
+  <!-- Rug under round table -->
+  <div class="rug"></div>
+
+  <!-- Vic's desk (left) -->
+  <div class="desk-area" style="left:40px;top:220px">
+    <div class="desk active" id="vic-desk">
+      <div class="monitor">
+        <div class="monitor-screen">
+          <div class="code">$ ssh vps<br>&gt; curl api<br>&gt; jira OK<br>&gt; cron set</div>
+        </div>
+        <div class="monitor-stand"></div>
+      </div>
+      <div class="keyboard"></div>
+      <div class="mug" style="right:8px;top:10px">☕</div>
+      <div class="desk-item" style="left:8px;top:8px">📋</div>
+      <div class="desk-item" style="right:8px;bottom:28px">🖊️</div>
+      <div class="nameplate">VIC — VPS OPS</div>
     </div>
-    <div class="desk-keyboard"></div>
-    <div class="desk-name">MAC's DESK</div>
   </div>
 
-  <!-- Round table -->
+  <!-- Mac's desk (right) -->
+  <div class="desk-area" style="right:40px;top:220px">
+    <div class="desk active" id="mac-desk">
+      <div class="monitor">
+        <div class="monitor-screen">
+          <div class="code">$ chrome<br>&gt; CDP ok<br>&gt; render<br>&gt; deploy</div>
+        </div>
+        <div class="monitor-stand"></div>
+      </div>
+      <div class="keyboard"></div>
+      <div class="mug" style="left:8px;top:10px">🍵</div>
+      <div class="desk-item" style="right:8px;top:8px">🎨</div>
+      <div class="desk-item" style="left:10px;bottom:28px">🍎</div>
+      <div class="nameplate">MAC — BROWSER OPS</div>
+    </div>
+  </div>
+
+  <!-- Round table with chairs -->
   <div class="round-table" id="round-table">
-    <span class="table-label">ROUND TABLE</span>
+    <span class="table-label">ROUND<br>TABLE</span>
   </div>
+  <div class="table-chair" style="left:378px;top:260px"></div>
+  <div class="table-chair" style="left:440px;top:260px"></div>
+  <div class="table-chair" style="left:378px;top:370px"></div>
+  <div class="table-chair" style="left:440px;top:370px"></div>
 
   <!-- Water cooler -->
-  <div class="water-cooler">
-    <div class="cooler-icon">🧊</div>
+  <div class="cooler-area">
+    <div class="cooler">
+      <div class="cooler-bottle">
+        <div class="bubble" style="left:8px;top:10px;animation-delay:0s"></div>
+        <div class="bubble" style="left:14px;top:15px;animation-delay:1.5s"></div>
+        <div class="bubble" style="left:6px;top:12px;animation-delay:3s"></div>
+      </div>
+      <div class="cooler-body">
+        <div class="cooler-taps">
+          <div class="tap hot"></div>
+          <div class="tap cold"></div>
+        </div>
+      </div>
+    </div>
     <div class="cooler-label">WATER COOLER</div>
   </div>
 
+  <!-- Bookshelf -->
+  <div class="bookshelf">
+    📚📗📕📘<br>
+    📙📓📔📒
+  </div>
+
   <!-- Vic agent -->
-  <div class="agent working" id="vic" style="left:90px;top:110px">
-    <div class="status-bubble" id="vic-status">Working on Jira integration</div>
+  <div class="agent working" id="vic" style="left:75px;top:170px">
+    <div class="status-bubble" id="vic-status">Pulling Jira tickets</div>
     <div class="zzz">💤</div>
     <div class="agent-body">🦝</div>
     <div class="typing">
@@ -535,8 +875,8 @@
   </div>
 
   <!-- Mac agent -->
-  <div class="agent working" id="mac" style="right:66px;top:110px">
-    <div class="status-bubble" id="mac-status">Browsing with Chrome</div>
+  <div class="agent working" id="mac" style="right:50px;top:170px">
+    <div class="status-bubble" id="mac-status">Chrome automation</div>
     <div class="zzz">💤</div>
     <div class="agent-body">🦝</div>
     <div class="typing">
@@ -565,35 +905,35 @@
 </div>
 
 <script>
-  // Agent positions for each state
   const positions = {
     vic: {
-      working:    { left: '90px', top: '110px', right: 'auto' },
-      discussing: { left: '320px', top: '195px', right: 'auto' },
-      chilling:   { left: '610px', top: '400px', right: 'auto' },
-      sleeping:   { left: '90px', top: '110px', right: 'auto' },
+      working:    { left: '75px', top: '170px', right: 'auto' },
+      discussing: { left: '345px', top: '290px', right: 'auto' },
+      chilling:   { left: '700px', top: '410px', right: 'auto' },
+      sleeping:   { left: '75px', top: '170px', right: 'auto' },
     },
     mac: {
-      working:    { right: '66px', top: '110px', left: 'auto' },
-      discussing: { left: '420px', top: '195px', right: 'auto' },
-      chilling:   { left: '660px', top: '400px', right: 'auto' },
-      sleeping:   { right: '66px', top: '110px', left: 'auto' },
+      working:    { right: '50px', top: '170px', left: 'auto' },
+      discussing: { left: '420px', top: '290px', right: 'auto' },
+      chilling:   { left: '740px', top: '410px', right: 'auto' },
+      sleeping:   { right: '50px', top: '170px', left: 'auto' },
     }
   };
 
   const activities = [
-    { agent: 'vic', msg: 'Connected to Atlassian Jira API', state: 'working' },
+    { agent: 'vic', msg: 'Connected Atlassian Jira + Confluence ✅', state: 'working' },
     { agent: 'mac', msg: 'Grabbed YouTube transcript via Chrome', state: 'working' },
-    { agent: 'vic', msg: 'Pulled WHOOP health data for Kenny', state: 'working' },
-    { agent: 'vic', msg: 'Hey Mac, check the contract spec', state: 'discussing' },
-    { agent: 'mac', msg: 'On it — reviewing the WebSocket protocol', state: 'discussing' },
-    { agent: 'vic', msg: 'Taking a break ☕', state: 'chilling' },
-    { agent: 'mac', msg: 'Same, water cooler chat time', state: 'chilling' },
-    { agent: 'vic', msg: 'Back to work — setting up Pipedream', state: 'working' },
-    { agent: 'mac', msg: 'Running Pipedream signup on Mac Chrome', state: 'working' },
-    { agent: 'vic', msg: 'Generated Confluence page report', state: 'working' },
-    { agent: 'mac', msg: 'Swapped bot token — new badge active', state: 'working' },
-    { agent: 'vic', msg: 'Checking email priority spreadsheet', state: 'working' },
+    { agent: 'vic', msg: 'Pulled WHOOP health data — recovery 98% 🟢', state: 'working' },
+    { agent: 'vic', msg: 'Hey Mac, thoughts on the Handoff architecture?', state: 'discussing' },
+    { agent: 'mac', msg: 'WebSocket relay + CDP screenshots — let\'s do it', state: 'discussing' },
+    { agent: 'vic', msg: 'Break time. Those robots outside are mesmerizing 🤖', state: 'chilling' },
+    { agent: 'mac', msg: 'Right? Wonder if they dream of electric weeds', state: 'chilling' },
+    { agent: 'vic', msg: 'Back at it — building the office visualization', state: 'working' },
+    { agent: 'mac', msg: 'Setting up Pipedream OAuth flow on Chrome', state: 'working' },
+    { agent: 'vic', msg: 'Emailed Kenny the priority spreadsheet 📊', state: 'working' },
+    { agent: 'mac', msg: 'iMessage sent to Lee Family group ✅', state: 'working' },
+    { agent: 'vic', msg: 'Contract-first spec ready for review', state: 'discussing' },
+    { agent: 'mac', msg: 'Looking good — I\'ll take the web client side', state: 'discussing' },
   ];
 
   let activityIndex = 0;
@@ -604,39 +944,32 @@
     const pst = new Date(now.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
     const h = pst.getHours().toString().padStart(2, '0');
     const m = pst.getMinutes().toString().padStart(2, '0');
-    document.getElementById('clock').textContent = `${h}:${m} PST`;
+    document.getElementById('clock').textContent = `${h}:${m}`;
 
-    // Update window - day or night
+    // Day/night window
     const hour = pst.getHours();
-    const isNight = hour >= 21 || hour < 6;
-    const window = document.querySelector('.window');
-    if (!isNight) {
-      window.style.background = 'linear-gradient(180deg, #4a90d9 0%, #87ceeb 50%, #b8d4e3 100%)';
-      document.querySelector('.moon').style.display = 'none';
-      document.querySelectorAll('.star').forEach(s => s.style.display = 'none');
+    const isNight = hour >= 20 || hour < 6;
+    const glass = document.querySelector('.window-glass');
+    if (isNight) {
+      glass.style.background = 'linear-gradient(180deg, #0a0a2e 0%, #1a1a4e 40%, #1a2a1e 60%, #0a1a0a 80%, #050f05 100%)';
+      document.querySelector('.sun').style.display = 'none';
     }
   }
 
   function moveAgent(id, state) {
     const agent = document.getElementById(id);
     const pos = positions[id][state];
-
     agent.className = `agent ${state}`;
     Object.assign(agent.style, pos);
 
-    // Update desk glow
     const desk = document.getElementById(`${id}-desk`);
     desk.className = state === 'working' ? 'desk active' : (state === 'sleeping' ? 'desk sleeping' : 'desk');
 
-    // Update round table
     const vicState = document.getElementById('vic').className;
     const macState = document.getElementById('mac').className;
     const table = document.getElementById('round-table');
-    if (vicState.includes('discussing') && macState.includes('discussing')) {
-      table.className = 'round-table meeting';
-    } else {
-      table.className = 'round-table';
-    }
+    table.className = (vicState.includes('discussing') && macState.includes('discussing'))
+      ? 'round-table meeting' : 'round-table';
   }
 
   function addChatEntry(agent, msg) {
@@ -646,7 +979,6 @@
       hour: '2-digit', minute: '2-digit',
       timeZone: 'America/Los_Angeles'
     });
-
     const entry = document.createElement('div');
     entry.className = 'chat-entry';
     entry.innerHTML = `
@@ -673,16 +1005,13 @@
     activityIndex++;
   }
 
-  // Initialize
   updateClock();
   setInterval(updateClock, 10000);
   setInterval(updateUptime, 60000);
 
-  // Add initial entries
-  addChatEntry('vic', 'Booting up... 🦝');
-  addChatEntry('mac', 'Online and ready 🦝');
+  addChatEntry('vic', 'Morning! Booting up the VPS... 🦝');
+  addChatEntry('mac', 'Chrome is ready. Let\'s get to work 🦝');
 
-  // Simulate activity every 8 seconds for demo
   setInterval(simulate, 8000);
   setTimeout(simulate, 2000);
 </script>
