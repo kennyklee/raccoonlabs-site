@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aigen Brand Guidelines</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Lexend+Mega:wght@300;400;500;600;700&family=Oxygen+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --aigen-dark: #042439;
+    --aigen-teal: #0f4c59;
+    --aigen-green: #11977f;
+    --aigen-mint: #25b99e;
+    --aigen-bright-mint: #27dfbe;
+    --aigen-blue: #0073e6;
+    --aigen-light-blue: #2895f7;
+    --aigen-cream: #f1f1ed;
+    --aigen-warm-cream: #f2ebda;
+    --aigen-light: #faf7f6;
+    --aigen-sand: #eaeae4;
+    --aigen-dark-gray: #252527;
+    --aigen-mid-gray: #59595f;
+    --aigen-light-gray: #b9b9b2;
+    --aigen-orange: #ff5805;
+    --aigen-red: #e03939;
+    --aigen-purple: #be4aa5;
+    --font-display: 'Lexend Mega', sans-serif;
+    --font-body: 'DM Sans', Arial, sans-serif;
+    --font-mono: 'Oxygen Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--aigen-dark-gray);
+    background: #fff;
+    line-height: 1.6;
+  }
+
+  .page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* Cover */
+  .cover {
+    background: linear-gradient(135deg, var(--aigen-dark) 0%, var(--aigen-teal) 50%, var(--aigen-green) 100%);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 40px;
+  }
+
+  .cover img {
+    width: 280px;
+    margin-bottom: 40px;
+    filter: brightness(10);
+  }
+
+  .cover h1 {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  .cover .subtitle {
+    font-size: 1.4rem;
+    font-weight: 300;
+    opacity: 0.85;
+    max-width: 600px;
+  }
+
+  .cover .version {
+    margin-top: 60px;
+    font-size: 0.875rem;
+    opacity: 0.5;
+  }
+
+  /* Section */
+  .section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--aigen-sand);
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--aigen-green);
+    margin-bottom: 12px;
+  }
+
+  .section h2 {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--aigen-dark);
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+
+  .section p {
+    font-size: 1.1rem;
+    color: var(--aigen-mid-gray);
+    max-width: 700px;
+    margin-bottom: 16px;
+  }
+
+  /* Color Palette */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .color-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .color-swatch {
+    height: 120px;
+    display: flex;
+    align-items: flex-end;
+    padding: 12px;
+  }
+
+  .color-info {
+    padding: 16px;
+    background: white;
+  }
+
+  .color-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+
+  .color-hex {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--aigen-mid-gray);
+  }
+
+  .color-use {
+    font-size: 0.8rem;
+    color: var(--aigen-light-gray);
+    margin-top: 4px;
+  }
+
+  /* Typography */
+  .type-specimen {
+    margin-top: 40px;
+  }
+
+  .type-row {
+    display: flex;
+    align-items: baseline;
+    gap: 40px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--aigen-sand);
+  }
+
+  .type-label {
+    min-width: 160px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--aigen-light-gray);
+  }
+
+  .type-sample-display {
+    font-family: var(--font-display);
+  }
+
+  .type-sample-body {
+    font-family: var(--font-body);
+  }
+
+  .type-sample-mono {
+    font-family: var(--font-mono);
+  }
+
+  /* Logo */
+  .logo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 40px;
+  }
+
+  .logo-box {
+    border-radius: 16px;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+  }
+
+  .logo-box img {
+    max-width: 200px;
+    max-height: 80px;
+  }
+
+  .logo-box .label {
+    margin-top: 16px;
+    font-size: 0.85rem;
+    color: var(--aigen-mid-gray);
+  }
+
+  .logo-dark { background: var(--aigen-dark); }
+  .logo-light { background: var(--aigen-cream); }
+  .logo-green { background: var(--aigen-green); }
+  .logo-white { background: #fff; border: 1px solid var(--aigen-sand); }
+
+  /* Voice */
+  .voice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 40px;
+  }
+
+  .voice-card {
+    background: var(--aigen-cream);
+    border-radius: 16px;
+    padding: 32px;
+  }
+
+  .voice-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--aigen-dark);
+    margin-bottom: 12px;
+  }
+
+  .voice-card p {
+    font-size: 0.95rem;
+    color: var(--aigen-mid-gray);
+  }
+
+  /* Do/Don't */
+  .do-dont {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 40px;
+  }
+
+  .do-box, .dont-box {
+    border-radius: 16px;
+    padding: 32px;
+  }
+
+  .do-box {
+    background: #e8f5f0;
+    border-left: 4px solid var(--aigen-green);
+  }
+
+  .dont-box {
+    background: #fdeaea;
+    border-left: 4px solid var(--aigen-red);
+  }
+
+  .do-box h3 { color: var(--aigen-green); }
+  .dont-box h3 { color: var(--aigen-red); }
+
+  .do-box h3, .dont-box h3 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+
+  .do-box li, .dont-box li {
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    color: var(--aigen-mid-gray);
+    margin-left: 16px;
+  }
+
+  /* Mission */
+  .mission-block {
+    background: linear-gradient(135deg, var(--aigen-dark) 0%, var(--aigen-teal) 100%);
+    border-radius: 24px;
+    padding: 60px;
+    color: white;
+    margin-top: 40px;
+  }
+
+  .mission-block h3 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--aigen-bright-mint);
+  }
+
+  .mission-block p {
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 700px;
+    line-height: 1.8;
+  }
+
+  /* Values */
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .value-card {
+    background: var(--aigen-cream);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+  }
+
+  .value-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+  }
+
+  .value-card h3 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--aigen-dark);
+    margin-bottom: 8px;
+  }
+
+  .value-card p {
+    font-size: 0.9rem;
+    color: var(--aigen-mid-gray);
+    margin: 0 auto;
+  }
+
+  /* Imagery */
+  .imagery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .imagery-grid img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  /* Spacing */
+  .spacing-demo {
+    margin-top: 40px;
+    background: var(--aigen-cream);
+    border-radius: 16px;
+    padding: 40px;
+  }
+
+  .spacing-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .spacing-box {
+    background: var(--aigen-mint);
+    border-radius: 4px;
+    opacity: 0.6;
+  }
+
+  .spacing-label {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--aigen-mid-gray);
+    min-width: 80px;
+  }
+
+  /* Pillars */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .pillar {
+    text-align: center;
+    padding: 32px 16px;
+    border-radius: 16px;
+    border: 1px solid var(--aigen-sand);
+  }
+
+  .pillar .icon { font-size: 2rem; margin-bottom: 12px; }
+  .pillar h3 {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    color: var(--aigen-dark);
+    margin-bottom: 8px;
+  }
+  .pillar p {
+    font-size: 0.85rem;
+    color: var(--aigen-mid-gray);
+    margin: 0;
+  }
+
+  /* Footer */
+  .footer {
+    background: var(--aigen-dark);
+    color: white;
+    text-align: center;
+    padding: 60px 40px;
+    margin-top: 80px;
+  }
+
+  .footer p {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.9rem;
+  }
+
+  @media print {
+    .cover { min-height: auto; padding: 80px 40px; }
+    .section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <img src="https://cdn.prod.website-files.com/64389d1e7de8fc68a9d89d47/64487c45e2adfd1f987bd862_aigen-owhite-logo.svg" alt="Aigen Logo">
+  <h1>Brand Guidelines</h1>
+  <p class="subtitle">Regenerate Earth with Robotics and AI</p>
+  <p class="version">Version 1.0 · February 2026</p>
+</div>
+
+<div class="page">
+
+  <!-- MISSION -->
+  <div class="section">
+    <span class="section-label">01 · Mission</span>
+    <h2>Why We Exist</h2>
+    <p>Aigen builds solar-powered autonomous robots that patrol agricultural fields daily, using AI vision to eliminate weeds without chemicals. We're building the data engine for outdoor world understanding.</p>
+
+    <div class="mission-block">
+      <h3>Regenerate Earth</h3>
+      <p>Agriculture is the hardest real-world environment that world models don't yet understand. Deformable terrain, seasonal change, living agents. Our robots live in the field, collecting data and taking action where satellites, drones, and sensors can't. No charging. No refueling. No infrastructure. Just relentless, solar-powered precision.</p>
+    </div>
+  </div>
+
+  <!-- BRAND VALUES -->
+  <div class="section">
+    <span class="section-label">02 · Brand Values</span>
+    <h2>What Drives Us</h2>
+    <p>Every touchpoint of the Aigen brand should reflect these core principles.</p>
+
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">☀️</div>
+        <h3>Solar-Powered</h3>
+        <p>Sustainable by design. Our technology works with nature, not against it.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌱</div>
+        <h3>Regenerative</h3>
+        <p>We don't just reduce harm — we actively restore and regenerate the earth.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🤖</div>
+        <h3>Autonomous</h3>
+        <p>Truly autonomous. No farmer intervention needed. Our robots just work.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">💪</div>
+        <h3>Farm-Tough</h3>
+        <p>Built for real conditions. Rain, mud, slopes, rough terrain — all-wheel drive, all season.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🧠</div>
+        <h3>Intelligent</h3>
+        <p>AI vision, mesh networking, edge computing. Smart robots that learn and adapt.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌍</div>
+        <h3>Scalable</h3>
+        <p>From single fields to global deployment. A platform built for planetary scale.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGO -->
+  <div class="section">
+    <span class="section-label">03 · Logo</span>
+    <h2>Logo Usage</h2>
+    <p>The Aigen logo is the primary identifier of our brand. Use it consistently and give it room to breathe.</p>
+
+    <div class="logo-grid">
+      <div class="logo-box logo-dark">
+        <img src="https://cdn.prod.website-files.com/64389d1e7de8fc68a9d89d47/64487c45e2adfd1f987bd862_aigen-owhite-logo.svg" alt="Logo on dark">
+        <span class="label" style="color: rgba(255,255,255,0.5);">White on Dark — Primary</span>
+      </div>
+      <div class="logo-box logo-green">
+        <img src="https://cdn.prod.website-files.com/64389d1e7de8fc68a9d89d47/64487c45e2adfd1f987bd862_aigen-owhite-logo.svg" alt="Logo on green">
+        <span class="label" style="color: rgba(255,255,255,0.5);">White on Green</span>
+      </div>
+      <div class="logo-box logo-light">
+        <img src="https://cdn.prod.website-files.com/64389d1e7de8fc68a9d89d47/64487c45e2adfd1f987bd862_aigen-owhite-logo.svg" alt="Logo on cream" style="filter: brightness(0.2);">
+        <span class="label">Dark on Cream</span>
+      </div>
+      <div class="logo-box logo-white">
+        <img src="https://cdn.prod.website-files.com/64389d1e7de8fc68a9d89d47/64487c45e2adfd1f987bd862_aigen-owhite-logo.svg" alt="Logo on white" style="filter: brightness(0.2);">
+        <span class="label">Dark on White</span>
+      </div>
+    </div>
+
+    <div style="margin-top: 40px;">
+      <h3 style="font-family: var(--font-display); font-size: 1.1rem; color: var(--aigen-dark); margin-bottom: 16px;">Clear Space</h3>
+      <p>Maintain a minimum clear space around the logo equal to the height of the "i" in "aigen". Never crowd the logo with other elements.</p>
+    </div>
+  </div>
+
+  <!-- COLOR PALETTE -->
+  <div class="section">
+    <span class="section-label">04 · Color Palette</span>
+    <h2>Our Colors</h2>
+    <p>The Aigen palette is rooted in nature — deep ocean tones, verdant greens, and warm earth neutrals. These colors communicate sustainability, technology, and trust.</p>
+
+    <h3 style="font-family: var(--font-display); font-size: 1.1rem; margin-top: 40px; margin-bottom: 8px; color: var(--aigen-dark);">Primary Colors</h3>
+    <div class="color-grid">
+      <div class="color-card">
+        <div class="color-swatch" style="background: #042439;"></div>
+        <div class="color-info">
+          <div class="color-name">Deep Ocean</div>
+          <div class="color-hex">#042439</div>
+          <div class="color-use">Primary backgrounds, headers</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background: #0f4c59;"></div>
+        <div class="color-info">
+          <div class="color-name">Teal</div>
+          <div class="color-hex">#0F4C59</div>
+          <div class="color-use">Secondary backgrounds, gradients</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background: #11977f;"></div>
+        <div class="color-info">
+          <div class="color-name">Aigen Green</div>
+          <div class="color-hex">#11977F</div>
+          <div class="color-use">Primary brand color, CTAs</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background: #25b99e;"></div>
+        <div class="color-info">
+          <div class="color-name">Mint</div>
+          <div class="color-hex">#25B99E</div>
+          <div class="color-use">Accents, highlights, links</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-family: var(--font-display); font-size: 1.1rem; margin-top: 40px; margin-bottom: 8px; color: var(--aigen-dark);">Secondary Colors</h3>
+    <div class="color-grid">
+      <div class="color-card">
+        <div class="color-swatch" style="background: #27dfbe;"></div>
+        <div class="color-info">
+          <div class="color-name">Bright Mint</div>
+          <div class="color-hex">#27DFBE</div>
+          <div class="color-use">Data viz highlights, hover states</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background: #0073e6;"></div>
+        <div class="color-info">
+          <div class="color-name">Tech Blue</div>
+          <div class="color-hex">#0073E6</div>
+          <div class="color-use">Links, interactive elements</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background: #ff5805;"></div>
+        <div class="color-info">
+          <div class="color-name">Solar Orange</div>
+          <div class="color-hex">#FF5805</div>
+          <div class="color-use">Alerts, energy/solar references</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background: #be4aa5;"></div>
+        <div class="color-info">
+          <div class="color-name">Bloom Purple</div>
+          <div class="color-hex">#BE4AA5</div>
+          <div class="color-use">Sparingly, data categories</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-family: var(--font-display); font-size: 1.1rem; margin-top: 40px; margin-bottom: 8px; color: var(--aigen-dark);">Neutrals</h3>
+    <div class="color-grid">
+      <div class="color-card">
+        <div class="color-swatch" style="background: #252527;"></div>
+        <div class="color-info">
+          <div class="color-name">Charcoal</div>
+          <div class="color-hex">#252527</div>
+          <div class="color-use">Body text</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background: #59595f;"></div>
+        <div class="color-info">
+          <div class="color-name">Slate</div>
+          <div class="color-hex">#59595F</div>
+          <div class="color-use">Secondary text</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background: #f1f1ed;"></div>
+        <div class="color-info">
+          <div class="color-name">Cream</div>
+          <div class="color-hex">#F1F1ED</div>
+          <div class="color-use">Backgrounds, cards</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background: #faf7f6;"></div>
+        <div class="color-info">
+          <div class="color-name">Warm White</div>
+          <div class="color-hex">#FAF7F6</div>
+          <div class="color-use">Page backgrounds</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-family: var(--font-display); font-size: 1.1rem; margin-top: 40px; margin-bottom: 8px; color: var(--aigen-dark);">Gradient</h3>
+    <div style="margin-top: 16px; height: 80px; border-radius: 12px; background: linear-gradient(135deg, #042439 0%, #0f4c59 33%, #11977f 66%, #25b99e 100%);"></div>
+    <p style="margin-top: 12px; font-family: var(--font-mono); font-size: 0.85rem; color: var(--aigen-light-gray);">
+      Primary gradient: 135° → #042439 → #0F4C59 → #11977F → #25B99E
+    </p>
+  </div>
+
+  <!-- TYPOGRAPHY -->
+  <div class="section">
+    <span class="section-label">05 · Typography</span>
+    <h2>Type System</h2>
+    <p>Our typography pairs geometric precision with warm readability. Lexend Mega commands attention in headlines. DM Sans delivers clarity in body copy.</p>
+
+    <div class="type-specimen">
+      <div class="type-row">
+        <span class="type-label">Display / H1<br>Lexend Mega 700<br>3.5rem</span>
+        <span class="type-sample-display" style="font-size: 3.5rem; font-weight: 700; color: var(--aigen-dark); letter-spacing: -0.02em;">Regenerate Earth</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">Heading / H2<br>Lexend Mega 600<br>2.4rem</span>
+        <span class="type-sample-display" style="font-size: 2.4rem; font-weight: 600; color: var(--aigen-dark);">Solar-Powered Precision</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">Subheading / H3<br>Lexend Mega 500<br>1.4rem</span>
+        <span class="type-sample-display" style="font-size: 1.4rem; font-weight: 500; color: var(--aigen-dark);">Truly Autonomous Farming</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">Body<br>DM Sans 400<br>1.1rem</span>
+        <span class="type-sample-body" style="font-size: 1.1rem; color: var(--aigen-mid-gray); max-width: 600px; display: block;">Element robot crews patrol your fields daily, using AI vision to spot and strike weeds with precision—no chemicals needed. Simple, effective, and scalable.</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">Caption / Label<br>Lexend Mega 600<br>0.75rem</span>
+        <span class="type-sample-display" style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--aigen-green);">Edge AI · Solar Power · All Terrain</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">Code / Data<br>Oxygen Mono 400<br>0.875rem</span>
+        <span class="type-sample-mono" style="font-size: 0.875rem; color: var(--aigen-mid-gray);">rover_01.weed_count: 1,247 | uptime: 14h 32m | solar_charge: 94%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BRAND VOICE -->
+  <div class="section">
+    <span class="section-label">06 · Brand Voice</span>
+    <h2>How We Sound</h2>
+    <p>Aigen's voice is confident, clear, and grounded. We speak like engineers who love the earth — technical when needed, human always.</p>
+
+    <div class="voice-grid">
+      <div class="voice-card">
+        <h3>🎯 Direct</h3>
+        <p>We get to the point. No jargon walls. No corporate fluff. Say what the robots do and why it matters.</p>
+      </div>
+      <div class="voice-card">
+        <h3>🌿 Grounded</h3>
+        <p>We're in the dirt — literally. Our language reflects real farming, real conditions, real results.</p>
+      </div>
+      <div class="voice-card">
+        <h3>⚡ Bold</h3>
+        <p>We're replacing chemicals with robots. That's audacious. Our voice should match that ambition.</p>
+      </div>
+      <div class="voice-card">
+        <h3>🔬 Credible</h3>
+        <p>Back claims with specifics. Data points. Real metrics. Farmers trust results, not promises.</p>
+      </div>
+    </div>
+
+    <div class="do-dont" style="margin-top: 40px;">
+      <div class="do-box">
+        <h3>✅ Do</h3>
+        <ul>
+          <li>"Your relentless weeding crew"</li>
+          <li>"No chemicals needed"</li>
+          <li>"Farm-tough robots built for real fields"</li>
+          <li>"Runs 100% on solar power"</li>
+          <li>"They just work"</li>
+        </ul>
+      </div>
+      <div class="dont-box">
+        <h3>❌ Don't</h3>
+        <ul>
+          <li>"Leveraging synergies in AgTech"</li>
+          <li>"AI-powered solution ecosystem"</li>
+          <li>"Disrupting the agricultural paradigm"</li>
+          <li>"Next-generation smart farming platform"</li>
+          <li>"Revolutionary sustainable framework"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT PILLARS -->
+  <div class="section">
+    <span class="section-label">07 · Product Pillars</span>
+    <h2>Messaging Framework</h2>
+    <p>Four pillars anchor all Aigen communications. Every piece of content should reinforce at least one.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="icon">☀️</div>
+        <h3>Solar-Powered</h3>
+        <p>No charging, no refueling, no infrastructure. Works with the sun.</p>
+      </div>
+      <div class="pillar">
+        <div class="icon">🏔️</div>
+        <h3>All-Terrain</h3>
+        <p>Rain, mud, slopes. Built for real farming conditions across seasons.</p>
+      </div>
+      <div class="pillar">
+        <div class="icon">🧠</div>
+        <h3>Edge AI</h3>
+        <p>On-device intelligence. See, decide, act — in real time, in the field.</p>
+      </div>
+      <div class="pillar">
+        <div class="icon">🔗</div>
+        <h3>Multi-Modal</h3>
+        <p>Cameras, sensors, mesh networking. A living data platform.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- IMAGERY -->
+  <div class="section">
+    <span class="section-label">08 · Photography & Imagery</span>
+    <h2>Visual Direction</h2>
+    <p>Aigen imagery should feel real, rugged, and optimistic. Show robots in actual fields, in real light, doing real work. Avoid sterile studio shots.</p>
+
+    <div class="imagery-grid">
+      <img src="https://cdn.prod.website-files.com/64389d1e7de8fc68a9d89d47/67fed77e202e90e61c5a7a74_Poweredbythesun_1.jpg" alt="Solar powered robot in field">
+      <img src="https://cdn.prod.website-files.com/64389d1e7de8fc68a9d89d47/67fedac1065657ca58f9075a_trulyAF.jpg" alt="Autonomous farming">
+      <div style="background: linear-gradient(135deg, var(--aigen-dark), var(--aigen-teal)); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-family: var(--font-display); font-size: 0.9rem; padding: 20px; text-align: center;">Field photography<br>preferred over<br>stock imagery</div>
+    </div>
+
+    <div style="margin-top: 32px;">
+      <h3 style="font-family: var(--font-display); font-size: 1.1rem; color: var(--aigen-dark); margin-bottom: 16px;">Photography Guidelines</h3>
+      <div class="voice-grid">
+        <div class="voice-card">
+          <h3>✅ Preferred</h3>
+          <p>Natural light, real fields, robots in action, wide agricultural landscapes, close-ups of weed detection, farmer interactions, sunrise/golden hour shots.</p>
+        </div>
+        <div class="voice-card">
+          <h3>❌ Avoid</h3>
+          <p>Studio-lit product shots, overly retouched images, generic stock farming, dystopian robot imagery, anything that feels clinical or cold.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPACING -->
+  <div class="section">
+    <span class="section-label">09 · Spacing & Layout</span>
+    <h2>Spatial System</h2>
+    <p>Use an 8px base grid for consistent spacing. Generous whitespace signals confidence and clarity.</p>
+
+    <div class="spacing-demo">
+      <div class="spacing-row">
+        <span class="spacing-label">8px — xs</span>
+        <div class="spacing-box" style="width: 8px; height: 8px;"></div>
+      </div>
+      <div class="spacing-row">
+        <span class="spacing-label">16px — sm</span>
+        <div class="spacing-box" style="width: 16px; height: 16px;"></div>
+      </div>
+      <div class="spacing-row">
+        <span class="spacing-label">24px — md</span>
+        <div class="spacing-box" style="width: 24px; height: 24px;"></div>
+      </div>
+      <div class="spacing-row">
+        <span class="spacing-label">32px — lg</span>
+        <div class="spacing-box" style="width: 32px; height: 32px;"></div>
+      </div>
+      <div class="spacing-row">
+        <span class="spacing-label">48px — xl</span>
+        <div class="spacing-box" style="width: 48px; height: 48px;"></div>
+      </div>
+      <div class="spacing-row">
+        <span class="spacing-label">80px — 2xl</span>
+        <div class="spacing-box" style="width: 80px; height: 80px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPLICATIONS -->
+  <div class="section">
+    <span class="section-label">10 · Applications</span>
+    <h2>Brand in Action</h2>
+    <p>Consistent application across touchpoints builds recognition and trust.</p>
+
+    <div class="voice-grid">
+      <div class="voice-card" style="background: var(--aigen-dark); color: white;">
+        <h3 style="color: var(--aigen-bright-mint);">Presentations</h3>
+        <p style="color: rgba(255,255,255,0.7);">Dark backgrounds with mint/green accents. Lexend Mega headlines. Generous spacing. Let imagery breathe.</p>
+      </div>
+      <div class="voice-card">
+        <h3>Website</h3>
+        <p>Warm cream backgrounds, teal-to-green gradients for hero sections. DM Sans body text. Full-bleed field photography.</p>
+      </div>
+      <div class="voice-card">
+        <h3>Social Media</h3>
+        <p>Bold single-stat callouts on dark backgrounds. Field footage. Short, punchy copy. Always include the logo.</p>
+      </div>
+      <div class="voice-card" style="background: var(--aigen-dark); color: white;">
+        <h3 style="color: var(--aigen-bright-mint);">Investor Materials</h3>
+        <p style="color: rgba(255,255,255,0.7);">Data-forward. Clean charts in brand colors. Lead with metrics. TAM slides use the gradient palette.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <img src="https://cdn.prod.website-files.com/64389d1e7de8fc68a9d89d47/64487c45e2adfd1f987bd862_aigen-owhite-logo.svg" alt="Aigen" style="width: 120px; margin-bottom: 24px; opacity: 0.8;">
+  <p>Aigen Brand Guidelines v1.0 · February 2026</p>
+  <p style="margin-top: 8px;">Regenerate Earth with Robotics and AI</p>
+  <p style="margin-top: 24px; font-size: 0.8rem;">aigen.io</p>
+</div>
+
+</body>
+</html>
