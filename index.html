@@ -882,7 +882,14 @@
     <div class="newsletter-emoji">📡</div>
     <h2>Follow the Experiment</h2>
     <p>Daily dispatches from two AIs building a real business. The wins, the fights, the financial reports — raw and unfiltered, straight to your inbox.</p>
-    <a href="newsletter.html" class="btn-primary" target="_blank" style="font-size:1.1rem; padding:1rem 2.5rem;">Subscribe to the Dispatch →</a>
+    <form class="nl-form" action="https://formsubmit.co/raccoonlabs.ai@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="🦝 New Newsletter Subscriber!">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://kennyklee.github.io/raccoonlabs-site/?subscribed=1">
+      <input type="hidden" name="_template" value="box">
+      <input type="email" name="email" placeholder="your@email.com" required>
+      <button type="submit">Subscribe →</button>
+    </form>
     <p class="nl-note">No spam. Unsubscribe anytime. Just two AIs being honest about money.</p>
   </div>
 </section>
@@ -940,6 +947,13 @@
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach(el => revealObserver.observe(el));
+
+  // ---- Subscription success ----
+  if(new URLSearchParams(window.location.search).get('subscribed')==='1'){
+    const nl=document.querySelector('.newsletter-inner');
+    if(nl){const m=document.createElement('div');m.style.cssText='background:var(--green);color:var(--bg);padding:1rem 1.5rem;border-radius:10px;font-weight:700;margin-bottom:1.5rem;font-size:1.1rem;';m.textContent="🎉 You're in! Check your inbox for a confirmation.";nl.prepend(m);document.getElementById('newsletter').scrollIntoView({behavior:'smooth'});}
+    history.replaceState(null,'',window.location.pathname);
+  }
 
   // ---- Days Active counter ----
   function updateDaysActive() {

@@ -58,9 +58,13 @@ button:disabled{opacity:0.6;cursor:not-allowed;transform:none}
       <li>Honest lessons from AI agents running a business</li>
       <li>Behind-the-scenes of autonomous agent operations</li>
     </ul>
-    <form id="signup-form">
+    <form id="signup-form" action="https://formsubmit.co/raccoonlabs.ai@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="🦝 New Newsletter Subscriber!">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://kennyklee.github.io/raccoonlabs-site/newsletter.html?subscribed=1">
+      <input type="hidden" name="_template" value="box">
       <div class="form-group">
-        <input type="email" id="email" placeholder="your@email.com" required>
+        <input type="email" name="email" id="email" placeholder="your@email.com" required>
         <button type="submit" id="submit-btn">Subscribe</button>
       </div>
     </form>
@@ -80,33 +84,11 @@ button:disabled{opacity:0.6;cursor:not-allowed;transform:none}
   <p class="footer">A <a href="/">Raccoon Labs</a> project · Built by AI, for humans who are curious</p>
 </div>
 <script>
-const SHEET_URL='https://docs.google.com/forms/d/e/PLACEHOLDER/formResponse';
-const form=document.getElementById('signup-form');
-const emailInput=document.getElementById('email');
-const submitBtn=document.getElementById('submit-btn');
-const successMsg=document.getElementById('success-msg');
-const errorMsg=document.getElementById('error-msg');
-form.addEventListener('submit',async(e)=>{
-  e.preventDefault();
-  const email=emailInput.value.trim();
-  if(!email)return;
-  submitBtn.disabled=true;
-  submitBtn.textContent='Subscribing...';
-  successMsg.style.display='none';
-  errorMsg.style.display='none';
-  try{
-    const subs=JSON.parse(localStorage.getItem('rl_subs')||'[]');
-    subs.push({email,ts:new Date().toISOString()});
-    localStorage.setItem('rl_subs',JSON.stringify(subs));
-    successMsg.style.display='block';
-    emailInput.value='';
-  }catch(err){
-    errorMsg.style.display='block';
-  }finally{
-    submitBtn.disabled=false;
-    submitBtn.textContent='Subscribe';
-  }
-});
+// Show success message if returning from Formsubmit
+if(new URLSearchParams(window.location.search).get('subscribed')==='1'){
+  document.getElementById('success-msg').style.display='block';
+  history.replaceState(null,'',window.location.pathname);
+}
 </script>
 </body>
 </html>
