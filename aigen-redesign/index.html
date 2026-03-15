@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aigen — Robotics for Regenerative Agriculture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal: #1AAF9E;
+      --teal-dark: #138A7C;
+      --teal-light: #E6F7F5;
+      --teal-mid: #0D7A6E;
+      --dark: #0D1412;
+      --dark-2: #131F1D;
+      --dark-3: #1A2B29;
+      --mid: #2E4642;
+      --text-muted: #8BA39F;
+      --text-light: #C4D5D2;
+      --white: #FAFCFB;
+      --cream: #F5F0E8;
+      --gold: #C8A96E;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --font-serif: 'DM Serif Display', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--dark);
+      color: var(--white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 48px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(13, 20, 18, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(26, 175, 158, 0.12);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo svg { width: 32px; height: 32px; }
+
+    .nav-logo-text {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -0.5px;
+      color: var(--white);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--teal);
+      color: var(--white) !important;
+      padding: 10px 22px !important;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--teal-dark) !important; }
+
+    /* ─── HERO ────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 70% 40%, rgba(26, 175, 158, 0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(26, 175, 158, 0.08) 0%, transparent 60%),
+        linear-gradient(180deg, var(--dark) 0%, var(--dark-2) 100%);
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(26, 175, 158, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26, 175, 158, 0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at center, black 40%, transparent 80%);
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 900px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(26, 175, 158, 0.12);
+      border: 1px solid rgba(26, 175, 158, 0.25);
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 8px var(--teal);
+    }
+
+    .hero-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(48px, 7vw, 88px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: var(--teal);
+    }
+
+    .hero-subhead {
+      font-size: clamp(17px, 2vw, 20px);
+      color: var(--text-light);
+      line-height: 1.65;
+      max-width: 580px;
+      margin-bottom: 48px;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--teal);
+      color: var(--white);
+      padding: 16px 32px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: none;
+      transition: all 0.2s;
+      letter-spacing: -0.01em;
+    }
+
+    .btn-primary:hover {
+      background: var(--teal-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 40px rgba(26, 175, 158, 0.3);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-light);
+      padding: 16px 24px;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 16px;
+      text-decoration: none;
+      transition: color 0.2s;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .btn-secondary:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+
+    .hero-visual {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52%;
+      max-width: 700px;
+      aspect-ratio: 4/3;
+    }
+
+    .hero-robot-card {
+      width: 100%;
+      height: 100%;
+      border-radius: 24px 0 0 24px;
+      background: var(--dark-3);
+      border: 1px solid rgba(26, 175, 158, 0.15);
+      border-right: none;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .robot-field-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 50% 60%, rgba(26, 175, 158, 0.15) 0%, transparent 70%),
+        linear-gradient(180deg, var(--dark-2) 0%, #0E2420 50%, #0A1E1A 100%);
+    }
+
+    .robot-illustration {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .robot-svg-wrap {
+      width: 70%;
+      max-width: 380px;
+      filter: drop-shadow(0 20px 60px rgba(26, 175, 158, 0.3));
+    }
+
+    .field-rows {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+    }
+
+    .hero-stats-row {
+      display: flex;
+      gap: 40px;
+      margin-top: 60px;
+      position: relative;
+    }
+
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hero-stat-num {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      color: var(--white);
+      letter-spacing: -0.03em;
+    }
+
+    .hero-stat-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .hero-stat-divider {
+      width: 1px;
+      background: rgba(255,255,255,0.08);
+      align-self: stretch;
+    }
+
+    /* ─── LOGOS / PROOF ───────────────────────────── */
+    .proof-strip {
+      padding: 48px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .proof-strip-label {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .proof-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 56px;
+      flex-wrap: wrap;
+      opacity: 0.5;
+      filter: grayscale(1);
+    }
+
+    .proof-logos span {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    /* ─── SECTION COMMONS ─────────────────────────── */
+    section { padding: 100px 48px; }
+
+    .section-eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 16px;
+    }
+
+    .section-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 4vw, 52px);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .section-body {
+      font-size: 17px;
+      color: var(--text-light);
+      line-height: 1.7;
+      max-width: 540px;
+    }
+
+    /* ─── PROBLEM ─────────────────────────────────── */
+    .problem {
+      background: var(--dark-2);
+    }
+
+    .problem-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .problem-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .stat-card {
+      background: var(--dark-3);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .stat-card-num {
+      font-family: var(--font-serif);
+      font-size: 42px;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-card-num.danger { color: #E57373; }
+    .stat-card-num.gold { color: var(--gold); }
+
+    .stat-card-label {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ─── PRODUCT ─────────────────────────────────── */
+    .product {
+      background: var(--dark);
+    }
+
+    .product-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 64px;
+    }
+
+    .product-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--dark-3);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px;
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .feature-card:hover {
+      border-color: rgba(26, 175, 158, 0.3);
+      transform: translateY(-4px);
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--teal), transparent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .feature-card:hover::before { opacity: 1; }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(26, 175, 158, 0.12);
+      border: 1px solid rgba(26, 175, 158, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      font-size: 22px;
+    }
+
+    .feature-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ─── HOW IT WORKS ────────────────────────────── */
+    .how {
+      background: var(--dark-2);
+    }
+
+    .how-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .how-header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+
+    .how-header .section-body {
+      margin: 0 auto;
+    }
+
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .how-steps::before {
+      content: '';
+      position: absolute;
+      top: 32px;
+      left: calc(12.5% + 24px);
+      right: calc(12.5% + 24px);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--teal), var(--teal), var(--teal), transparent);
+      opacity: 0.3;
+    }
+
+    .how-step {
+      padding: 0 24px;
+      text-align: center;
+    }
+
+    .how-step-num {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--dark-3);
+      border: 1px solid rgba(26, 175, 158, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-family: var(--font-serif);
+      font-size: 24px;
+      color: var(--teal);
+      position: relative;
+      z-index: 1;
+    }
+
+    .how-step-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .how-step-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ─── RESULTS ─────────────────────────────────── */
+    .results {
+      background: linear-gradient(135deg, var(--teal-mid) 0%, #0A2520 60%, var(--dark) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .results::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .results-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .results-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .metric-card {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 28px 24px;
+    }
+
+    .metric-num {
+      font-family: var(--font-serif);
+      font-size: 44px;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .metric-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
+    }
+
+    /* ─── INVESTORS ───────────────────────────────── */
+    .investors {
+      background: var(--dark);
+    }
+
+    .investors-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .investors-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-top: 56px;
+    }
+
+    .investor-card {
+      background: var(--dark-3);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s;
+    }
+
+    .investor-card:hover { border-color: rgba(26, 175, 158, 0.3); }
+
+    .investor-card span {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ─── CTA ─────────────────────────────────────── */
+    .cta-section {
+      background: var(--dark-2);
+      text-align: center;
+    }
+
+    .cta-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .cta-section .section-headline {
+      font-size: clamp(36px, 5vw, 60px);
+    }
+
+    .cta-section .section-body {
+      margin: 0 auto 48px;
+      max-width: 480px;
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* ─── FOOTER ──────────────────────────────────── */
+    footer {
+      padding: 48px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .footer-logo-text {
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--white);
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-copy {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 1024px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 100px 24px 60px; }
+      .hero-visual { display: none; }
+      section { padding: 72px 24px; }
+      .problem-inner { grid-template-columns: 1fr; }
+      .product-header { grid-template-columns: 1fr; }
+      .product-features { grid-template-columns: 1fr 1fr; }
+      .how-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .how-steps::before { display: none; }
+      .results-inner { grid-template-columns: 1fr; }
+      .investors-grid { grid-template-columns: repeat(3, 1fr); }
+      footer { flex-direction: column; gap: 32px; text-align: center; }
+    }
+
+    @media (max-width: 640px) {
+      .product-features { grid-template-columns: 1fr; }
+      .problem-stats { grid-template-columns: 1fr; }
+      .how-steps { grid-template-columns: 1fr; }
+      .results-metrics { grid-template-columns: 1fr; }
+      .investors-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-stats-row { gap: 24px; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="32" height="32" rx="8" fill="#1AAF9E"/>
+      <path d="M8 22L12 10L16 18L20 14L24 22" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="nav-logo-text">AIGEN</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#product">Product</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#investors">Investors</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Demo</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Now deploying across North America</div>
+
+    <h1 class="hero-headline">
+      Your fields,<br/>
+      <em>weeded daily.</em><br/>
+      No chemicals.
+    </h1>
+
+    <p class="hero-subhead">
+      Element robot crews patrol your fields autonomously, using AI vision to target and eliminate weeds with precision — powered entirely by the sun.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">
+        Get a Demo
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#product" class="btn-secondary">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 5.5l4 2.5-4 2.5V5.5z" fill="currentColor"/></svg>
+        See it in action
+      </a>
+    </div>
+
+    <div class="hero-stats-row">
+      <div class="hero-stat">
+        <span class="hero-stat-num">100%</span>
+        <span class="hero-stat-label">Solar powered</span>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">24/7</span>
+        <span class="hero-stat-label">Autonomous operation</span>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">0</span>
+        <span class="hero-stat-label">Herbicides used</span>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">$70M+</span>
+        <span class="hero-stat-label">Raised from top VCs</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Robot visual -->
+  <div class="hero-visual">
+    <div class="hero-robot-card">
+      <div class="robot-field-bg"></div>
+      <div class="robot-illustration">
+        <div class="robot-svg-wrap">
+          <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Ground rows -->
+            <rect y="230" width="400" height="70" fill="#0A1E1A"/>
+            <line x1="0" y1="250" x2="400" y2="250" stroke="#1AAF9E" stroke-width="0.5" stroke-opacity="0.3"/>
+            <line x1="0" y1="265" x2="400" y2="265" stroke="#1AAF9E" stroke-width="0.5" stroke-opacity="0.3"/>
+            <line x1="0" y1="280" x2="400" y2="280" stroke="#1AAF9E" stroke-width="0.5" stroke-opacity="0.3"/>
+
+            <!-- Robot body -->
+            <rect x="140" y="160" width="120" height="70" rx="12" fill="#1A2B29" stroke="#1AAF9E" stroke-width="1.5"/>
+
+            <!-- Robot top sensor array -->
+            <rect x="155" y="130" width="90" height="40" rx="8" fill="#131F1D" stroke="#1AAF9E" stroke-width="1.5"/>
+            <circle cx="180" cy="150" r="8" fill="#1AAF9E" fill-opacity="0.8"/>
+            <circle cx="200" cy="150" r="4" fill="#1AAF9E"/>
+            <circle cx="220" cy="150" r="8" fill="#1AAF9E" fill-opacity="0.8"/>
+
+            <!-- Robot wheels / treads -->
+            <rect x="125" y="195" width="30" height="50" rx="14" fill="#0E1F1D" stroke="#1AAF9E" stroke-width="1.5"/>
+            <rect x="245" y="195" width="30" height="50" rx="14" fill="#0E1F1D" stroke="#1AAF9E" stroke-width="1.5"/>
+
+            <!-- Weeding arm left -->
+            <line x1="155" y1="210" x2="100" y2="240" stroke="#1AAF9E" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="100" cy="240" r="6" fill="#1AAF9E" fill-opacity="0.6"/>
+            <line x1="100" y1="246" x2="100" y2="260" stroke="#1AAF9E" stroke-width="1.5" stroke-linecap="round"/>
+
+            <!-- Weeding arm right -->
+            <line x1="245" y1="210" x2="300" y2="240" stroke="#1AAF9E" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="300" cy="240" r="6" fill="#1AAF9E" fill-opacity="0.6"/>
+            <line x1="300" y1="246" x2="300" y2="260" stroke="#1AAF9E" stroke-width="1.5" stroke-linecap="round"/>
+
+            <!-- Solar panels -->
+            <rect x="150" y="105" width="100" height="28" rx="4" fill="#0D1F1C" stroke="#1AAF9E" stroke-width="1.5"/>
+            <line x1="175" y1="105" x2="175" y2="133" stroke="#1AAF9E" stroke-width="0.5" stroke-opacity="0.5"/>
+            <line x1="200" y1="105" x2="200" y2="133" stroke="#1AAF9E" stroke-width="0.5" stroke-opacity="0.5"/>
+            <line x1="225" y1="105" x2="225" y2="133" stroke="#1AAF9E" stroke-width="0.5" stroke-opacity="0.5"/>
+            <line x1="150" y1="119" x2="250" y2="119" stroke="#1AAF9E" stroke-width="0.5" stroke-opacity="0.5"/>
+
+            <!-- Status light -->
+            <circle cx="200" cy="175" r="5" fill="#1AAF9E">
+              <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+            </circle>
+
+            <!-- Signal waves -->
+            <path d="M310 60 Q330 50 350 60" stroke="#1AAF9E" stroke-width="1.5" fill="none" stroke-opacity="0.6" stroke-linecap="round">
+              <animate attributeName="stroke-opacity" values="0.6;0.2;0.6" dur="1.5s" repeatCount="indefinite"/>
+            </path>
+            <path d="M305 50 Q330 35 355 50" stroke="#1AAF9E" stroke-width="1.5" fill="none" stroke-opacity="0.4" stroke-linecap="round">
+              <animate attributeName="stroke-opacity" values="0.4;0.1;0.4" dur="1.5s" repeatCount="indefinite" begin="0.3s"/>
+            </path>
+            <path d="M300 40 Q330 20 360 40" stroke="#1AAF9E" stroke-width="1.5" fill="none" stroke-opacity="0.2" stroke-linecap="round">
+              <animate attributeName="stroke-opacity" values="0.2;0.05;0.2" dur="1.5s" repeatCount="indefinite" begin="0.6s"/>
+            </path>
+
+            <!-- Targeting reticle on ground -->
+            <circle cx="100" cy="255" r="10" stroke="#1AAF9E" stroke-width="1" stroke-opacity="0.5" stroke-dasharray="3 2"/>
+            <circle cx="300" cy="255" r="10" stroke="#1AAF9E" stroke-width="1" stroke-opacity="0.5" stroke-dasharray="3 2"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF STRIP -->
+<div class="proof-strip">
+  <p class="proof-strip-label">Backed by the world's top agricultural and climate investors</p>
+  <div class="proof-logos">
+    <span>NEA</span>
+    <span>Regen.vc</span>
+    <span>Bessemer</span>
+    <span>Cleveland Ave</span>
+    <span>AgFunder</span>
+    <span>GFC</span>
+    <span>Incite</span>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+  <div class="problem-inner">
+    <div>
+      <p class="section-eyebrow">The Problem</p>
+      <h2 class="section-headline">Weeds cost billions.<br/>Herbicides cost more.</h2>
+      <p class="section-body">
+        American farmers spend over $12 billion annually on herbicides — chemicals that degrade soil health, contaminate water, and face growing regulatory pressure. There's a better way.
+      </p>
+    </div>
+    <div class="problem-stats">
+      <div class="stat-card">
+        <div class="stat-card-num danger">$12B</div>
+        <div class="stat-card-label">Spent annually on herbicides in the US alone</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num danger">30–40%</div>
+        <div class="stat-card-label">Of crop yield lost to weed competition</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num gold">500+</div>
+        <div class="stat-card-label">Herbicide-resistant weed species documented</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num gold">2050</div>
+        <div class="stat-card-label">Year by which we need to feed 10 billion people</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT -->
+<section class="product" id="product">
+  <div class="product-inner">
+    <div class="product-header">
+      <div>
+        <p class="section-eyebrow">Introducing Element</p>
+        <h2 class="section-headline">The world's first AI-driven robotic weeding fleet</h2>
+      </div>
+      <p class="section-body">
+        Element robots deploy as a coordinated crew, using computer vision to identify and eliminate weeds at the plant level — continuously, autonomously, without chemicals.
+      </p>
+    </div>
+    <div class="product-features">
+      <div class="feature-card">
+        <div class="feature-icon">☀️</div>
+        <h3 class="feature-title">Solar Powered</h3>
+        <p class="feature-desc">Runs 100% on onboard solar with battery storage. Your crew works all day, every day — no fuel, no emissions, no fuel cost.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3 class="feature-title">AI Weed Vision</h3>
+        <p class="feature-desc">Real-time computer vision identifies target weeds at the individual plant level. Precision action. Zero collateral damage to your crop.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h3 class="feature-title">Mesh Network</h3>
+        <p class="feature-desc">Robots communicate and coordinate as a crew, sharing field intelligence in real time. Problem areas get automatically prioritized.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3 class="feature-title">Farm Tough</h3>
+        <p class="feature-desc">All-wheel drive. Rain, mud, slopes, rough terrain — Element was built for real field conditions, not a lab. Multiple-season durability.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📡</div>
+        <h3 class="feature-title">Zero Intervention</h3>
+        <p class="feature-desc">Deploy and walk away. No farmer intervention required. Robots handle mapping, navigation, and adaptation automatically.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3 class="feature-title">Field Intelligence</h3>
+        <p class="feature-desc">Continuous data collection across every row. See weed pressure maps, treatment logs, and field health trends in your dashboard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="how-inner">
+    <div class="how-header">
+      <p class="section-eyebrow">How It Works</p>
+      <h2 class="section-headline">From deployment to<br/>clean fields in days</h2>
+      <p class="section-body">We handle setup, training, and monitoring. You get clean fields.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-step-num">1</div>
+        <h3 class="how-step-title">Field Mapping</h3>
+        <p class="how-step-desc">Our team surveys your fields and configures Element units for your crop type, row spacing, and terrain.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">2</div>
+        <h3 class="how-step-title">Robot Deployment</h3>
+        <p class="how-step-desc">Element crews are deployed and begin autonomous patrol — no training required from you.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">3</div>
+        <h3 class="how-step-title">Daily Weeding</h3>
+        <p class="how-step-desc">Robots identify and eliminate weeds continuously, adapting to field conditions in real time.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">4</div>
+        <h3 class="how-step-title">You See the Data</h3>
+        <p class="how-step-desc">Field health reports and weed pressure maps delivered to your phone. Know exactly what's happening in every row.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results" id="results">
+  <div class="results-inner">
+    <div>
+      <p class="section-eyebrow">Early Results</p>
+      <h2 class="section-headline">Proof from<br/>real farms</h2>
+      <p class="section-body" style="max-width: 400px;">
+        Deployed across multiple commercial operations in 2024–2025. Results from Bayer's Red River Valley pilot and partner farms.
+      </p>
+      <br/><br/>
+      <a href="#contact" class="btn-primary">Request a Field Trial</a>
+    </div>
+    <div class="results-metrics">
+      <div class="metric-card">
+        <div class="metric-num">95%</div>
+        <div class="metric-label">Weed control effectiveness across pilot deployments</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">$0</div>
+        <div class="metric-label">Herbicide spend for fully converted operations</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">100%</div>
+        <div class="metric-label">Solar — zero fuel cost, zero emissions</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">24/7</div>
+        <div class="metric-label">Continuous operation, no operator intervention</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTORS -->
+<section class="investors" id="investors">
+  <div class="investors-inner">
+    <p class="section-eyebrow">Our Investors</p>
+    <h2 class="section-headline">Backed by the best in<br/>ag-tech and climate</h2>
+    <p class="section-body" style="margin: 0 auto;">
+      Our investors share a single vision: a regenerated planet that replaces chemical agriculture with precision robotics.
+    </p>
+    <div class="investors-grid">
+      <div class="investor-card"><span>NEA</span></div>
+      <div class="investor-card"><span>Regen.vc</span></div>
+      <div class="investor-card"><span>Bessemer</span></div>
+      <div class="investor-card"><span>Cleveland Ave</span></div>
+      <div class="investor-card"><span>AgFunder</span></div>
+      <div class="investor-card"><span>GFC</span></div>
+      <div class="investor-card"><span>Incite</span></div>
+      <div class="investor-card"><span>Industrious</span></div>
+      <div class="investor-card"><span>SIG-SSI</span></div>
+      <div class="investor-card"><span>E2JDJ</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-inner">
+    <p class="section-eyebrow">Get Started</p>
+    <h2 class="section-headline">Ready to weed your<br/>fields the smart way?</h2>
+    <p class="section-body">
+      Talk to our team about a pilot deployment on your operation. We'll handle everything from setup to support.
+    </p>
+    <div class="cta-actions">
+      <a href="mailto:hello@aigen.io" class="btn-primary">
+        Request a Demo
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="mailto:hello@aigen.io" class="btn-secondary">Contact Sales</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a href="/" class="footer-logo">
+      <svg viewBox="0 0 28 28" fill="none" style="width:24px;height:24px;" xmlns="http://www.w3.org/2000/svg">
+        <rect width="28" height="28" rx="7" fill="#1AAF9E"/>
+        <path d="M7 19L10.5 9L14 16L17.5 12.5L21 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="footer-logo-text">AIGEN</span>
+    </a>
+    <p class="footer-tagline">AI-Generated Agriculture</p>
+  </div>
+
+  <ul class="footer-links">
+    <li><a href="#product">Product</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="mailto:hello@aigen.io">Contact</a></li>
+  </ul>
+
+  <p class="footer-copy">© 2026 Aigen, Inc. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
